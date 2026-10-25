@@ -96,23 +96,69 @@
             font-weight: 200;
         }
 
+        /* Menü-Struktur mit Untermenüs (Accordion / Dropdown) */
         .nav-links {
             list-style: none;
-            padding: 40px 10%;
+            padding: 20px 10% 60px 10%;
             margin: 0;
         }
 
-        .nav-links li {
-            margin-bottom: 28px;
+        .nav-item {
+            margin-bottom: 24px;
+            border-bottom: 1px solid #f5f5f5;
+            padding-bottom: 16px;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            font-size: 24px;
-            color: #111;
+        .menu-title {
+            font-size: 22px;
             font-weight: 300;
             letter-spacing: 1.5px;
             text-transform: uppercase;
+            color: #111;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-title::after {
+            content: '+';
+            font-size: 20px;
+            font-weight: 300;
+            transition: transform 0.3s;
+        }
+
+        .nav-item.active .menu-title::after {
+            content: '−';
+        }
+
+        /* Untermenü-Liste */
+        .submenu {
+            list-style: none;
+            padding-left: 16px;
+            margin-top: 14px;
+            display: none;
+        }
+
+        .nav-item.active .submenu {
+            display: block;
+        }
+
+        .submenu li {
+            margin-bottom: 12px;
+        }
+
+        .submenu a {
+            text-decoration: none;
+            font-size: 15px;
+            color: #555;
+            letter-spacing: 1px;
+            font-weight: 300;
+            transition: color 0.2s;
+        }
+
+        .submenu a:hover {
+            color: #111;
         }
 
         /* Banner oben mit Text */
@@ -209,7 +255,7 @@
             font-weight: 400;
         }
 
-        /* Grossansicht (Modal / Zoom beim Klick auf ein Bild) */
+        /* Großansicht Fenster (Modal) */
         .modal {
             display: none;
             position: fixed;
@@ -266,17 +312,58 @@
         <a href="#" class="cart-icon">Tasche (0)</a>
     </header>
 
-    <!-- Burger-Menü -->
+    <!-- Burger-Menü mit ausklappbaren Unterkategorien -->
     <div id="navOverlay" class="nav-overlay">
         <div class="nav-header">
             <button class="close-btn" onclick="toggleMenu()">&times;</button>
         </div>
+        
         <ul class="nav-links">
-            <li><a href="#" onclick="openModal('diy.jpg', 'Do it yourself'); toggleMenu();">Do it yourself</a></li>
-            <li><a href="#" onclick="openModal('ohrringe.jpg', 'Ohrringe'); toggleMenu();">Ohrringe</a></li>
-            <li><a href="#" onclick="openModal('halskette.jpg', 'Halsketten'); toggleMenu();">Halsketten</a></li>
-            <li><a href="#" onclick="openModal('armband.jpg', 'Armbänder'); toggleMenu();">Armbänder</a></li>
-            <li><a href="#" onclick="openModal('ring.jpg', 'Ringe'); toggleMenu();">Ringe</a></li>
+            <!-- 1. Do it yourself (mit Untermenü für Qualitäten) -->
+            <li class="nav-item">
+                <div class="menu-title" onclick="toggleSubmenu(this)">Do it yourself</div>
+                <ul class="submenu">
+                    <li><a href="#" onclick="openModal('diy.jpg', 'DIY – Premium Qualität'); toggleMenu();">Höchste Qualität / Premium</a></li>
+                    <li><a href="#" onclick="openModal('diy.jpg', 'DIY – Mittlere Qualität'); toggleMenu();">Mittlere Qualität</a></li>
+                    <li><a href="#" onclick="openModal('diy.jpg', 'DIY – Standard Qualität'); toggleMenu();">Standard Qualität</a></li>
+                </ul>
+            </li>
+
+            <!-- 2. Ohrringe -->
+            <li class="nav-item">
+                <div class="menu-title" onclick="toggleSubmenu(this)">Ohrringe</div>
+                <ul class="submenu">
+                    <li><a href="#" onclick="openModal('ohrringe.jpg', 'Ohrringe – Premium'); toggleMenu();">Höchste Qualität</a></li>
+                    <li><a href="#" onclick="openModal('ohrringe.jpg', 'Ohrringe – Klassik'); toggleMenu();">Klassische Kollektion</a></li>
+                </ul>
+            </li>
+
+            <!-- 3. Halsketten -->
+            <li class="nav-item">
+                <div class="menu-title" onclick="toggleSubmenu(this)">Halsketten</div>
+                <ul class="submenu">
+                    <li><a href="#" onclick="openModal('halskette.jpg', 'Halsketten – Naturstein'); toggleMenu();">Naturstein Unikate</a></li>
+                    <li><a href="#" onclick="openModal('halskette.jpg', 'Halsketten – Feine Ketten'); toggleMenu();">Feine Ketten</a></li>
+                </ul>
+            </li>
+
+            <!-- 4. Armbänder -->
+            <li class="nav-item">
+                <div class="menu-title" onclick="toggleSubmenu(this)">Armbänder</div>
+                <ul class="submenu">
+                    <li><a href="#" onclick="openModal('armband.jpg', 'Armbänder – Edelstein'); toggleMenu();">Edelstein Armbänder</a></li>
+                    <li><a href="#" onclick="openModal('armband.jpg', 'Armbänder – Minimal'); toggleMenu();">Minimalistisches Design</a></li>
+                </ul>
+            </li>
+
+            <!-- 5. Ringe -->
+            <li class="nav-item">
+                <div class="menu-title" onclick="toggleSubmenu(this)">Ringe</div>
+                <ul class="submenu">
+                    <li><a href="#" onclick="openModal('ring.jpg', 'Ringe – Solitär'); toggleMenu();">Solitär-Ringe</a></li>
+                    <li><a href="#" onclick="openModal('ring.jpg', 'Ringe – Stapelringe'); toggleMenu();">Stapelringe</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 
@@ -293,7 +380,7 @@
 
     <div class="section-title">Kollektionen entdecken</div>
 
-    <!-- Die 5 Kategorien -->
+    <!-- Die 5 Kategorien-Kacheln -->
     <div class="category-grid">
         <div class="category-card" onclick="openModal('diy.jpg', 'Do it yourself')">
             <img src="diy.jpg" alt="Do it yourself">
@@ -329,16 +416,12 @@
             document.getElementById("navOverlay").classList.toggle("open");
         }
 
+        function toggleSubmenu(element) {
+            var navItem = element.parentElement;
+            navItem.classList.toggle("active");
+        }
+
         function openModal(imgSrc, captionText) {
             document.getElementById("modalImg").src = imgSrc;
             document.getElementById("modalCaption").innerText = captionText;
-            document.getElementById("imageModal").classList.add("open");
-        }
-
-        function closeModal() {
-            document.getElementById("imageModal").classList.remove("open");
-        }
-    </script>
-
-</body>
-</html>
+            document
