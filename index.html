@@ -6,6 +6,9 @@
     <title>ECHTSTEIN – Handgemachter Schmuck</title>
     <style>
         /* Grundlegendes Design (Luxus-Minimalismus) */
+        * {
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
@@ -54,10 +57,11 @@
         }
 
         .cart-icon {
-            font-size: 18px;
+            font-size: 14px;
             text-decoration: none;
             color: #111;
-            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         /* Aufklapp-Menü (Overlay) */
@@ -115,148 +119,50 @@
             color: #777;
         }
 
-        /* Hero-Bereich */
-        .hero {
-            padding: 60px 20px 40px 20px;
+        /* Hero Banner Bereich mit Hintergrundbild */
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            height: 70vh; /* 70% der Bildschirmhöhe */
+            min-height: 450px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
             text-align: center;
+            padding: 20px;
         }
 
-        .hero h1 {
-            font-size: 32px;
+        .hero-banner h1 {
+            font-size: 36px;
             font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
         }
 
-        .hero p {
-            font-size: 14px;
-            color: #666;
-            letter-spacing: 1.5px;
+        .hero-banner p {
+            font-size: 15px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             margin: 0;
-            font-weight: 400;
+            font-weight: 300;
         }
 
         .section-title {
             text-align: center;
             font-size: 14px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             color: #444;
-            margin: 40px 0 30px 0;
+            margin: 80px 0 40px 0;
         }
 
         /* Kategorien-Grid */
         .category-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            padding: 0 24px 60px 24px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 768px) {
-            .category-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-                padding: 0 16px 40px 16px;
-            }
-        }
-
-        .category-card {
-            text-decoration: none;
-            color: #111;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .category-card img {
-            width: 100%;
-            height: 480px;
-            object-fit: cover;
-            background-color: #f7f7f7;
-            transition: opacity 0.3s ease;
-        }
-
-        .category-card:hover img {
-            opacity: 0.92;
-        }
-
-        .category-card span {
-            margin-top: 16px;
-            font-size: 14px;
-            text-align: center;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            font-weight: 400;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Header mit Burger-Menü & Logo -->
-    <header>
-        <button class="menu-btn" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <a href="#" class="logo">ECHTSTEIN</a>
-        <a href="#" class="cart-icon">Bag (0)</a>
-    </header>
-
-    <!-- Aufklappbares Menü mit 5 Kategorien -->
-    <div id="navOverlay" class="nav-overlay">
-        <div class="nav-header">
-            <button class="close-btn" onclick="toggleMenu()">&times;</button>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#diy" onclick="toggleMenu()">Do it yourself</a></li>
-            <li><a href="#ohrringe" onclick="toggleMenu()">Ohrringe</a></li>
-            <li><a href="#halsketten" onclick="toggleMenu()">Halsketten</a></li>
-            <li><a href="#armbaender" onclick="toggleMenu()">Armbänder</a></li>
-            <li><a href="#ringe" onclick="toggleMenu()">Ringe</a></li>
-        </ul>
-    </div>
-
-    <!-- Startseite Header -->
-    <section class="hero">
-        <h1>Handgemacht. 100 % Naturprodukt.</h1>
-        <p>Zeitlose Eleganz aus echten Steinen</p>
-    </section>
-
-    <div class="section-title">Kollektionen entdecken</div>
-
-    <!-- Kachel-Übersicht für die Startseite -->
-    <div class="category-grid">
-        <a href="#" class="category-card">
-            <img src="diy.jpg" alt="Do it yourself">
-            <span>Do it yourself</span>
-        </a>
-        <a href="#" class="category-card">
-            <img src="ohrringe.jpg" alt="Ohrringe">
-            <span>Ohrringe</span>
-        </a>
-        <a href="#" class="category-card">
-            <img src="halskette.jpg" alt="Halsketten">
-            <span>Halsketten</span>
-        </a>
-        <a href="#" class="category-card">
-            <img src="armband.jpg" alt="Armbänder">
-            <span>Armbänder</span>
-        </a>
-        <a href="#" class="category-card">
-            <img src="ring.jpg" alt="Ringe">
-            <span>Ringe</span>
-        </a>
-    </div>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById("navOverlay").classList.toggle("open");
-        }
-    </script>
-
-</body>
-</html>
