@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECHTSTEIN – Handgemacht. 100% Naturprodukt.</title>
+    <title>Ohrringe – ECHTSTEIN</title>
     <style>
         * { box-sizing: border-box; }
         body {
@@ -75,62 +75,28 @@
             overflow-y: auto;
         }
 
-        .nav-overlay.open {
-            left: 0;
-        }
+        .nav-overlay.open { left: 0; }
+        .nav-header { display: flex; justify-content: flex-end; padding: 24px 32px; }
+        .close-btn { background: none; border: none; font-size: 36px; cursor: pointer; color: #111; font-weight: 200; }
+        .nav-links { list-style: none; padding: 40px 10%; margin: 0; }
+        .nav-links li { margin-bottom: 28px; }
+        .nav-links a { text-decoration: none; font-size: 24px; color: #111; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
 
-        .nav-header {
-            display: flex;
-            justify-content: flex-end;
-            padding: 24px 32px;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 36px;
-            cursor: pointer;
-            color: #111;
-            font-weight: 200;
-        }
-
-        .nav-links {
-            list-style: none;
-            padding: 40px 10%;
-            margin: 0;
-        }
-
-        .nav-links li {
-            margin-bottom: 28px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            font-size: 24px;
-            color: #111;
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .nav-links a:hover {
-            color: #777;
-        }
-
-        /* Hero Text & Banner */
-        .hero {
+        /* Kategorie Header */
+        .category-header {
             text-align: center;
             padding: 60px 20px 40px 20px;
         }
 
-        .hero h1 {
-            font-size: 30px;
+        .category-header h1 {
+            font-size: 28px;
             font-weight: 300;
             letter-spacing: 3px;
-            margin-bottom: 10px;
+            text-transform: uppercase;
+            margin: 0 0 10px 0;
         }
 
-        .hero p {
+        .category-header p {
             font-size: 13px;
             color: #666;
             letter-spacing: 2px;
@@ -138,34 +104,10 @@
             margin: 0;
         }
 
-        .hero-image {
-            width: 100%;
-            max-width: 1400px;
-            height: 400px;
-            margin: 0 auto 60px auto;
-            padding: 0 32px;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background-color: #f7f7f7;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 13px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #444;
-            margin-bottom: 40px;
-        }
-
-        /* 5 Kategorien Raster */
-        .category-grid {
+        /* Produkt-Raster (4 Produkte) */
+        .product-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 32px;
             padding: 0 32px 80px 32px;
             max-width: 1400px;
@@ -173,22 +115,21 @@
         }
 
         @media (max-width: 768px) {
-            .hero-image { padding: 0 16px; height: 250px; }
-            .category-grid {
+            .product-grid {
                 grid-template-columns: 1fr;
                 gap: 24px;
                 padding: 0 16px 60px 16px;
             }
         }
 
-        .category-card {
+        .product-card {
             text-decoration: none;
             color: #111;
             display: flex;
             flex-direction: column;
         }
 
-        .category-card img {
+        .product-card img {
             width: 100%;
             height: 480px;
             object-fit: cover;
@@ -196,23 +137,28 @@
             transition: opacity 0.3s ease;
         }
 
-        .category-card:hover img {
+        .product-card:hover img {
             opacity: 0.92;
         }
 
-        .category-card span {
-            margin-top: 18px;
+        .product-title {
+            margin-top: 16px;
             font-size: 14px;
-            text-align: center;
             letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: 400;
+        }
+
+        .product-price {
+            margin-top: 6px;
+            font-size: 13px;
+            color: #666;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <button class="menu-btn" onclick="openMenu()">
             <span></span>
@@ -223,7 +169,6 @@
         <a href="#" class="cart-icon">Tasche (0)</a>
     </header>
 
-    <!-- Burger-Menü (Öffnet sich sauber im Vollbild) -->
     <div id="navOverlay" class="nav-overlay">
         <div class="nav-header">
             <button class="close-btn" onclick="closeMenu()">&times;</button>
@@ -237,40 +182,32 @@
         </ul>
     </div>
 
-    <!-- Hauptbereich -->
-    <section class="hero">
-        <h1>Handgemacht. 100 % Naturprodukt.</h1>
-        <p>Zeitlose Eleganz aus echten Steinen</p>
+    <section class="category-header">
+        <h1>Ohrringe</h1>
+        <p>Handgemacht aus 100 % natürlichen Edelsteinen</p>
     </section>
 
-    <!-- Hintergrundfoto -->
-    <div class="hero-image">
-        <img src="hero.jpg" alt="Echtstein Banner">
-    </div>
-
-    <div class="section-title">Kollektionen entdecken</div>
-
-    <!-- Die 5 Kategorien als saubere Links -->
-    <div class="category-grid">
-        <a href="diy.html" class="category-card">
-            <img src="diy.jpg" alt="Do it yourself">
-            <span>Do it yourself</span>
+    <!-- Die 4 Ohrring-Modelle -->
+    <div class="product-grid">
+        <a href="#" class="product-card">
+            <img src="ohrringe-1.jpg" alt="Ohrringe Modell 1">
+            <span class="product-title">Ohrringe Modell I</span>
+            <span class="product-price">49,00 €</span>
         </a>
-        <a href="ohrringe.html" class="category-card">
-            <img src="ohrringe.jpg" alt="Ohrringe">
-            <span>Ohrringe</span>
+        <a href="#" class="product-card">
+            <img src="ohrringe-2.jpg" alt="Ohrringe Modell 2">
+            <span class="product-title">Ohrringe Modell II</span>
+            <span class="product-price">54,00 €</span>
         </a>
-        <a href="halsketten.html" class="category-card">
-            <img src="halskette.jpg" alt="Halsketten">
-            <span>Halsketten</span>
+        <a href="#" class="product-card">
+            <img src="ohrringe-3.jpg" alt="Ohrringe Modell 3">
+            <span class="product-title">Ohrringe Modell III</span>
+            <span class="product-price">59,00 €</span>
         </a>
-        <a href="armband.html" class="category-card">
-            <img src="armband.jpg" alt="Armbänder">
-            <span>Armbänder</span>
-        </a>
-        <a href="ringe.html" class="category-card">
-            <img src="ring.jpg" alt="Ringe">
-            <span>Ringe</span>
+        <a href="#" class="product-card">
+            <img src="ohrringe-4.jpg" alt="Ohrringe Modell 4">
+            <span class="product-title">Ohrringe Modell IV</span>
+            <span class="product-price">69,00 €</span>
         </a>
     </div>
 
@@ -278,7 +215,6 @@
         function openMenu() {
             document.getElementById("navOverlay").classList.add("open");
         }
-
         function closeMenu() {
             document.getElementById("navOverlay").classList.remove("open");
         }
