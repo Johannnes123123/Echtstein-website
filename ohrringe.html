@@ -1,1 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ohrringe - Echtstein</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #fdfbf7;
+            color: #333;
+        }
 
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #fdfbf7;
+            border-bottom: 1px solid #eae5de;
+        }
+
+        .logo {
+            font-size: 24px;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 300;
+        }
+
+        .menu-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .menu-links a {
+            text-decoration: none;
+            color: #666;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .menu-links a:hover {
+            color: #111;
+        }
+
+        /* Hauptbereich */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            font-size: 32px;
+        }
+
+        /* Produkt-Kacheln Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: #fff;
+            border: 1px solid #eae5de;
+            border-radius: 4px;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 1px solid #eae5de;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin: 15px 0 10px 0;
+            font-weight: 400;
+        }
+
+        .product-price {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 13px;
+            color: #888;
+            border-top: 1px solid #eae5de;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menüleiste -->
+    <nav>
+        <a href="index.html" class="logo">ECHTSTEIN</a>
+        <div class="menu-links">
+            <a href="index.html">Startseite</a>
+            <a href="ohrringe.html">Ohrringe</a>
+        </div>
+    </nav>
+
+    <!-- Inhalt -->
+    <div class="container">
+        <h1>Unsere Ohrringe</h1>
+        
+        <div class="product-grid">
+            <!-- Produkt 1 -->
+            <div class="product-card">
+                <img src="ohrring-1.jpg" alt="Ohrring Modell 1">
+                <div class="product-title">Modell Klassik</div>
+                <div class="product-price">49,00 €</div>
+            </div>
+
+            <!-- Produkt 2 -->
+            <div class="product-card">
+                <img src="ohrring-2.jpg" alt="Ohrring Modell 2">
+                <div class="product-title">Modell Elegant</div>
+                <div class="product-price">59,00 €</div>
+            </div>
+
+            <!-- Produkt 3 -->
+            <div class="product-card">
+                <img src="ohrring-3.jpg" alt="Ohrring Modell 3">
+                <div class="product-title">Modell Modern</div>
+                <div class="product-price">45,00 €</div>
+            </div>
+
+            <!-- Produkt 4 -->
+            <div class="product-card">
+                <img src="ohrring-4.jpg" alt="Ohrring Modell 4">
+                <div class="product-title">Modell Nature</div>
+                <div class="product-price">55,00 €</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Echtstein. Alle Rechte vorbehalten.
+    </footer>
+
+</body>
+</html>
