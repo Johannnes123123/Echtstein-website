@@ -3,135 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECHTSTEIN - Handgemachter Schmuck</title>
+    <title>ECHTSTEIN – Handgemachter Schmuck</title>
     <style>
+        /* Grundlegendes Design (Luxus-Minimalismus) */
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        header {
+            padding: 0;
             background-color: #fff;
-            padding: 20px 40px;
+            color: #111;
+        }
+
+        /* Header / Navigation oben */
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #eaeaea;
+            padding: 24px 32px;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            z-index: 1000;
         }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 2px;
+
+        .menu-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 22px;
+            height: 16px;
         }
-        .hero {
-            background-color: #222;
-            color: #fff;
-            text-align: center;
-            padding: 80px 20px;
-        }
-        .hero h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-        .hero p {
-            font-size: 16px;
-            color: #aaa;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        .card {
-            background: #fff;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .card img {
+
+        .menu-btn span {
+            display: block;
+            height: 1.5px;
             width: 100%;
-            height: 300px;
-            object-fit: cover;
+            background-color: #111;
         }
-        .card-content {
-            padding: 20px;
+
+        .logo {
+            font-size: 22px;
+            font-weight: 300;
+            letter-spacing: 5px;
+            text-decoration: none;
+            color: #111;
+        }
+
+        .cart-icon {
+            font-size: 18px;
+            text-decoration: none;
+            color: #111;
+            font-weight: 300;
+        }
+
+        /* Aufklapp-Menü (Overlay) */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 2000;
+            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-y: auto;
+        }
+
+        .nav-overlay.open {
+            left: 0;
+        }
+
+        .nav-header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 24px 32px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 32px;
+            cursor: pointer;
+            color: #111;
+            font-weight: 200;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 40px 10%;
+            margin: 0;
+        }
+
+        .nav-links li {
+            margin-bottom: 28px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 24px;
+            color: #111;
+            font-weight: 300;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #777;
+        }
+
+        /* Hero-Bereich */
+        .hero {
+            padding: 60px 20px 40px 20px;
             text-align: center;
         }
-        .card-title {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 8px;
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
         }
-        .card-price {
-            color: #666;
+
+        .hero p {
             font-size: 14px;
+            color: #666;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 0;
+            font-weight: 400;
         }
-        footer {
+
+        .section-title {
             text-align: center;
-            padding: 40px;
-            color: #888;
-            font-size: 13px;
-            border-top: 1px solid #eaeaea;
-            margin-top: 60px;
-            background: #fff;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #444;
+            margin: 40px 0 30px 0;
+        }
+
+        /* Kategorien-Grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            padding: 0 24px 60px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .category-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 0 16px 40px 16px;
+            }
+        }
+
+        .category-card {
+            text-decoration: none;
+            color: #111;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            background-color: #f7f7f7;
+            transition: opacity 0.3s ease;
+        }
+
+        .category-card:hover img {
+            opacity: 0.92;
+        }
+
+        .category-card span {
+            margin-top: 16px;
+            font-size: 14px;
+            text-align: center;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 400;
         }
     </style>
 </head>
 <body>
 
+    <!-- Header mit Burger-Menü & Logo -->
     <header>
-        <div class="logo">ECHTSTEIN</div>
-        <div>Kollektion 2026</div>
+        <button class="menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a href="#" class="logo">ECHTSTEIN</a>
+        <a href="#" class="cart-icon">Bag (0)</a>
     </header>
 
-    <section class="hero">
-        <h1>Zeitlose Ohrringe</h1>
-        <p>Handgefertigt mit Liebe zum Detail.</p>
-    </section>
-
-    <div class="container">
-        <div class="grid">
-            <div class="card">
-                <img src="ohrring-1.jpg" alt="Ohrring Modell 1">
-                <div class="card-content">
-                    <div class="card-title">Modell 1</div>
-                    <div class="card-price">Auf Anfrage</div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="ohrring-2.jpg" alt="Ohrring Modell 2">
-                <div class="card-content">
-                    <div class="card-title">Modell 2</div>
-                    <div class="card-price">Auf Anfrage</div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="ohrring-3.jpg" alt="Ohrring Modell 3">
-                <div class="card-content">
-                    <div class="card-title">Modell 3</div>
-                    <div class="card-price">Auf Anfrage</div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="ohrring-4.jpg" alt="Ohrring Modell 4">
-                <div class="card-content">
-                    <div class="card-title">Modell 4</div>
-                    <div class="card-price">Auf Anfrage</div>
-                </div>
-            </div>
+    <!-- Aufklappbares Menü mit 5 Kategorien -->
+    <div id="navOverlay" class="nav-overlay">
+        <div class="nav-header">
+            <button class="close-btn" onclick="toggleMenu()">&times;</button>
         </div>
+        <ul class="nav-links">
+            <li><a href="#diy" onclick="toggleMenu()">Do it yourself</a></li>
+            <li><a href="#ohrringe" onclick="toggleMenu()">Ohrringe</a></li>
+            <li><a href="#halsketten" onclick="toggleMenu()">Halsketten</a></li>
+            <li><a href="#armbaender" onclick="toggleMenu()">Armbänder</a></li>
+            <li><a href="#ringe" onclick="toggleMenu()">Ringe</a></li>
+        </ul>
     </div>
 
-    <footer>
-        &copy; 2026 ECHTSTEIN. Alle Rechte vorbehalten.
-    </footer>
+    <!-- Startseite Header -->
+    <section class="hero">
+        <h1>Handgemacht. 100 % Naturprodukt.</h1>
+        <p>Zeitlose Eleganz aus echten Steinen</p>
+    </section>
+
+    <div class="section-title">Kollektionen entdecken</div>
+
+    <!-- Kachel-Übersicht für die Startseite -->
+    <div class="category-grid">
+        <a href="#" class="category-card">
+            <img src="diy.jpg" alt="Do it yourself">
+            <span>Do it yourself</span>
+        </a>
+        <a href="#" class="category-card">
+            <img src="ohrringe.jpg" alt="Ohrringe">
+            <span>Ohrringe</span>
+        </a>
+        <a href="#" class="category-card">
+            <img src="halskette.jpg" alt="Halsketten">
+            <span>Halsketten</span>
+        </a>
+        <a href="#" class="category-card">
+            <img src="armband.jpg" alt="Armbänder">
+            <span>Armbänder</span>
+        </a>
+        <a href="#" class="category-card">
+            <img src="ring.jpg" alt="Ringe">
+            <span>Ringe</span>
+        </a>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("navOverlay").classList.toggle("open");
+        }
+    </script>
 
 </body>
 </html>
