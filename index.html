@@ -36,14 +36,14 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 22px;
-            height: 16px;
+            width: 24px;
+            height: 18px;
             padding: 0;
         }
 
         .menu-btn span {
             display: block;
-            height: 1.5px;
+            height: 2px;
             width: 100%;
             background-color: #111;
         }
@@ -73,7 +73,7 @@
             height: 100%;
             background-color: #fff;
             z-index: 2000;
-            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: left 0.3s ease;
             overflow-y: auto;
         }
 
@@ -96,7 +96,7 @@
             font-weight: 200;
         }
 
-        /* Menü-Struktur mit Untermenüs (Accordion / Dropdown) */
+        /* Menü-Struktur */
         .nav-links {
             list-style: none;
             padding: 20px 10% 60px 10%;
@@ -121,17 +121,6 @@
             align-items: center;
         }
 
-        .menu-title::after {
-            content: '+';
-            font-size: 20px;
-            font-weight: 300;
-            transition: transform 0.3s;
-        }
-
-        .nav-item.active .menu-title::after {
-            content: '−';
-        }
-
         /* Untermenü-Liste */
         .submenu {
             list-style: none;
@@ -154,7 +143,8 @@
             color: #555;
             letter-spacing: 1px;
             font-weight: 300;
-            transition: color 0.2s;
+            display: block;
+            padding: 4px 0;
         }
 
         .submenu a:hover {
@@ -207,7 +197,7 @@
             margin-bottom: 40px;
         }
 
-        /* 5 Kategorien-Raster auf der Startseite */
+        /* 5 Kategorien-Raster */
         .category-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -303,7 +293,7 @@
 
     <!-- Header -->
     <header>
-        <button class="menu-btn" onclick="toggleMenu()">
+        <button class="menu-btn" onclick="openMenu()">
             <span></span>
             <span></span>
             <span></span>
@@ -315,53 +305,68 @@
     <!-- Burger-Menü mit ausklappbaren Unterkategorien -->
     <div id="navOverlay" class="nav-overlay">
         <div class="nav-header">
-            <button class="close-btn" onclick="toggleMenu()">&times;</button>
+            <button class="close-btn" onclick="closeMenu()">&times;</button>
         </div>
         
         <ul class="nav-links">
-            <!-- 1. Do it yourself (mit Untermenü für Qualitäten) -->
-            <li class="nav-item">
-                <div class="menu-title" onclick="toggleSubmenu(this)">Do it yourself</div>
+            <!-- 1. Do it yourself -->
+            <li class="nav-item" id="item-diy">
+                <div class="menu-title" onclick="toggleItem('item-diy')">
+                    <span>Do it yourself</span>
+                    <span class="icon">+</span>
+                </div>
                 <ul class="submenu">
-                    <li><a href="#" onclick="openModal('diy.jpg', 'DIY – Premium Qualität'); toggleMenu();">Höchste Qualität / Premium</a></li>
-                    <li><a href="#" onclick="openModal('diy.jpg', 'DIY – Mittlere Qualität'); toggleMenu();">Mittlere Qualität</a></li>
-                    <li><a href="#" onclick="openModal('diy.jpg', 'DIY – Standard Qualität'); toggleMenu();">Standard Qualität</a></li>
+                    <li><a href="javascript:void(0)" onclick="openModal('diy.jpg', 'DIY – Gute Qualität')">Gute Qualität</a></li>
+                    <li><a href="javascript:void(0)" onclick="openModal('diy.jpg', 'DIY – Mittlere Qualität')">Mittlere Qualität</a></li>
+                    <li><a href="javascript:void(0)" onclick="openModal('diy.jpg', 'DIY – Standardsortiment')">Standardsortiment</a></li>
                 </ul>
             </li>
 
             <!-- 2. Ohrringe -->
-            <li class="nav-item">
-                <div class="menu-title" onclick="toggleSubmenu(this)">Ohrringe</div>
+            <li class="nav-item" id="item-ohrringe">
+                <div class="menu-title" onclick="toggleItem('item-ohrringe')">
+                    <span>Ohrringe</span>
+                    <span class="icon">+</span>
+                </div>
                 <ul class="submenu">
-                    <li><a href="#" onclick="openModal('ohrringe.jpg', 'Ohrringe – Premium'); toggleMenu();">Höchste Qualität</a></li>
-                    <li><a href="#" onclick="openModal('ohrringe.jpg', 'Ohrringe – Klassik'); toggleMenu();">Klassische Kollektion</a></li>
+                    <li><a href="javascript:void(0)" onclick="openModal('ohrringe.jpg', 'Ohrringe – Premium')">Gute Qualität</a></li>
+                    <li><a href="javascript:void(0)" onclick="openModal('ohrringe.jpg', 'Ohrringe – Mittlere Qualität')">Mittlere Qualität</a></li>
                 </ul>
             </li>
 
             <!-- 3. Halsketten -->
-            <li class="nav-item">
-                <div class="menu-title" onclick="toggleSubmenu(this)">Halsketten</div>
+            <li class="nav-item" id="item-halsketten">
+                <div class="menu-title" onclick="toggleItem('item-halsketten')">
+                    <span>Halsketten</span>
+                    <span class="icon">+</span>
+                </div>
                 <ul class="submenu">
-                    <li><a href="#" onclick="openModal('halskette.jpg', 'Halsketten – Naturstein'); toggleMenu();">Naturstein Unikate</a></li>
-                    <li><a href="#" onclick="openModal('halskette.jpg', 'Halsketten – Feine Ketten'); toggleMenu();">Feine Ketten</a></li>
+                    <li><a href="javascript:void(0)" onclick="openModal('halskette.jpg', 'Halsketten – Gute Qualität')">Gute Qualität</a></li>
+                    <li><a href="javascript:void(0)" onclick="openModal('halskette.jpg', 'Halsketten – Mittlere Qualität')">Mittlere Qualität</a></li>
                 </ul>
             </li>
 
             <!-- 4. Armbänder -->
-            <li class="nav-item">
-                <div class="menu-title" onclick="toggleSubmenu(this)">Armbänder</div>
+            <li class="nav-item" id="item-armbaender">
+                <div class="menu-title" onclick="toggleItem('item-armbaender')">
+                    <span>Armbänder</span>
+                    <span class="icon">+</span>
+                </div>
                 <ul class="submenu">
-                    <li><a href="#" onclick="openModal('armband.jpg', 'Armbänder – Edelstein'); toggleMenu();">Edelstein Armbänder</a></li>
-                    <li><a href="#" onclick="openModal('armband.jpg', 'Armbänder – Minimal'); toggleMenu();">Minimalistisches Design</a></li>
+                    <li><a href="javascript:void(0)" onclick="openModal('armband.jpg', 'Armbänder – Gute Qualität')">Gute Qualität</a></li>
+                    <li><a href="javascript:void(0)" onclick="openModal('armband.jpg', 'Armbänder – Mittlere Qualität')">Mittlere Qualität</a></li>
                 </ul>
             </li>
 
             <!-- 5. Ringe -->
-            <li class="nav-item">
-                <div class="menu-title" onclick="toggleSubmenu(this)">Ringe</div>
+            <li class="nav-item" id="item-ringe">
+                <div class="menu-title" onclick="toggleItem('item-ringe')">
+                    <span>Ringe</span>
+                    <span class="icon">+</span>
+                </div>
                 <ul class="submenu">
-                    <li><a href="#" onclick="openModal('ring.jpg', 'Ringe – Solitär'); toggleMenu();">Solitär-Ringe</a></li>
-                    <li><a href="#" onclick="openModal('ring.jpg', 'Ringe – Stapelringe'); toggleMenu();">Stapelringe</a></li>
+                    <li><a href="javascript:void(0)" onclick="openModal('ring.jpg', 'Ringe – Gute Qualität')">Gute Qualität</a></li>
+                    <li><a href="javascript:void(0)" onclick="openModal('ring.jpg', 'Ringe – Mittlere Qualität')">Mittlere Qualität</a></li>
                 </ul>
             </li>
         </ul>
@@ -404,24 +409,4 @@
         </div>
     </div>
 
-    <!-- Großansicht Fenster (Modal) -->
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="modal-close">&times;</span>
-        <img id="modalImg" src="" alt="Großansicht">
-        <div id="modalCaption" class="modal-caption"></div>
-    </div>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById("navOverlay").classList.toggle("open");
-        }
-
-        function toggleSubmenu(element) {
-            var navItem = element.parentElement;
-            navItem.classList.toggle("active");
-        }
-
-        function openModal(imgSrc, captionText) {
-            document.getElementById("modalImg").src = imgSrc;
-            document.getElementById("modalCaption").innerText = captionText;
-            document
+    <!-- Großansicht
