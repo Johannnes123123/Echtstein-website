@@ -1,13 +1,108 @@
-<main class="product-grid">
-    <h2>Unsere Ringe</h2>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECHTSTEIN - Ringe</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #111;
+        }
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 32px;
+            border-bottom: 1px solid #eee;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: #111;
+        }
+        .cart-icon {
+            text-decoration: none;
+            color: #111;
+            font-size: 14px;
+        }
+        .menu-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: #111;
+        }
+        /* Produkt-Grid Layout */
+        .product-grid {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .product-grid h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: normal;
+        }
+        .product-card {
+            margin-bottom: 40px;
+        }
+        .product-card img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            display: block;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .product-card h3 {
+            font-size: 16px;
+            font-weight: normal;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
 
-    <div class="product-card">
-        <img src="ring1.jpg" alt="Echtstein Ring 1">
-        <h3>Echtstein Ring 1</h3>
-    </div>
+    <!-- Header -->
+    <header>
+        <button class="menu-btn" onclick="openMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a href="index.html" class="logo">ECHTSTEIN</a>
+        <a href="#" class="cart-icon">Tasche (0)</a>
+    </header>
 
-    <div class="product-card">
-        <img src="ring2.jpg" alt="Echtstein Ring 2">
-        <h3>Echtstein Ring 2</h3>
-    </div>
-</main>
+    <!-- Hauptinhalt: Ringe -->
+    <main class="product-grid">
+        <h2>Unsere Ringe</h2>
+
+        <div class="product-card">
+            <img src="ring1.jpg" alt="Echtstein Ring 1">
+            <h3>Echtstein Ring 1</h3>
+        </div>
+
+        <div class="product-card">
+            <img src="ring2.jpg" alt="Echtstein Ring 2">
+            <h3>Echtstein Ring 2</h3>
+        </div>
+    </main>
+
+</body>
+</html>
