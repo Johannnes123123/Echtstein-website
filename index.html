@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ohrringe – ECHTSTEIN</title>
+    <title>ECHTSTEIN – Handgemacht. 100% Naturprodukt.</title>
     <style>
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
@@ -13,6 +15,8 @@
             background-color: #fff;
             color: #111;
         }
+
+        /* Fixed Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -24,6 +28,7 @@
             background-color: #fff;
             z-index: 1000;
         }
+
         .menu-btn {
             background: none;
             border: none;
@@ -33,13 +38,16 @@
             justify-content: space-between;
             width: 22px;
             height: 16px;
+            padding: 0;
         }
+
         .menu-btn span {
             display: block;
             height: 1.5px;
             width: 100%;
             background-color: #111;
         }
+
         .logo {
             font-size: 22px;
             font-weight: 300;
@@ -47,13 +55,16 @@
             text-decoration: none;
             color: #111;
         }
+
         .cart-icon {
-            font-size: 14px;
+            font-size: 13px;
             text-decoration: none;
             color: #111;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
+
+        /* Overlay Burger-Menü */
         .nav-overlay {
             position: fixed;
             top: 0;
@@ -65,76 +76,186 @@
             transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             overflow-y: auto;
         }
-        .nav-overlay.open { left: 0; }
-        .nav-header { display: flex; justify-content: flex-end; padding: 24px 32px; }
-        .close-btn { background: none; border: none; font-size: 32px; cursor: pointer; color: #111; font-weight: 200; }
-        .nav-links { list-style: none; padding: 40px 10%; margin: 0; }
-        .nav-links li { margin-bottom: 28px; }
-        .nav-links a { text-decoration: none; font-size: 24px; color: #111; font-weight: 300; letter-spacing: 1px; }
 
-        /* Kategorie Header */
-        .category-header {
+        .nav-overlay.open {
+            left: 0;
+        }
+
+        .nav-header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 24px 32px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 32px;
+            cursor: pointer;
+            color: #111;
+            font-weight: 200;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 40px 10%;
+            margin: 0;
+        }
+
+        .nav-links li {
+            margin-bottom: 28px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 24px;
+            color: #111;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* Banner oben mit Text */
+        .hero {
             text-align: center;
             padding: 60px 20px 40px 20px;
         }
-        .category-header h1 {
-            font-size: 28px;
+
+        .hero h1 {
+            font-size: 30px;
             font-weight: 300;
             letter-spacing: 3px;
-            text-transform: uppercase;
-            margin: 0 0 10px 0;
-        }
-        .category-header p {
-            font-size: 14px;
-            color: #666;
-            letter-spacing: 1px;
+            margin-bottom: 10px;
         }
 
-        /* Produkt-Grid */
-        .product-grid {
+        .hero p {
+            font-size: 13px;
+            color: #666;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        /* Banner-Hintergrundbild */
+        .hero-image {
+            width: 100%;
+            max-width: 1400px;
+            height: 400px;
+            margin: 0 auto 60px auto;
+            padding: 0 32px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #f7f7f7;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #444;
+            margin-bottom: 40px;
+        }
+
+        /* 5 Kategorien-Raster auf der Startseite */
+        .category-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 32px;
             padding: 0 32px 80px 32px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        @media (max-width: 900px) {
-            .product-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 600px) {
-            .product-grid { grid-template-columns: 1fr; gap: 24px; padding: 0 16px 60px 16px; }
+        @media (max-width: 768px) {
+            .hero-image { padding: 0 16px; height: 250px; }
+            .category-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 0 16px 60px 16px;
+            }
         }
 
-        .product-card {
+        .category-card {
             text-decoration: none;
             color: #111;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
         }
-        .product-card img {
+
+        .category-card img {
             width: 100%;
-            height: 380px;
+            height: 480px;
             object-fit: cover;
             background-color: #f7f7f7;
+            transition: opacity 0.3s ease;
         }
-        .product-title {
-            margin-top: 16px;
+
+        .category-card:hover img {
+            opacity: 0.92;
+        }
+
+        .category-card span {
+            margin-top: 18px;
             font-size: 14px;
-            letter-spacing: 1px;
+            text-align: center;
+            letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: 400;
         }
-        .product-price {
-            margin-top: 6px;
-            font-size: 13px;
-            color: #666;
+
+        /* Grossansicht (Modal / Zoom beim Klick auf ein Bild) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .modal-caption {
+            color: #fff;
+            margin-top: 20px;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 36px;
+            cursor: pointer;
+            font-weight: 200;
         }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header>
         <button class="menu-btn" onclick="toggleMenu()">
             <span></span>
@@ -145,46 +266,77 @@
         <a href="#" class="cart-icon">Tasche (0)</a>
     </header>
 
+    <!-- Burger-Menü -->
     <div id="navOverlay" class="nav-overlay">
         <div class="nav-header">
             <button class="close-btn" onclick="toggleMenu()">&times;</button>
         </div>
         <ul class="nav-links">
-            <li><a href="diy.html">Do it yourself</a></li>
-            <li><a href="ohrringe.html">Ohrringe</a></li>
-            <li><a href="halsketten.html">Halsketten</a></li>
-            <li><a href="armbaender.html">Armbänder</a></li>
-            <li><a href="ringe.html">Ringe</a></li>
+            <li><a href="#" onclick="openModal('diy.jpg', 'Do it yourself'); toggleMenu();">Do it yourself</a></li>
+            <li><a href="#" onclick="openModal('ohrringe.jpg', 'Ohrringe'); toggleMenu();">Ohrringe</a></li>
+            <li><a href="#" onclick="openModal('halskette.jpg', 'Halsketten'); toggleMenu();">Halsketten</a></li>
+            <li><a href="#" onclick="openModal('armband.jpg', 'Armbänder'); toggleMenu();">Armbänder</a></li>
+            <li><a href="#" onclick="openModal('ring.jpg', 'Ringe'); toggleMenu();">Ringe</a></li>
         </ul>
     </div>
 
-    <section class="category-header">
-        <h1>Ohrringe</h1>
-        <p>Handgemacht aus 100 % natürlichen Edelsteinen</p>
+    <!-- Hauptbereich -->
+    <section class="hero">
+        <h1>Handgemacht. 100 % Naturprodukt.</h1>
+        <p>Zeitlose Eleganz aus echten Steinen</p>
     </section>
 
-    <!-- Hier werden die einzelnen Produkte aufgelistet -->
-    <div class="product-grid">
-        <a href="#" class="product-card">
-            <img src="ohrringe-1.jpg" alt="Ohrring Modell 1">
-            <div class="product-title">Ohrring Rose Quartz</div>
-            <div class="product-price">49,00 €</div>
-        </a>
-        <a href="#" class="product-card">
-            <img src="ohrringe-2.jpg" alt="Ohrring Modell 2">
-            <div class="product-title">Ohrring Amethyst</div>
-            <div class="product-price">59,00 €</div>
-        </a>
-        <a href="#" class="product-card">
-            <img src="ohrringe-3.jpg" alt="Ohrring Modell 3">
-            <div class="product-title">Ohrring Jade Green</div>
-            <div class="product-price">54,00 €</div>
-        </a>
+    <!-- Großes Hintergrundfoto zwischen Überschrift und Bildern -->
+    <div class="hero-image">
+        <img src="hero.jpg" alt="Echtstein – Naturprodukt Banner">
+    </div>
+
+    <div class="section-title">Kollektionen entdecken</div>
+
+    <!-- Die 5 Kategorien -->
+    <div class="category-grid">
+        <div class="category-card" onclick="openModal('diy.jpg', 'Do it yourself')">
+            <img src="diy.jpg" alt="Do it yourself">
+            <span>Do it yourself</span>
+        </div>
+        <div class="category-card" onclick="openModal('ohrringe.jpg', 'Ohrringe')">
+            <img src="ohrringe.jpg" alt="Ohrringe">
+            <span>Ohrringe</span>
+        </div>
+        <div class="category-card" onclick="openModal('halskette.jpg', 'Halsketten')">
+            <img src="halskette.jpg" alt="Halsketten">
+            <span>Halsketten</span>
+        </div>
+        <div class="category-card" onclick="openModal('armband.jpg', 'Armbänder')">
+            <img src="armband.jpg" alt="Armbänder">
+            <span>Armbänder</span>
+        </div>
+        <div class="category-card" onclick="openModal('ring.jpg', 'Ringe')">
+            <img src="ring.jpg" alt="Ringe">
+            <span>Ringe</span>
+        </div>
+    </div>
+
+    <!-- Großansicht Fenster (Modal) -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img id="modalImg" src="" alt="Großansicht">
+        <div id="modalCaption" class="modal-caption"></div>
     </div>
 
     <script>
         function toggleMenu() {
             document.getElementById("navOverlay").classList.toggle("open");
+        }
+
+        function openModal(imgSrc, captionText) {
+            document.getElementById("modalImg").src = imgSrc;
+            document.getElementById("modalCaption").innerText = captionText;
+            document.getElementById("imageModal").classList.add("open");
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").classList.remove("open");
         }
     </script>
 
