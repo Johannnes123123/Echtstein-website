@@ -62,7 +62,7 @@
             text-transform: uppercase;
         }
 
-        /* Burger-Menü Overlay (Vollbild) */
+        /* Burger-Menü Overlay */
         .nav-overlay {
             position: fixed;
             top: 0;
@@ -96,24 +96,23 @@
             font-weight: 300;
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: color 0.2s;
         }
 
         .nav-links a:hover {
             color: #777;
         }
 
-        /* Startseiten-Inhalt (Clean & Minimalistisch) */
+        /* Minimalistischer Text in der Mitte */
         .hero {
             text-align: center;
-            padding: 80px 20px 40px 20px;
+            padding: 100px 20px 40px 20px;
         }
 
         .hero h1 {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 300;
             letter-spacing: 3px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .hero p {
@@ -124,12 +123,12 @@
             margin: 0;
         }
 
-        /* Großes Banner-Bild in der Mitte */
+        /* Großes Banner-Bild darunter */
         .hero-image {
             width: 100%;
             max-width: 1400px;
             height: 500px;
-            margin: 0 auto 80px auto;
+            margin: 40px auto;
             padding: 0 32px;
         }
 
@@ -139,16 +138,10 @@
             object-fit: cover;
             background-color: #f7f7f7;
         }
-
-        @media (max-width: 768px) {
-            .hero-image { padding: 0 16px; height: 300px; }
-            .hero h1 { font-size: 24px; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <button class="menu-btn" onclick="openMenu()">
             <span></span>
@@ -159,7 +152,7 @@
         <a href="#" class="cart-icon">Tasche (0)</a>
     </header>
 
-    <!-- Burger-Menü (Links öffnet sich das Overlay) -->
+    <!-- Das Menü mit den Links zu den Unterseiten -->
     <div id="navOverlay" class="nav-overlay">
         <div class="nav-header">
             <button class="close-btn" onclick="closeMenu()">&times;</button>
@@ -173,13 +166,12 @@
         </ul>
     </div>
 
-    <!-- Hauptbereich der Startseite -->
+    <!-- Startseite Inhalt: Nur Text und ein edles Bild -->
     <section class="hero">
         <h1>Handgemacht. 100 % Naturprodukt.</h1>
         <p>Zeitlose Eleganz aus echten Steinen</p>
     </section>
 
-    <!-- Das große Bannerfoto -->
     <div class="hero-image">
         <img src="hero.jpg" alt="Echtstein Banner">
     </div>
