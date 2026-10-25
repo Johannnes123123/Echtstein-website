@@ -47,7 +47,7 @@
             height: 2px;
             background-color: #111;
         }
-        /* Produkt-Grid Layout */
+        /* Produkt-Grid Layout - Platziert alles nebeneinander */
         .product-grid {
             max-width: 1200px;
             margin: 40px auto;
@@ -57,17 +57,27 @@
             font-size: 28px;
             margin-bottom: 30px;
             font-weight: normal;
+            grid-column: 1 / -1; /* Überschrift geht über die volle Breite */
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
         }
         .product-card {
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
+        /* Bild-Effekt beim Vergrößern */
         .product-card img {
             width: 100%;
-            max-width: 350px;
             height: auto;
             display: block;
             margin-bottom: 15px;
             border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+        .product-card img:hover {
+            transform: scale(1.03);
         }
         .product-card h3 {
             font-size: 16px;
@@ -89,18 +99,20 @@
         <a href="#" class="cart-icon">Tasche (0)</a>
     </header>
 
-    <!-- Hauptinhalt: Ringe -->
+    <!-- Hauptinhalt: Ringe nebeneinander -->
     <main class="product-grid">
         <h2>Unsere Ringe</h2>
 
-        <div class="product-card">
-            <img src="ring1.jpg" alt="Echtstein Ring 1">
-            <h3>Echtstein Ring 1</h3>
-        </div>
+        <div class="grid-container">
+            <div class="product-card">
+                <img src="ring1.jpg" alt="Echtstein Ring 1">
+                <h3>Echtstein Ring 1</h3>
+            </div>
 
-        <div class="product-card">
-            <img src="ring2.jpg" alt="Echtstein Ring 2">
-            <h3>Echtstein Ring 2</h3>
+            <div class="product-card">
+                <img src="ring2.jpg" alt="Echtstein Ring 2">
+                <h3>Echtstein Ring 2</h3>
+            </div>
         </div>
     </main>
 
