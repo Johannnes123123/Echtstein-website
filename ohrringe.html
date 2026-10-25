@@ -14,6 +14,7 @@
             color: #111;
         }
 
+        /* Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -61,6 +62,7 @@
             text-transform: uppercase;
         }
 
+        /* Burger-Menü Overlay */
         .nav-overlay {
             position: fixed;
             top: 0;
@@ -76,10 +78,27 @@
         .nav-overlay.open { left: 0; }
         .nav-header { display: flex; justify-content: flex-end; padding: 24px 32px; }
         .close-btn { background: none; border: none; font-size: 36px; cursor: pointer; color: #111; font-weight: 200; }
-        .nav-links { list-style: none; padding: 40px 10%; margin: 0; }
-        .nav-links li { margin-bottom: 28px; }
-        .nav-links a { text-decoration: none; font-size: 24px; color: #111; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
+        
+        .nav-links {
+            list-style: none;
+            padding: 40px 10%;
+            margin: 0;
+        }
 
+        .nav-links li {
+            margin-bottom: 28px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 24px;
+            color: #111;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Überschrift der Kategorie */
         .category-header {
             text-align: center;
             padding: 60px 20px 40px 20px;
@@ -101,6 +120,7 @@
             margin: 0;
         }
 
+        /* Produkt-Raster für die 4 Ohrringe */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -130,11 +150,6 @@
             height: 480px;
             object-fit: cover;
             background-color: #f7f7f7;
-            transition: opacity 0.3s ease;
-        }
-
-        .product-card:hover img {
-            opacity: 0.92;
         }
 
         .product-title {
@@ -155,6 +170,7 @@
 </head>
 <body>
 
+    <!-- Header -->
     <header>
         <button class="menu-btn" onclick="openMenu()">
             <span></span>
@@ -165,6 +181,7 @@
         <a href="#" class="cart-icon">Tasche (0)</a>
     </header>
 
+    <!-- Burger-Menü -->
     <div id="navOverlay" class="nav-overlay">
         <div class="nav-header">
             <button class="close-btn" onclick="closeMenu()">&times;</button>
@@ -183,28 +200,28 @@
         <p>Handgemacht aus 100 % natürlichen Edelsteinen</p>
     </section>
 
-    <!-- Hier werden alle 4 Ohrringe aufgelistet -->
+    <!-- Die 4 Ohrringe nebeneinander -->
     <div class="product-grid">
-        <a href="#" class="product-card">
+        <div class="product-card">
             <img src="ohrringe-1.jpg" alt="Ohrring 1">
             <span class="product-title">Ohrring Modell I</span>
             <span class="product-price">49,00 €</span>
-        </a>
-        <a href="#" class="product-card">
+        </div>
+        <div class="product-card">
             <img src="ohrringe-2.jpg" alt="Ohrring 2">
             <span class="product-title">Ohrring Modell II</span>
             <span class="product-price">54,00 €</span>
-        </a>
-        <a href="#" class="product-card">
+        </div>
+        <div class="product-card">
             <img src="ohrringe-3.jpg" alt="Ohrring 3">
             <span class="product-title">Ohrring Modell III</span>
             <span class="product-price">59,00 €</span>
-        </a>
-        <a href="#" class="product-card">
+        </div>
+        <div class="product-card">
             <img src="ohrringe-4.jpg" alt="Ohrring 4">
             <span class="product-title">Ohrring Modell IV</span>
             <span class="product-price">69,00 €</span>
-        </a>
+        </div>
     </div>
 
     <script>
