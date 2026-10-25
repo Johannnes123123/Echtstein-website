@@ -5,49 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECHTSTEIN – Handgemacht. 100% Naturprodukt.</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #fff;
             color: #111;
+            text-align: center;
         }
-
-        /* Fixed Header */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 24px 32px;
             border-bottom: 1px solid #f0f0f0;
-            position: sticky;
-            top: 0;
-            background-color: #fff;
-            z-index: 1000;
         }
-
-        .menu-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 24px;
-            height: 18px;
-            padding: 0;
-        }
-
-        .menu-btn span {
-            display: block;
-            height: 2px;
-            width: 100%;
-            background-color: #111;
-        }
-
         .logo {
             font-size: 22px;
             font-weight: 300;
@@ -55,358 +27,57 @@
             text-decoration: none;
             color: #111;
         }
-
-        .cart-icon {
-            font-size: 13px;
-            text-decoration: none;
-            color: #111;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        /* Overlay Burger-Menü */
-        .nav-overlay {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background-color: #fff;
-            z-index: 2000;
-            transition: left 0.3s ease;
-            overflow-y: auto;
-        }
-
-        .nav-overlay.open {
-            left: 0;
-        }
-
-        .nav-header {
-            display: flex;
-            justify-content: flex-end;
-            padding: 24px 32px;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 32px;
-            cursor: pointer;
-            color: #111;
-            font-weight: 200;
-        }
-
-        /* Menü-Struktur */
-        .nav-links {
-            list-style: none;
-            padding: 20px 10% 60px 10%;
-            margin: 0;
-        }
-
-        .nav-item {
-            margin-bottom: 24px;
-            border-bottom: 1px solid #f5f5f5;
-            padding-bottom: 16px;
-        }
-
-        .menu-title {
-            font-size: 22px;
-            font-weight: 300;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #111;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Untermenü-Liste */
-        .submenu {
-            list-style: none;
-            padding-left: 16px;
-            margin-top: 14px;
-            display: none;
-        }
-
-        .nav-item.active .submenu {
-            display: block;
-        }
-
-        .submenu li {
-            margin-bottom: 12px;
-        }
-
-        .submenu a {
-            text-decoration: none;
-            font-size: 15px;
-            color: #555;
-            letter-spacing: 1px;
-            font-weight: 300;
-            display: block;
-            padding: 4px 0;
-        }
-
-        .submenu a:hover {
-            color: #111;
-        }
-
-        /* Banner oben mit Text */
         .hero {
-            text-align: center;
-            padding: 60px 20px 40px 20px;
+            padding: 60px 20px;
         }
-
         .hero h1 {
-            font-size: 30px;
+            font-size: 28px;
             font-weight: 300;
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 13px;
-            color: #666;
             letter-spacing: 2px;
+        }
+        .hero p {
+            color: #666;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            margin: 0;
-        }
-
-        /* Banner-Hintergrundbild */
-        .hero-image {
-            width: 100%;
-            max-width: 1400px;
-            height: 400px;
-            margin: 0 auto 60px auto;
-            padding: 0 32px;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background-color: #f7f7f7;
-        }
-
-        .section-title {
-            text-align: center;
             font-size: 13px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #444;
-            margin-bottom: 40px;
         }
-
-        /* 5 Kategorien-Raster */
-        .category-grid {
+        .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            padding: 0 32px 80px 32px;
-            max-width: 1400px;
+            gap: 20px;
+            padding: 20px 32px;
+            max-width: 1200px;
             margin: 0 auto;
         }
-
-        @media (max-width: 768px) {
-            .hero-image { padding: 0 16px; height: 250px; }
-            .category-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-                padding: 0 16px 60px 16px;
-            }
-        }
-
-        .category-card {
-            text-decoration: none;
-            color: #111;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .category-card img {
-            width: 100%;
-            height: 480px;
-            object-fit: cover;
-            background-color: #f7f7f7;
-            transition: opacity 0.3s ease;
-        }
-
-        .category-card:hover img {
-            opacity: 0.92;
-        }
-
-        .category-card span {
-            margin-top: 18px;
-            font-size: 14px;
-            text-align: center;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 400;
-        }
-
-        /* Großansicht Fenster (Modal) */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 3000;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .modal.open {
-            display: flex;
-        }
-
-        .modal img {
-            max-width: 90%;
-            max-height: 80vh;
-            object-fit: contain;
-        }
-
-        .modal-caption {
-            color: #fff;
-            margin-top: 20px;
+        .card {
+            background: #f7f7f7;
+            padding: 40px 20px;
             font-size: 16px;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #fff;
-            font-size: 36px;
-            cursor: pointer;
-            font-weight: 200;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
-        <button class="menu-btn" onclick="openMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <span>☰ Menü</span>
         <a href="index.html" class="logo">ECHTSTEIN</a>
-        <a href="#" class="cart-icon">Tasche (0)</a>
+        <span>Tasche</span>
     </header>
 
-    <!-- Burger-Menü mit ausklappbaren Unterkategorien -->
-    <div id="navOverlay" class="nav-overlay">
-        <div class="nav-header">
-            <button class="close-btn" onclick="closeMenu()">&times;</button>
-        </div>
-        
-        <ul class="nav-links">
-            <!-- 1. Do it yourself -->
-            <li class="nav-item" id="item-diy">
-                <div class="menu-title" onclick="toggleItem('item-diy')">
-                    <span>Do it yourself</span>
-                    <span class="icon">+</span>
-                </div>
-                <ul class="submenu">
-                    <li><a href="javascript:void(0)" onclick="openModal('diy.jpg', 'DIY – Gute Qualität')">Gute Qualität</a></li>
-                    <li><a href="javascript:void(0)" onclick="openModal('diy.jpg', 'DIY – Mittlere Qualität')">Mittlere Qualität</a></li>
-                    <li><a href="javascript:void(0)" onclick="openModal('diy.jpg', 'DIY – Standardsortiment')">Standardsortiment</a></li>
-                </ul>
-            </li>
-
-            <!-- 2. Ohrringe -->
-            <li class="nav-item" id="item-ohrringe">
-                <div class="menu-title" onclick="toggleItem('item-ohrringe')">
-                    <span>Ohrringe</span>
-                    <span class="icon">+</span>
-                </div>
-                <ul class="submenu">
-                    <li><a href="javascript:void(0)" onclick="openModal('ohrringe.jpg', 'Ohrringe – Premium')">Gute Qualität</a></li>
-                    <li><a href="javascript:void(0)" onclick="openModal('ohrringe.jpg', 'Ohrringe – Mittlere Qualität')">Mittlere Qualität</a></li>
-                </ul>
-            </li>
-
-            <!-- 3. Halsketten -->
-            <li class="nav-item" id="item-halsketten">
-                <div class="menu-title" onclick="toggleItem('item-halsketten')">
-                    <span>Halsketten</span>
-                    <span class="icon">+</span>
-                </div>
-                <ul class="submenu">
-                    <li><a href="javascript:void(0)" onclick="openModal('halskette.jpg', 'Halsketten – Gute Qualität')">Gute Qualität</a></li>
-                    <li><a href="javascript:void(0)" onclick="openModal('halskette.jpg', 'Halsketten – Mittlere Qualität')">Mittlere Qualität</a></li>
-                </ul>
-            </li>
-
-            <!-- 4. Armbänder -->
-            <li class="nav-item" id="item-armbaender">
-                <div class="menu-title" onclick="toggleItem('item-armbaender')">
-                    <span>Armbänder</span>
-                    <span class="icon">+</span>
-                </div>
-                <ul class="submenu">
-                    <li><a href="javascript:void(0)" onclick="openModal('armband.jpg', 'Armbänder – Gute Qualität')">Gute Qualität</a></li>
-                    <li><a href="javascript:void(0)" onclick="openModal('armband.jpg', 'Armbänder – Mittlere Qualität')">Mittlere Qualität</a></li>
-                </ul>
-            </li>
-
-            <!-- 5. Ringe -->
-            <li class="nav-item" id="item-ringe">
-                <div class="menu-title" onclick="toggleItem('item-ringe')">
-                    <span>Ringe</span>
-                    <span class="icon">+</span>
-                </div>
-                <ul class="submenu">
-                    <li><a href="javascript:void(0)" onclick="openModal('ring.jpg', 'Ringe – Gute Qualität')">Gute Qualität</a></li>
-                    <li><a href="javascript:void(0)" onclick="openModal('ring.jpg', 'Ringe – Mittlere Qualität')">Mittlere Qualität</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-
-    <!-- Hauptbereich -->
-    <section class="hero">
+    <div class="hero">
         <h1>Handgemacht. 100 % Naturprodukt.</h1>
         <p>Zeitlose Eleganz aus echten Steinen</p>
-    </section>
-
-    <!-- Großes Hintergrundfoto zwischen Überschrift und Bildern -->
-    <div class="hero-image">
-        <img src="hero.jpg" alt="Echtstein – Naturprodukt Banner">
     </div>
 
-    <div class="section-title">Kollektionen entdecken</div>
-
-    <!-- Die 5 Kategorien-Kacheln -->
-    <div class="category-grid">
-        <div class="category-card" onclick="openModal('diy.jpg', 'Do it yourself')">
-            <img src="diy.jpg" alt="Do it yourself">
-            <span>Do it yourself</span>
-        </div>
-        <div class="category-card" onclick="openModal('ohrringe.jpg', 'Ohrringe')">
-            <img src="ohrringe.jpg" alt="Ohrringe">
-            <span>Ohrringe</span>
-        </div>
-        <div class="category-card" onclick="openModal('halskette.jpg', 'Halsketten')">
-            <img src="halskette.jpg" alt="Halsketten">
-            <span>Halsketten</span>
-        </div>
-        <div class="category-card" onclick="openModal('armband.jpg', 'Armbänder')">
-            <img src="armband.jpg" alt="Armbänder">
-            <span>Armbänder</span>
-        </div>
-        <div class="category-card" onclick="openModal('ring.jpg', 'Ringe')">
-            <img src="ring.jpg" alt="Ringe">
-            <span>Ringe</span>
-        </div>
+    <div class="grid">
+        <div class="card">Do it yourself</div>
+        <div class="card">Ohrringe</div>
+        <div class="card">Halsketten</div>
+        <div class="card">Armbänder</div>
+        <div class="card" style="grid-column: span 2;">Ringe</div>
     </div>
 
-    <!-- Großansicht
+</body>
+</html>
