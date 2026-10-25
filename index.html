@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ohrringe – ECHTSTEIN</title>
+    <title>ECHTSTEIN – Handgemacht. 100% Naturprodukt.</title>
     <style>
         * { box-sizing: border-box; }
         body {
@@ -62,7 +62,7 @@
             text-transform: uppercase;
         }
 
-        /* Burger-Menü Overlay */
+        /* Burger-Menü Overlay (Vollbild) */
         .nav-overlay {
             position: fixed;
             top: 0;
@@ -78,25 +78,45 @@
         .nav-overlay.open { left: 0; }
         .nav-header { display: flex; justify-content: flex-end; padding: 24px 32px; }
         .close-btn { background: none; border: none; font-size: 36px; cursor: pointer; color: #111; font-weight: 200; }
-        .nav-links { list-style: none; padding: 40px 10%; margin: 0; }
-        .nav-links li { margin-bottom: 28px; }
-        .nav-links a { text-decoration: none; font-size: 24px; color: #111; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
-
-        /* Kategorie Header */
-        .category-header {
-            text-align: center;
-            padding: 60px 20px 40px 20px;
+        
+        .nav-links {
+            list-style: none;
+            padding: 40px 10%;
+            margin: 0;
         }
 
-        .category-header h1 {
-            font-size: 28px;
+        .nav-links li {
+            margin-bottom: 28px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 24px;
+            color: #111;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #777;
+        }
+
+        /* Startseiten-Inhalt (Clean & Minimalistisch) */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
             font-weight: 300;
             letter-spacing: 3px;
-            text-transform: uppercase;
-            margin: 0 0 10px 0;
+            margin-bottom: 15px;
         }
 
-        .category-header p {
+        .hero p {
             font-size: 13px;
             color: #666;
             letter-spacing: 2px;
@@ -104,61 +124,31 @@
             margin: 0;
         }
 
-        /* Produkt-Raster (4 Produkte) */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            padding: 0 32px 80px 32px;
+        /* Großes Banner-Bild in der Mitte */
+        .hero-image {
+            width: 100%;
             max-width: 1400px;
-            margin: 0 auto;
+            height: 500px;
+            margin: 0 auto 80px auto;
+            padding: 0 32px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #f7f7f7;
         }
 
         @media (max-width: 768px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-                padding: 0 16px 60px 16px;
-            }
-        }
-
-        .product-card {
-            text-decoration: none;
-            color: #111;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 480px;
-            object-fit: cover;
-            background-color: #f7f7f7;
-            transition: opacity 0.3s ease;
-        }
-
-        .product-card:hover img {
-            opacity: 0.92;
-        }
-
-        .product-title {
-            margin-top: 16px;
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 400;
-        }
-
-        .product-price {
-            margin-top: 6px;
-            font-size: 13px;
-            color: #666;
-            letter-spacing: 1px;
+            .hero-image { padding: 0 16px; height: 300px; }
+            .hero h1 { font-size: 24px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header>
         <button class="menu-btn" onclick="openMenu()">
             <span></span>
@@ -169,6 +159,7 @@
         <a href="#" class="cart-icon">Tasche (0)</a>
     </header>
 
+    <!-- Burger-Menü (Links öffnet sich das Overlay) -->
     <div id="navOverlay" class="nav-overlay">
         <div class="nav-header">
             <button class="close-btn" onclick="closeMenu()">&times;</button>
@@ -182,33 +173,15 @@
         </ul>
     </div>
 
-    <section class="category-header">
-        <h1>Ohrringe</h1>
-        <p>Handgemacht aus 100 % natürlichen Edelsteinen</p>
+    <!-- Hauptbereich der Startseite -->
+    <section class="hero">
+        <h1>Handgemacht. 100 % Naturprodukt.</h1>
+        <p>Zeitlose Eleganz aus echten Steinen</p>
     </section>
 
-    <!-- Die 4 Ohrring-Modelle -->
-    <div class="product-grid">
-        <a href="#" class="product-card">
-            <img src="ohrringe-1.jpg" alt="Ohrringe Modell 1">
-            <span class="product-title">Ohrringe Modell I</span>
-            <span class="product-price">49,00 €</span>
-        </a>
-        <a href="#" class="product-card">
-            <img src="ohrringe-2.jpg" alt="Ohrringe Modell 2">
-            <span class="product-title">Ohrringe Modell II</span>
-            <span class="product-price">54,00 €</span>
-        </a>
-        <a href="#" class="product-card">
-            <img src="ohrringe-3.jpg" alt="Ohrringe Modell 3">
-            <span class="product-title">Ohrringe Modell III</span>
-            <span class="product-price">59,00 €</span>
-        </a>
-        <a href="#" class="product-card">
-            <img src="ohrringe-4.jpg" alt="Ohrringe Modell 4">
-            <span class="product-title">Ohrringe Modell IV</span>
-            <span class="product-price">69,00 €</span>
-        </a>
+    <!-- Das große Bannerfoto -->
+    <div class="hero-image">
+        <img src="hero.jpg" alt="Echtstein Banner">
     </div>
 
     <script>
