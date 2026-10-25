@@ -5,164 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECHTSTEIN – Handgemachter Schmuck</title>
     <style>
-        /* Grundlegendes Design (Luxus-Minimalismus) */
-        * {
-            box-sizing: border-box;
-        }
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #fff;
             color: #111;
+            text-align: center;
         }
-
-        /* Header / Navigation oben */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 24px 32px;
-            border-bottom: 1px solid #f0f0f0;
-            position: sticky;
-            top: 0;
-            background-color: #fff;
-            z-index: 1000;
-        }
-
-        .menu-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 22px;
-            height: 16px;
-        }
-
-        .menu-btn span {
-            display: block;
-            height: 1.5px;
-            width: 100%;
-            background-color: #111;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 300;
-            letter-spacing: 5px;
-            text-decoration: none;
-            color: #111;
-        }
-
-        .cart-icon {
-            font-size: 14px;
-            text-decoration: none;
-            color: #111;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* Aufklapp-Menü (Overlay) */
-        .nav-overlay {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background-color: #fff;
-            z-index: 2000;
-            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow-y: auto;
-        }
-
-        .nav-overlay.open {
-            left: 0;
-        }
-
-        .nav-header {
-            display: flex;
-            justify-content: flex-end;
-            padding: 24px 32px;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 32px;
-            cursor: pointer;
-            color: #111;
-            font-weight: 200;
-        }
-
-        .nav-links {
-            list-style: none;
-            padding: 40px 10%;
-            margin: 0;
-        }
-
-        .nav-links li {
-            margin-bottom: 28px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            font-size: 24px;
-            color: #111;
-            font-weight: 300;
-            letter-spacing: 1px;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: #777;
-        }
-
-        /* Hero Banner Bereich mit Hintergrundbild */
-        .hero-banner {
-            position: relative;
-            width: 100%;
-            height: 70vh; /* 70% der Bildschirmhöhe */
-            min-height: 450px;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('hero.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            text-align: center;
             padding: 20px;
+            border-bottom: 1px solid #ddd;
         }
-
-        .hero-banner h1 {
-            font-size: 36px;
-            font-weight: 300;
-            letter-spacing: 3px;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-        }
-
-        .hero-banner p {
-            font-size: 15px;
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
             letter-spacing: 2px;
-            text-transform: uppercase;
-            margin: 0;
-            font-weight: 300;
+            text-decoration: none;
+            color: #111;
         }
-
-        .section-title {
-            text-align: center;
-            font-size: 14px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #444;
-            margin: 80px 0 40px 0;
+        .hero {
+            padding: 60px 20px;
         }
+        .hero h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
 
-        /* Kategorien-Grid */
-        .category-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+    <header>
+        <span>☰</span>
+        <a href="#" class="logo">ECHTSTEIN</a>
+        <span>🛒</span>
+    </header>
+
+    <div class="hero">
+        <h1>Handgemacht. 100 % Naturprodukt.</h1>
+        <p>Unsere Website wird aktualisiert.</p>
+    </div>
+
+</body>
+</html>
