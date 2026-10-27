@@ -96,6 +96,7 @@
             font-weight: 300;
             letter-spacing: 2px;
             text-transform: uppercase;
+            cursor: pointer;
         }
 
         .nav-links a:hover { color: #777; }
@@ -307,7 +308,9 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
+            transition: background 0.2s;
         }
+        .checkout-btn:hover { background-color: #333; }
 
         .overlay-backdrop {
             position: fixed;
@@ -322,7 +325,7 @@
 
         .overlay-backdrop.active { display: block; }
 
-        /* Detail Modal & Legal Modal */
+        /* Modals */
         .modal {
             position: fixed;
             top: 0;
@@ -353,9 +356,9 @@
             padding: 40px;
         }
 
-        .modal-legal-content {
+        .modal-legal-content, .checkout-modal-content {
             background: #fff;
-            max-width: 700px;
+            max-width: 600px;
             width: 100%;
             max-height: 85vh;
             overflow-y: auto;
@@ -366,7 +369,7 @@
             color: #444;
         }
 
-        .modal-legal-content h2 {
+        .modal-legal-content h2, .checkout-modal-content h2 {
             font-size: 18px;
             font-weight: 300;
             letter-spacing: 2px;
@@ -376,13 +379,15 @@
             color: #111;
         }
 
-        .modal-legal-content h3 {
-            font-size: 13px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-top: 24px;
-            color: #111;
+        .payment-option {
+            border: 1px solid #ddd;
+            padding: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            display: block;
         }
+        .payment-option:hover { border-color: #111; }
+        .payment-option input { margin-right: 10px; }
 
         .modal-close {
             position: absolute;
@@ -449,7 +454,6 @@
         }
 
         .modal-specs span.label { color: #888; text-transform: uppercase; letter-spacing: 1px; font-size: 10px; }
-
         .trust-badges { display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; font-size: 11px; color: #666; }
 
         /* Footer */
@@ -490,15 +494,15 @@
             <button class="close-btn" onclick="closeMenu()">&times;</button>
         </div>
         <ul class="nav-links">
-            <li><a href="#" onclick="showCategory('diy');">Do it yourself</a></li>
-            <li><a href="#" onclick="showCategory('ohrringe');">Ohrringe</a></li>
-            <li><a href="#" onclick="showCategory('halsketten');">Halsketten</a></li>
-            <li><a href="#" onclick="showCategory('armbaender');">Armbänder</a></li>
-            <li><a href="#" onclick="showCategory('ringe');">Ringe</a></li>
+            <li><a onclick="showCategory('diy'); closeMenu();">Do it yourself</a></li>
+            <li><a onclick="showCategory('ohrringe'); closeMenu();">Ohrringe</a></li>
+            <li><a onclick="showCategory('halsketten'); closeMenu();">Halsketten</a></li>
+            <li><a onclick="showCategory('armbaender'); closeMenu();">Armbänder</a></li>
+            <li><a onclick="showCategory('ringe'); closeMenu();">Ringe</a></li>
         </ul>
     </div>
 
-    <div id="backdrop" class="overlay-backdrop" onclick="closeCart(); closeModal(); closeLegalModal();"></div>
+    <div id="backdrop" class="overlay-backdrop" onclick="closeCart(); closeModal(); closeLegalModal(); closeCheckoutModal();"></div>
 
     <!-- Warenkorb Drawer -->
     <div id="cartDrawer" class="cart-drawer">
@@ -512,7 +516,7 @@
                 <span>Gesamtsumme:</span>
                 <span id="cartTotal">0,00 €</span>
             </div>
-            <button class="checkout-btn" onclick="alert('Vielen Dank für Ihre Bestellung!')">Zur Kasse</button>
+            <button class="checkout-btn" onclick="openCheckoutModal()">Zur Kasse</button>
         </div>
     </div>
 
@@ -535,44 +539,60 @@
     <div id="productModal" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">&times;</button>
-            
             <div class="modal-gallery">
                 <div class="modal-main-img-wrap">
                     <img id="modalImg" src="" alt="ECHTSTEIN Produktansicht">
                 </div>
                 <div class="modal-thumbnails" id="modalThumbnails"></div>
             </div>
-
             <div class="modal-details">
                 <div>
                     <div class="modal-tag">100% Unikat & Handarbeit</div>
                     <h2 id="modalTitle" class="modal-title"></h2>
                     <div id="modalPrice" class="modal-price"></div>
-                    
                     <div class="modal-divider"></div>
-                    
                     <p id="modalDesc" class="modal-desc"></p>
-                    
                     <ul class="modal-specs">
                         <li><span class="label">Material</span> <span>925 Sterling Silber</span></li>
                         <li><span class="label">Steinart</span> <span id="modalStoneType">Naturstein</span></li>
                         <li><span class="label">Herkunft</span> <span>Ethisch gewonnen</span></li>
                         <li><span class="label">Fertigung</span> <span>Handgemacht in Österreich</span></li>
                     </ul>
-
                     <div class="trust-badges">
                         <div>✓ Kostenloser Versand in AT/DE</div>
                         <div>✓ Echtheitszertifikat inklusive</div>
                         <div>✓ 14 Tage Rückgaberecht</div>
                     </div>
                 </div>
-
                 <button id="modalAddBtn" class="checkout-btn">In die Tasche</button>
             </div>
         </div>
     </div>
 
-    <!-- IMPRESSUM / RECHTLICHES MODAL -->
+    <!-- CHECKOUT MODAL (Zahlungsart wählen mit PayPal Weiterleitung) -->
+    <div id="checkoutModal" class="modal">
+        <div class="checkout-modal-content">
+            <button class="modal-close" onclick="closeCheckoutModal()">&times;</button>
+            <h2>Zahlungsart wählen</h2>
+            <p>Bitte wählen Sie Ihre bevorzugte Zahlungsart:</p>
+            
+            <label class="payment-option">
+                <input type="radio" name="payment" value="paypal" checked> 
+                <strong>PayPal</strong> (Direkt zu PayPal mit automatischer Betragsübernahme)
+            </label>
+
+            <label class="payment-option">
+                <input type="radio" name="payment" value="bank"> 
+                <strong>Klassische Banküberweisung / Vorkasse</strong> (0 € Gebühr)
+            </label>
+
+            <div style="margin-top: 30px;">
+                <button class="checkout-btn" onclick="processOrder()">Jetzt verbindlich bestellen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RECHTLICHES MODAL -->
     <div id="legalModal" class="modal">
         <div class="modal-legal-content">
             <button class="modal-close" onclick="closeLegalModal()">&times;</button>
@@ -615,7 +635,6 @@
     </footer>
 
     <script>
-        // Sichere SVG-Platzhalter
         function makePlaceholder(text) {
             return 'data:image/svg+xml;utf8,' + encodeURIComponent(`
                 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
@@ -749,7 +768,9 @@
         }
         function closeCart() {
             document.getElementById("cartDrawer").classList.remove("open");
-            if (!document.getElementById("productModal").classList.contains("open") && !document.getElementById("legalModal").classList.contains("open")) {
+            if (!document.getElementById("productModal").classList.contains("open") && 
+                !document.getElementById("legalModal").classList.contains("open") &&
+                !document.getElementById("checkoutModal").classList.contains("open")) {
                 document.getElementById("backdrop").classList.remove("active");
             }
         }
@@ -777,134 +798,5 @@
             let totalCount = 0;
             let totalPrice = 0;
 
-            cart.forEach(item => {
-                totalCount += item.qty;
-                totalPrice += item.price * item.qty;
-
-                const el = document.createElement('div');
-                el.className = 'cart-item';
-                el.innerHTML = `
-                    <img class="cart-item-img" src="${item.img}" alt="${item.title}">
-                    <div class="cart-item-details">
-                        <div class="cart-item-title">${item.title}</div>
-                        <div class="cart-item-price">${item.price.toFixed(2)} €</div>
-                        <div class="cart-item-qty">
-                            <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
-                            <span>${item.qty}</span>
-                            <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(el);
-            });
-
-            document.getElementById('cartCount').textContent = totalCount;
-            document.getElementById('cartTotal').textContent = totalPrice.toFixed(2) + ' €';
-        }
-
-        function openModal(productId) {
-            const p = products.find(prod => prod.id === productId);
-            if (!p) return;
-
-            document.getElementById('modalTitle').textContent = p.title;
-            document.getElementById('modalPrice').textContent = p.price.toFixed(2) + ' €';
-            document.getElementById('modalDesc').textContent = p.desc;
-            document.getElementById('modalStoneType').textContent = p.stone;
-
-            const mainImg = document.getElementById('modalImg');
-            mainImg.src = p.img;
-
-            const thumbsContainer = document.getElementById('modalThumbnails');
-            thumbsContainer.innerHTML = '';
-
-            const images = [
-                { src: p.img, label: 'Freisteller' },
-                { src: p.imgModel, label: 'Tragefoto' }
-            ];
-
-            images.forEach((imgObj, idx) => {
-                const thumb = document.createElement('img');
-                thumb.className = `thumb ${idx === 0 ? 'active' : ''}`;
-                thumb.src = imgObj.src;
-                thumb.onclick = () => {
-                    mainImg.src = imgObj.src;
-                    document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-                    thumb.classList.add('active');
-                };
-                thumbsContainer.appendChild(thumb);
-            });
-
-            const addBtn = document.getElementById('modalAddBtn');
-            addBtn.onclick = () => { addToCart(p.id); closeModal(); };
-
-            document.getElementById('productModal').classList.add('open');
-            document.getElementById('backdrop').classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('productModal').classList.remove('open');
-            document.getElementById('backdrop').classList.remove('active');
-        }
-
-        // Rechtliche Seiten Steuerung
-        function openLegal(type) {
-            const container = document.getElementById('legalContent');
-            
-            if (type === 'impressum') {
-                container.innerHTML = `
-                    <h2>Impressum & Kontakt</h2>
-                    <p><strong>Angaben gemäß § 5 ECG / Offenlegung gemäß § 25 Mediengesetz:</strong></p>
-                    <p>
-                        <strong>ECHTSTEIN E-Commerce</strong><br>
-                        Inhaber: [Dein Vor- und Nachname]<br>
-                        Musterstraße 123<br>
-                        8010 Graz, Österreich
-                    </p>
-                    <h3>Kontakt</h3>
-                    <p>
-                        Telefon: +43 [Deine Telefonnummer]<br>
-                        E-Mail: office@echtstein.at
-                    </p>
-                    <h3>Gewerberechtliche Angaben</h3>
-                    <p>
-                        Gewerbebezeichnung: Erzeugung von Kunstgewerbegegenständen / Handel mit Juwelen und Goldwaren<br>
-                        Aufsichtsbehörde: Magistrat der Stadt Graz / BH Graz-Umgebung<br>
-                        Mitgliedschaft: Wirtschaftskammer Steiermark (WKO)<br>
-                        Anwendbare Rechtsvorschriften: Gewerbeordnung (www.ris.bka.gv.at)
-                    </p>
-                    <p><em>Kleinunternehmer gemäß § 6 Abs. 1 Z 27 UStG (Umsatzsteuerbefreit).</em></p>
-                `;
-            } else if (type === 'widerruf') {
-                container.innerHTML = `
-                    <h2>Widerrufsbelehrung & Rückgabe</h2>
-                    <p>Verbraucher haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.</p>
-                    <h3>Widerrufsfrist</h3>
-                    <p>Die Widerrufsfrist beträgt 14 Tage ab dem Tag, an dem Sie oder ein von Ihnen benannter Dritter die Waren in Besitz genommen haben.</p>
-                    <h3>Ausübung des Widerrufs</h3>
-                    <p>Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (ECHTSTEIN, Graz, E-Mail: office@echtstein.at) mittels einer eindeutigen Erklärung über Ihren Entschluss informieren.</p>
-                    <h3>Folgen des Widerrufs</h3>
-                    <p>Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, unverzüglich und spätestens binnen 14 Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf bei uns eingegangen ist.</p>
-                    <p><strong>Rücksendekosten:</strong> Sie tragen die unmittelbaren Kosten der Rücksendung der Waren.</p>
-                `;
-            } else if (type === 'datenschutz') {
-                container.innerHTML = `
-                    <h2>Datenschutzerklärung</h2>
-                    <p>Wir verarbeiten Ihre personenbezogenen Daten unter Einhaltung der Datenschutz-Grundverordnung (DSGVO) sowie des österreichischen Datenschutzgesetzes (DSG).</p>
-                    <h3>Datenerfassung auf unserer Website</h3>
-                    <p>Wir erheben Daten zur Vertragserfüllung (Name, Adresse, E-Mail), wenn Sie eine Bestellung aufgeben. Eine Weitergabe an Dritte erfolgt nur an Versandunternehmen (z. B. Österreichische Post) zur Zustellung der Ware.</p>
-                    <h3>Ihre Rechte</h3>
-                    <p>Ihnen stehen grundsätzlich die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung und Widerruf zu. Kontaktieren Sie uns hierzu jederzeit unter office@echtstein.at.</p>
-                `;
-            }
-
-            document.getElementById('legalModal').classList.add('open');
-            document.getElementById('backdrop').classList.add('active');
-        }
-
-        function closeLegalModal() {
-            document.getElementById('legalModal').classList.remove('open');
-            document.getElementById('backdrop').classList.remove('active');
-        }
-    </script>
-</body>
-</html>
+            if(cart.length === 0) {
+                container.innerHTML = '<p style="color: #777; font-size: 13px; text-align: center; margin-top: 40px;">Ihre Tasche ist leer.</p
