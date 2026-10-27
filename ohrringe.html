@@ -195,3 +195,551 @@
             letter-spacing: 1.5px;
             margin: 0 0 6px 0;
             text-transform: uppercase;
+        }
+
+        .product-price {
+            font-size: 13px;
+            font-weight: 300;
+            color: #555;
+            margin-bottom: 14px;
+        }
+
+        .add-to-cart-btn {
+            background-color: #fff;
+            border: 1px solid #111;
+            color: #111;
+            padding: 12px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #111;
+            color: #fff;
+        }
+
+        /* Warenkorb Slide-Over Drawer */
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.08);
+            z-index: 2500;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.open { right: 0; }
+
+        .cart-drawer-header {
+            padding: 24px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-drawer-header h2 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f7f7f7;
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            background-color: #f7f7f7;
+            object-fit: cover;
+        }
+
+        .cart-item-details { flex: 1; }
+        .cart-item-title { font-size: 12px; margin: 0 0 4px 0; text-transform: uppercase; letter-spacing: 1px; }
+        .cart-item-price { font-size: 12px; color: #555; margin-bottom: 8px; }
+        .cart-item-qty { display: flex; align-items: center; gap: 10px; font-size: 12px; }
+
+        .qty-btn {
+            background: none;
+            border: 1px solid #ccc;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+        }
+
+        .cart-drawer-footer {
+            padding: 24px;
+            border-top: 1px solid #eee;
+            background-color: #fafafa;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background-color: #111;
+            color: #fff;
+            border: none;
+            padding: 16px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .overlay-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 2400;
+            display: none;
+        }
+
+        .overlay-backdrop.active { display: block; }
+
+        /* Detail Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.open { display: flex; }
+
+        .modal-content {
+            background: #fff;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            background-color: #f7f7f7;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #eee;
+            padding: 60px 32px 30px 32px;
+            background-color: #fafafa;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col li { margin-bottom: 10px; font-size: 12px; color: #666; }
+        .footer-col a { color: #666; text-decoration: none; }
+
+        .copyright {
+            text-align: center;
+            font-size: 11px;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 24px;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner { padding: 0 16px; height: 300px; }
+            .hero h1 { font-size: 20px; }
+            .modal-content { grid-template-columns: 1fr; padding: 20px; }
+            .cart-drawer { width: 85%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <button class="menu-btn" onclick="openMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a onclick="showHome()" class="logo">ECHTSTEIN</a>
+        <a href="javascript:void(0)" class="cart-icon" onclick="openCart()">Tasche (<span id="cartCount">0</span>)</a>
+    </header>
+
+    <!-- Burger-Menü Overlay -->
+    <div id="navOverlay" class="nav-overlay">
+        <div class="nav-header">
+            <button class="close-btn" onclick="closeMenu()">&times;</button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showCategory('diy');">Do it yourself</a></li>
+            <li><a href="#" onclick="showCategory('ohrringe');">Ohrringe</a></li>
+            <li><a href="#" onclick="showCategory('halsketten');">Halsketten</a></li>
+            <li><a href="#" onclick="showCategory('armbaender');">Armbänder</a></li>
+            <li><a href="#" onclick="showCategory('ringe');">Ringe</a></li>
+        </ul>
+    </div>
+
+    <!-- Hintergrund-Abdunklung -->
+    <div id="backdrop" class="overlay-backdrop" onclick="closeCart()"></div>
+
+    <!-- Warenkorb Drawer -->
+    <div id="cartDrawer" class="cart-drawer">
+        <div class="cart-drawer-header">
+            <h2>Einkaufstasche</h2>
+            <button class="close-btn" onclick="closeCart()">&times;</button>
+        </div>
+        <div id="cartItems" class="cart-items"></div>
+        <div class="cart-drawer-footer">
+            <div class="cart-total">
+                <span>Gesamtsumme:</span>
+                <span id="cartTotal">0,00 €</span>
+            </div>
+            <button class="checkout-btn" onclick="alert('Vielen Dank für Ihre Bestellung!')">Zur Kasse</button>
+        </div>
+    </div>
+
+    <!-- Startseiten Hero / Dynamischer Titel -->
+    <section class="hero">
+        <h1 id="heroTitle">Handgemacht. 100 % Naturprodukt.</h1>
+        <p id="heroSubtitle">Zeitlose Eleganz aus echten Steinen</p>
+    </section>
+
+    <!-- Banner-Bild auf der Startseite -->
+    <div id="heroBanner" class="hero-banner">
+        <img src="hero-banner.jpg" alt="ECHTSTEIN" onerror="this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1400&q=80'">
+    </div>
+
+    <!-- Produkt-Katalog Bereich -->
+    <section id="productsSection" class="products-section">
+        <div class="products-grid" id="productsGrid"></div>
+    </section>
+
+    <!-- Detail Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img id="modalImg" class="modal-img" src="" alt="">
+            <div>
+                <h2 id="modalTitle" style="font-weight: 300; letter-spacing: 2px; text-transform: uppercase; margin-top: 0; font-size: 18px;"></h2>
+                <p id="modalPrice" style="font-size: 16px; font-weight: 300; margin-bottom: 20px; color: #555;"></p>
+                <p id="modalDesc" style="font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 24px;"></p>
+                <button id="modalAddBtn" class="checkout-btn">In die Tasche</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Über ECHTSTEIN</h4>
+                <ul>
+                    <li>100% Echte Natursteine</li>
+                    <li>Handgefertigt in Deutschland</li>
+                    <li>Nachhaltige Verpackung</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kollektionen</h4>
+                <ul>
+                    <li><a href="#" onclick="showCategory('halsketten')">Halsketten</a></li>
+                    <li><a href="#" onclick="showCategory('ohrringe')">Ohrringe</a></li>
+                    <li><a href="#" onclick="showCategory('armbaender')">Armbänder</a></li>
+                    <li><a href="#" onclick="showCategory('ringe')">Ringe</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kundenservice</h4>
+                <ul>
+                    <li><a href="#">Kontakt</a></li>
+                    <li><a href="#">Versand & Lieferung</a></li>
+                    <li><a href="#">Rückgabe</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 ECHTSTEIN. Alle Rechte vorbehalten.
+        </div>
+    </footer>
+
+    <script>
+        // Produktdatenbank mit jeweils 10 Produkten pro Kategorie
+        const products = [
+            // --- 10 RINGE ---
+            { id: 101, title: 'Bergkristall Ring Silver', category: 'ringe', price: 39.00, img: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80', desc: 'Klar geschliffener Bergkristall gefasst in massives 925er Sterlingsilber.' },
+            { id: 102, title: 'Amethyst Statement Ring', category: 'ringe', price: 45.00, img: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=600&q=80', desc: 'Dunkelvioletter Roh-Amethyst auf einem handgeschmiedeten Silberband.' },
+            { id: 103, title: 'Rosenquarz Solitär Ring', category: 'ringe', price: 42.00, img: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80', desc: 'Sanft geschliffener Cabochon-Rosenquarz mit edler 18 Karat Goldplattierung.' },
+            { id: 104, title: 'Obsidian Minimalist Ring', category: 'ringe', price: 35.00, img: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=600&q=80', desc: 'Tiefschwarzer Vulkan-Obsidian im zeitlosen Facettenschliff.' },
+            { id: 105, title: 'Tigerauge Bandring', category: 'ringe', price: 48.00, img: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80', desc: 'Schimmerndes Tigerauge im Breitschliff mit geschwungener Struktur.' },
+            { id: 106, title: 'Smaragdgrün Onyx Ring', category: 'ringe', price: 52.00, img: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=600&q=80', desc: 'Grüner Onyx Naturstein in klassisch-moderner Kronenfassung.' },
+            { id: 107, title: 'Mondstein Boho Ring', category: 'ringe', price: 46.00, img: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80', desc: 'Regenbogen-Mondstein mit magischem bläulichem Schimmer.' },
+            { id: 108, title: 'Lapis Lazuli Ring Gold', category: 'ringe', price: 49.00, img: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=600&q=80', desc: 'Tiefblauer Lapis Lazuli mit natürlichen Pyrit-Sprenkeln.' },
+            { id: 109, title: 'Rauchquarz Elegance Ring', category: 'ringe', price: 44.00, img: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80', desc: 'Edler braun-transparenter Rauchquarz im Baguette-Schliff.' },
+            { id: 110, title: 'Granat Vintage Ring', category: 'ringe', price: 55.00, img: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=600&q=80', desc: 'Tiefroter Granat-Naturstein, verziert mit feinen Ziselierungen.' },
+
+            // --- 10 ARMBÄNDER ---
+            { id: 201, title: 'Obsidian Perlenarmband', category: 'armbaender', price: 38.00, img: 'https://images.unsplash.com/photo-1611591475140-13617e4675a1?auto=format&fit=crop&w=600&q=80', desc: 'Handaufgezogenes Armband aus matten schwarzen Obsidian-Kugeln.' },
+            { id: 202, title: 'Achat Harmonie Armband', category: 'armbaender', price: 42.00, img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80', desc: 'Naturbelassene Achat-Perlen mit vergoldetem Charm-Anhänger.' },
+            { id: 203, title: 'Lava & Tigerauge Stretch Armband', category: 'armbaender', price: 35.00, img: 'https://images.unsplash.com/photo-1611591475140-13617e4675a1?auto=format&fit=crop&w=600&q=80', desc: 'Kombination aus rauer Vulkanlava und glänzendem Tigerauge.' },
+            { id: 204, title: 'Rosenquarz Zartes Armband', category: 'armbaender', price: 39.00, img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80', desc: 'Feine Rosenquarz-Facettenperlen auf wetterfester Seidenschnur.' },
+            { id: 205, title: 'Aquamarin Kordelarmband', category: 'armbaender', price: 45.00, img: 'https://images.unsplash.com/photo-1611591475140-13617e4675a1?auto=format&fit=crop&w=600&q=80', desc: 'Hellblauer Roh-Aquamarin als Mittelstück an verstellbarem Band.' },
+            { id: 206, title: 'Malachit Statement Armband', category: 'armbaender', price: 58.00, img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80', desc: 'Bändermalachit mit intensiver grüner Maserung.' },
+            { id: 207, title: 'Amethyst Splitterarmband', category: 'armbaender', price: 29.00, img: 'https://images.unsplash.com/photo-1611591475140-13617e4675a1?auto=format&fit=crop&w=600&q=80', desc: 'Natürliche Amethyst-Natursteinsplitter auf flexiblem Zugband.' },
+            { id: 208, title: 'Turmalin Schutz Armband', category: 'armbaender', price: 49.00, img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80', desc: 'Schwarzer Schörl-Turmalin kombiniert mit 925er Silberperlen.' },
+            { id: 209, title: 'Jade Balance Armkette', category: 'armbaender', price: 44.00, img: 'https://images.unsplash.com/photo-1611591475140-13617e4675a1?auto=format&fit=crop&w=600&q=80', desc: 'Hellgrüne Neuseeland-Jade eingebunden in feines Silberkettchen.' },
+            { id: 210, title: 'Citrin Energy Armband', category: 'armbaender', price: 46.00, img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80', desc: 'Sonnengelber Citrin-Quarz bringt strahlende Akzente ans Handgelenk.' },
+
+            // --- 10 HALSKETTEN ---
+            { id: 301, title: 'Amethyst Solitär Kette', category: 'halsketten', price: 55.00, img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80', desc: 'Echter Amethyst-Kristall an filigraner Sterlingsilber-Kette.' },
+            { id: 302, title: 'Bergkristall Spitze Kette', category: 'halsketten', price: 49.00, img: 'https://images.unsplash.com/photo-1611591475140-13617e4675a1?auto=format&fit=crop&w=600&q=80', desc: 'Naturbelassene Bergkristall-Doppelspitze mit Silberöse.' },
+            { id: 303, title: 'Lapis Lazuli Medaillon', category: 'halsketten', price: 62.00, img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80', desc: 'Rund geschliffener Lapis Lazuli Anhänger in vergoldeter Fassung.' },
+            { id: 304, title: 'Onyx Drop Halskette', category: 'halsketten', price: 48.00, img: 'https://images.unsplash.com/photo-1611591475140-13617e4675a1?auto=format&fit=crop&w=600&q=80', desc: 'Tropfenförmiger schwarzer Onyx an feinem Lederband.' },
+            { id: 305, title: 'Tigerauge Kordel Kette', category: 'halsketten', price: 45.00, img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80', desc: 'Schimmernder Tigerauge-Stein im Schliff an Baumwollkordel.' },
+            { id: 306, title: 'Rosenquarz Herz Kette', category: 'halsketten', price: 42.00, img: 'https://images.unsplash.com/photo-1611591475140-13617e4675a1?auto=format&fit=crop&w=600&q=80', desc: 'Handgeschnitztes Rosenquarz-Herz an vergoldeter Erbskette.' },
+            { id: 307, title: 'Labradorit Magie Kette', category: 'halsketten', price: 68.00, img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80', desc: 'Labradorit mit starkem grün-blauem Schiller-Effekt (Labradoreszenz).' },
+            { id: 308, title: 'Amazonit Boho Kette', category: 'halsketten', price: 52.00, img: 'https://images.unsplash.com/photo-1611591475140-13617e4675a1?auto=format&fit=crop&w=600&q=80', desc: 'Türkis-grüner Amazonit-Rohstein mit rustikaler Echteinfassung.' },
+            { id: 309, title: 'Mondstein Y-Kette', category: 'halsketten', price: 59.00, img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80', desc: 'Moderne Y-Halskette bestückt mit drei kleinen Mondstein-Cabochons.' },
+            { id: 310, title: 'Fluorit Regenbogen Kette', category: 'halsketten', price: 47.00, img: 'https://images.unsplash.com/photo-1611591475140-13617e4675a1?auto=format&fit=crop&w=600&q=80', desc: 'Mehrfarbig transluzenter Fluorit-Kristall an Ankerkette.' },
+
+            // --- 10 OHRRINGE ---
+            { id: 401, title: 'Rosenquarz Tropfen Ohrringe', category: 'ohrringe', price: 35.00, img: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80', desc: 'Zartrosa Rosenquarz-Tropfen an Sterling Silber Haken.' },
+            { id: 402, title: 'Amethyst Creolen Silber', category: 'ohrringe', price: 42.00, img: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80', desc: 'Klassische Silbercreolen mit abnehmbarem Amethyst-Anhänger.' },
+            { id: 403, title: 'Achat Stecker Gold', category: 'ohrringe', price: 29.00, img: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80', desc: 'Kleine, elegante Ohrstecker mit flach geschliffenem Achat.' },
+            { id: 404, title: 'Bergkristall Ohrhänger', category: 'ohrringe', price: 38.00, img: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80', desc: 'Frei schwingende Bergkristall-Perlen an feinen Kettenhängern.' },
+            { id: 405, title: 'Obsidian Minimal Studs', category: 'ohrringe', price: 27.00, img: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80', desc: 'Dezente runde Ohrstecker aus tiefschwarzem Obsidian.' },
+            { id: 406, title: 'Mondstein Creolen Gold', category: 'ohrringe', price: 46.00, img: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80', desc: '18K vergoldete Ohrringe verziert mit schimmerndem Mondstein.' },
+            { id: 407, title: 'Lapis Lazuli Hänger', category: 'ohrringe', price: 39.00, img: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80', desc: 'Königsblaue Steinperlen an handgebogenen Silberbügeln.' },
+            { id: 408, title: 'Jade Drop Earrings', category: 'ohrringe', price: 44.00, img: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80', desc: 'Grüne Jade im facettierten Tropfenschliff.' },
+            { id: 409, title: 'Granat Raw Stone Stecker', category: 'ohrringe', price: 36.00, img: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80', desc: 'Roh belassener roter Granat als feiner Akzent am Ohrwaschl.' },
+            { id: 410, title: 'Tigerauge Chandelier Ohrringe', category: 'ohrringe', price: 54.00, img: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80', desc: 'Mehrgliedrige Kronleuchter-Ohrringe mit goldenen Tigerauge-Perlen.' },
+
+            // --- 10 DO IT YOURSELF SETS ---
+            { id: 501, title: 'DIY Set – Amethyst Creator', category: 'diy', price: 55.00, img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', desc: 'Komplettset mit Roh-Amethysten, Silberdraht und Schmuckzange.' },
+            { id: 502, title: 'DIY Set – Perlenarmband Custom', category: 'diy', price: 39.00, img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', desc: 'Inklusive 50 Natursteinperlen (Obsidian, Achat, Bergkristall) und Elastikband.' },
+            { id: 503, title: 'DIY Set – Drahtwickel Kette', category: 'diy', price: 49.00, img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', desc: 'Lerne das Wrapping von Edelsteinen mit Messing- und Silberdraht.' },
+            { id: 504, title: 'DIY Set – Ohrringe Gold Deluxe', category: 'diy', price: 45.00, img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', desc: 'Alles was du brauchst, um 3 Paar individuelle Goldohrhänger zu kreieren.' },
+            { id: 505, title: 'DIY Box – Edelstein Schleif-Kit', category: 'diy', price: 65.00, img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', desc: 'Polier- und Schleifpapiere inkl. 4 Rohsteinen zum Selberformen.' },
+            { id: 506, title: 'DIY Set – Makramee & Stein', category: 'diy', price: 38.00, img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', desc: 'Knüpfe wunderschöne Kettennetze für Cabochon-Gems.' },
+            { id: 507, title: 'DIY Set – Ring Sizing & Wire', category: 'diy', price: 42.00, img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', desc: 'Inklusive Ringriegel, Hammer und Draht für perfekt passende Steinringe.' },
+            { id: 508, title: 'DIY Starter Box – Mineralien', category: 'diy', price: 59.00, img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', desc: '12 ausgewählte Mineralien und Zubehör zur eigenen Schmuckherstellung.' },
+            { id: 509, title: 'DIY Set – Mala Gebetskette', category: 'diy', price: 69.00, img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', desc: 'Knüpfe deine eigene 108-Perlen Mala aus Sandelholz und Lapis Lazuli.' },
+            { id: 510, title: 'DIY Set – Kinder & Einsteiger', category: 'diy', price: 29.00, img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', desc: 'Einfaches Fädelset mit abgerundeten bunten Natursteinen.' }
+        ];
+
+        let cart = [];
+
+        // Menü Steuerung
+        function openMenu() { document.getElementById("navOverlay").classList.add("open"); }
+        function closeMenu() { document.getElementById("navOverlay").classList.remove("open"); }
+
+        // Warenkorb Steuerung
+        function openCart() {
+            document.getElementById("cartDrawer").classList.add("open");
+            document.getElementById("backdrop").classList.add("active");
+        }
+        function closeCart() {
+            document.getElementById("cartDrawer").classList.remove("open");
+            document.getElementById("backdrop").classList.remove("active");
+        }
+
+        // Kategorie aufrufen (z.B. wenn im Menü auf "Ringe" geklickt wird)
+        function showCategory(category) {
+            closeMenu();
+
+            const titles = {
+                'ringe': 'Ringe (10 Modelle)',
+                'ohrringe': 'Ohrringe (10 Modelle)',
+                'halsketten': 'Halsketten (10 Modelle)',
+                'armbaender': 'Armbänder (10 Modelle)',
+                'diy': 'Do It Yourself Sets (10 Sets)'
+            };
+
+            document.getElementById('heroTitle').textContent = titles[category] || category.toUpperCase();
+            document.getElementById('heroSubtitle').textContent = 'Exklusive Handgemachte Kollektion';
+
+            // Startbanner auf der Hauptseite ausblenden
+            document.getElementById('heroBanner').style.display = 'none';
+
+            // Produkte der gewählten Kategorie rendern
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            const filtered = products.filter(p => p.category === category);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image" onclick="openModal(${p.id})">
+                        <img src="${p.img}" alt="${p.title}" onerror="this.src='https://via.placeholder.com/300x380?text=ECHTSTEIN'">
+                    </div>
+                    <div class="product-title" onclick="openModal(${p.id})">${p.title}</div>
+                    <div class="product-price">${p.price.toFixed(2)} €</div>
+                    <button class="add-to-cart-btn" onclick="addToCart(${p.id})">In die Tasche</button>
+                `;
+                grid.appendChild(card);
+            });
+
+            document.getElementById('productsSection').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Zurück zur Hauptseite (beim Klick auf das Logo ECHTSTEIN)
+        function showHome() {
+            document.getElementById('heroTitle').textContent = 'Handgemacht. 100 % Naturprodukt.';
+            document.getElementById('heroSubtitle').textContent = 'Zeitlose Eleganz aus echten Steinen';
+            document.getElementById('heroBanner').style.display = 'block';
+            document.getElementById('productsSection').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // In den Warenkorb legen
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existing = cart.find(item => item.id === productId);
+
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+
+            updateCartUI();
+            openCart();
+        }
+
+        // Menge im Warenkorb verändern
+        function changeQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== productId);
+                }
+            }
+            updateCartUI();
+        }
+
+        // Warenkorb UI aktualisieren
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            cartCount.textContent = totalCount;
+            cartTotal.textContent = totalPrice.toFixed(2) + ' €';
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align: center; color: #888; margin-top: 40px; font-size: 13px;">Deine Tasche ist leer.</p>';
+                return;
+            }
+
+            cartItemsContainer.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img class="cart-item-img" src="${item.img}" alt="${item.title}">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.title}</div>
+                        <div class="cart-item-price">${item.price.toFixed(2)} €</div>
+                        <div class="cart-item-qty">
+                            <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Detailansicht Modal
+        function openModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('modalTitle').textContent = product.title;
+            document.getElementById('modalPrice').textContent = product.price.toFixed(2) + ' €';
+            document.getElementById('modalDesc').textContent = product.desc;
+            document.getElementById('modalImg').src = product.img;
+            document.getElementById('modalAddBtn').onclick = () => { addToCart(product.id); closeModal(); };
+
+            document.getElementById('productModal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('open');
+        }
+    </script>
+</body>
+</html>
