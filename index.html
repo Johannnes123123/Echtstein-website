@@ -60,6 +60,7 @@
             color: #111;
             letter-spacing: 1.5px;
             text-transform: uppercase;
+            cursor: pointer;
         }
 
         /* Burger-Menü Overlay (Vollbild) */
@@ -123,12 +124,12 @@
             margin: 0;
         }
 
-        /* Reines Banner-Bild (nicht anklickbar) */
+        /* Reines Banner-Bild */
         .hero-banner {
             width: 100%;
             max-width: 1400px;
             height: 500px;
-            margin: 40px auto 80px auto;
+            margin: 40px auto 60px auto;
             padding: 0 32px;
         }
 
@@ -139,9 +140,346 @@
             background-color: #f7f7f7;
         }
 
+        /* Filter-Buttons */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 0 32px 40px 32px;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: #111;
+            color: #fff;
+            border-color: #111;
+        }
+
+        /* Produkt-Raster */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
+            max-width: 1400px;
+            margin: 0 auto 80px auto;
+            padding: 0 32px;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 340px;
+            background-color: #f7f7f7;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.04);
+        }
+
+        .product-title {
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin: 0 0 6px 0;
+            text-transform: uppercase;
+        }
+
+        .product-subtitle {
+            font-size: 12px;
+            color: #777;
+            margin: 0 0 10px 0;
+        }
+
+        .product-price {
+            font-size: 14px;
+            font-weight: 300;
+            color: #111;
+            margin-bottom: 12px;
+        }
+
+        .add-to-cart-btn {
+            background-color: #fff;
+            border: 1px solid #111;
+            color: #111;
+            padding: 10px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #111;
+            color: #fff;
+        }
+
+        /* Warenkorb Slide-Over Drawer */
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.08);
+            z-index: 2500;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.open { right: 0; }
+
+        .cart-drawer-header {
+            padding: 24px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-drawer-header h2 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f7f7f7;
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            background-color: #f7f7f7;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 13px;
+            margin: 0 0 4px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cart-item-price {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .qty-btn {
+            background: none;
+            border: 1px solid #ccc;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+        }
+
+        .cart-drawer-footer {
+            padding: 24px;
+            border-top: 1px solid #eee;
+            background-color: #fafafa;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background-color: #111;
+            color: #fff;
+            border: none;
+            padding: 16px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .checkout-btn:hover {
+            background-color: #333;
+        }
+
+        .overlay-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 2400;
+            display: none;
+        }
+
+        .overlay-backdrop.active { display: block; }
+
+        /* Detail Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.open { display: flex; }
+
+        .modal-content {
+            background: #fff;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            background-color: #f7f7f7;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #eee;
+            padding: 60px 32px 30px 32px;
+            background-color: #fafafa;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col li {
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .footer-col a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: #111;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 24px;
+        }
+
         @media (max-width: 768px) {
             .hero-banner { padding: 0 16px; height: 300px; }
             .hero h1 { font-size: 22px; }
+            .modal-content { grid-template-columns: 1fr; }
+            .cart-drawer { width: 85%; }
         }
     </style>
 </head>
@@ -155,7 +493,7 @@
             <span></span>
         </button>
         <a href="index.html" class="logo">ECHTSTEIN</a>
-        <a href="#" class="cart-icon">Tasche (0)</a>
+        <a href="javascript:void(0)" class="cart-icon" onclick="openCart()">Tasche (<span id="cartCount">0</span>)</a>
     </header>
 
     <!-- Burger-Menü -->
@@ -164,32 +502,248 @@
             <button class="close-btn" onclick="closeMenu()">&times;</button>
         </div>
         <ul class="nav-links">
-            <li><a href="diy.html" onclick="closeMenu()">Do it yourself</a></li>
-            <li><a href="ohrringe.html" onclick="closeMenu()">Ohrringe</a></li>
-            <li><a href="halsketten.html" onclick="closeMenu()">Halsketten</a></li>
-            <li><a href="armbaender.html" onclick="closeMenu()">Armbänder</a></li>
-            <li><a href="ringe.html" onclick="closeMenu()">Ringe</a></li>
+            <li><a href="#" onclick="filterCategory('diy'); closeMenu();">Do it yourself</a></li>
+            <li><a href="#" onclick="filterCategory('ohrringe'); closeMenu();">Ohrringe</a></li>
+            <li><a href="#" onclick="filterCategory('halsketten'); closeMenu();">Halsketten</a></li>
+            <li><a href="#" onclick="filterCategory('armbaender'); closeMenu();">Armbänder</a></li>
+            <li><a href="#" onclick="filterCategory('ringe'); closeMenu();">Ringe</a></li>
         </ul>
     </div>
 
-    <!-- Text auf der Startseite -->
+    <!-- Hintergrund-Abdunklung -->
+    <div id="backdrop" class="overlay-backdrop" onclick="closeCart()"></div>
+
+    <!-- Warenkorb Drawer -->
+    <div id="cartDrawer" class="cart-drawer">
+        <div class="cart-drawer-header">
+            <h2>Einkaufstasche</h2>
+            <button class="close-btn" onclick="closeCart()">&times;</button>
+        </div>
+        <div id="cartItems" class="cart-items">
+            <!-- Dynamisch gefüllt -->
+        </div>
+        <div class="cart-drawer-footer">
+            <div class="cart-total">
+                <span>Gesamtsumme:</span>
+                <span id="cartTotal">0,00 €</span>
+            </div>
+            <button class="checkout-btn" onclick="alert('Vielen Dank für Ihre Bestellung!')">Zur Kasse</button>
+        </div>
+    </div>
+
+    <!-- Startseiten-Inhalt -->
     <section class="hero">
         <h1>Handgemacht. 100 % Naturprodukt.</h1>
         <p>Zeitlose Eleganz aus echten Steinen</p>
     </section>
-<div class="hero-banner">
-    <img src="hero-banner.jpg" alt="">
-</div>
-   
+
+    <div class="hero-banner">
+        <img src="hero-banner.jpg" alt="ECHTSTEIN Kollektion" onerror="this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1400&q=80'">
+    </div>
+
+    <!-- Kategorien-Filter -->
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterCategory('all')">Alle</button>
+        <button class="filter-btn" onclick="filterCategory('ohrringe')">Ohrringe</button>
+        <button class="filter-btn" onclick="filterCategory('halsketten')">Halsketten</button>
+        <button class="filter-btn" onclick="filterCategory('armbaender')">Armbänder</button>
+        <button class="filter-btn" onclick="filterCategory('ringe')">Ringe</button>
+        <button class="filter-btn" onclick="filterCategory('diy')">Do It Yourself</button>
+    </div>
+
+    <!-- Produkt-Raster -->
+    <section class="products-grid" id="productsGrid">
+        <!-- Dynamisch mit JavaScript geladen -->
+    </section>
+
+    <!-- Detail Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img id="modalImg" class="modal-img" src="" alt="">
+            <div>
+                <h2 id="modalTitle" style="font-weight: 300; letter-spacing: 2px; text-transform: uppercase; margin-top: 0;"></h2>
+                <p id="modalPrice" style="font-size: 18px; font-weight: 300; margin-bottom: 20px;"></p>
+                <p id="modalDesc" style="font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 24px;"></p>
+                <button id="modalAddBtn" class="checkout-btn">In die Tasche</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Über ECHTSTEIN</h4>
+                <ul>
+                    <li>100% Echte Natursteine</li>
+                    <li>Handgefertigt in Deutschland</li>
+                    <li>Nachhaltige Verpackung</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kategorien</h4>
+                <ul>
+                    <li><a href="#" onclick="filterCategory('halsketten')">Halsketten</a></li>
+                    <li><a href="#" onclick="filterCategory('ohrringe')">Ohrringe</a></li>
+                    <li><a href="#" onclick="filterCategory('armbaender')">Armbänder</a></li>
+                    <li><a href="#" onclick="filterCategory('ringe')">Ringe</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kundenservice</h4>
+                <ul>
+                    <li><a href="#">Kontakt</a></li>
+                    <li><a href="#">Versand & Lieferung</a></li>
+                    <li><a href="#">Rückgabe</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 ECHTSTEIN. Alle Rechte vorbehalten.
+        </div>
+    </footer>
 
     <script>
+        // Produktdaten
+        const products = [
+            { id: 1, title: 'Amethyst Kette', category: 'halsketten', price: 49.00, img: 'https://images.unsplash.com/photo-1611591475140-13617e4675a1?auto=format&fit=crop&w=600&q=80', desc: 'Edle Halskette mit einem Roh-Amethysten aus nachhaltigem Abbau.' },
+            { id: 2, title: 'Rosenquarz Ohrringe', category: 'ohrringe', price: 35.00, img: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80', desc: 'Filigrane Ohrringe mit sanft rosa schimmerndem Rosenquarz.' },
+            { id: 3, title: 'Obsidian Armband', category: 'armbaender', price: 42.00, img: 'https://images.unsplash.com/photo-1611591475140-13617e4675a1?auto=format&fit=crop&w=600&q=80', desc: 'Tiefschwarzes Perlenarmband aus echtem Vulkanglas.' },
+            { id: 4, title: 'Bergkristall Ring', category: 'ringe', price: 39.00, img: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80', desc: 'Klar geschliffener Bergkristall gefasst in 925er Silber.' },
+            { id: 5, title: 'DIY Schmuck-Set Basic', category: 'diy', price: 55.00, img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', desc: 'Gestalte dein eigenes Schmuckstück mit ausgewählten Rohsteinen.' },
+            { id: 6, title: 'Tigerauge Kette', category: 'halsketten', price: 45.00, img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80', desc: 'Warmes, golden braunes Tigerauge an schlichter Kordel.' }
+        ];
+
+        let cart = [];
+
+        // Menü Steuerung
         function openMenu() {
             document.getElementById("navOverlay").classList.add("open");
         }
         function closeMenu() {
             document.getElementById("navOverlay").classList.remove("open");
         }
-    </script>
 
+        // Warenkorb Steuerung
+        function openCart() {
+            document.getElementById("cartDrawer").classList.add("open");
+            document.getElementById("backdrop").classList.add("active");
+        }
+        function closeCart() {
+            document.getElementById("cartDrawer").classList.remove("open");
+            document.getElementById("backdrop").classList.remove("active");
+        }
+
+        // Produkte anzeigen
+        function renderProducts(category = 'all') {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            const filtered = category === 'all' ? products : products.filter(p => p.category === category);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image" onclick="openModal(${p.id})">
+                        <img src="${p.img}" alt="${p.title}" onerror="this.src='https://via.placeholder.com/300x340?text=ECHTSTEIN'">
+                    </div>
+                    <div class="product-title" onclick="openModal(${p.id})">${p.title}</div>
+                    <div class="product-subtitle">${p.category.toUpperCase()}</div>
+                    <div class="product-price">${p.price.toFixed(2)} €</div>
+                    <button class="add-to-cart-btn" onclick="addToCart(${p.id})">In die Tasche</button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Kategorie filtern
+        function filterCategory(cat) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            renderProducts(cat);
+        }
+
+        // Zum Warenkorb hinzufügen
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existing = cart.find(item => item.id === productId);
+
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+
+            updateCartUI();
+            openCart();
+        }
+
+        // Menge verändern
+        function changeQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== productId);
+                }
+            }
+            updateCartUI();
+        }
+
+        // Warenkorb UI aktualisieren
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            cartCount.textContent = totalCount;
+            cartTotal.textContent = totalPrice.toFixed(2) + ' €';
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align: center; color: #888; margin-top: 40px;">Deine Tasche ist leer.</p>';
+                return;
+            }
+
+            cartItemsContainer.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img class="cart-item-img" src="${item.img}" alt="${item.title}">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.title}</div>
+                        <div class="cart-item-price">${item.price.toFixed(2)} €</div>
+                        <div class="cart-item-qty">
+                            <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Modal öffnen
+        function openModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('modalTitle').textContent = product.title;
+            document.getElementById('modalPrice').textContent = product.price.toFixed(2) + ' €';
+            document.getElementById('modalDesc').textContent = product.desc;
+            document.getElementById('modalImg').src = product.img;
+            document.getElementById('modalAddBtn').onclick = () => { addToCart(product.id); closeModal(); };
+
+            document.getElementById('productModal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('open');
+        }
+
+        // Initialisierung
+        renderProducts();
+    </script>
 </body>
 </html>
