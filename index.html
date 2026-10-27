@@ -222,9 +222,9 @@
         .cart-drawer {
             position: fixed;
             top: 0;
-            right: -400px;
+            right: -420px;
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             height: 100%;
             background-color: #fff;
             box-shadow: -4px 0 20px rgba(0,0,0,0.08);
@@ -292,9 +292,50 @@
             display: flex;
             justify-content: space-between;
             font-size: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             letter-spacing: 1px;
             text-transform: uppercase;
+        }
+
+        /* Zahlungsartenauswahl im Warenkorb */
+        .payment-selection {
+            margin-bottom: 16px;
+        }
+
+        .payment-label {
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #777;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .payment-option-btn {
+            border: 1px solid #ddd;
+            background: #fff;
+            padding: 10px 8px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .payment-option-btn.selected {
+            border-color: #111;
+            background-color: #111;
+            color: #fff;
         }
 
         .checkout-btn {
@@ -307,6 +348,11 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .checkout-btn:hover {
+            opacity: 0.9;
         }
 
         .overlay-backdrop {
@@ -322,7 +368,7 @@
 
         .overlay-backdrop.active { display: block; }
 
-        /* Detail Modal & Legal Modal */
+        /* Detail Modal, Legal Modal & Checkout Modal */
         .modal {
             position: fixed;
             top: 0;
@@ -353,9 +399,9 @@
             padding: 40px;
         }
 
-        .modal-legal-content {
+        .modal-legal-content, .modal-checkout-content {
             background: #fff;
-            max-width: 700px;
+            max-width: 650px;
             width: 100%;
             max-height: 85vh;
             overflow-y: auto;
@@ -366,7 +412,7 @@
             color: #444;
         }
 
-        .modal-legal-content h2 {
+        .modal-legal-content h2, .modal-checkout-content h2 {
             font-size: 18px;
             font-weight: 300;
             letter-spacing: 2px;
@@ -376,11 +422,12 @@
             color: #111;
         }
 
-        .modal-legal-content h3 {
+        .modal-legal-content h3, .modal-checkout-content h3 {
             font-size: 13px;
             letter-spacing: 1px;
             text-transform: uppercase;
             margin-top: 24px;
+            margin-bottom: 8px;
             color: #111;
         }
 
@@ -395,6 +442,72 @@
             color: #111;
             font-weight: 200;
             z-index: 10;
+        }
+
+        /* Checkout Form & Details */
+        .bank-details-box, .paypal-details-box {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 4px;
+        }
+
+        .bank-details-box table {
+            width: 100%;
+            font-size: 12px;
+            border-collapse: collapse;
+        }
+
+        .bank-details-box td {
+            padding: 4px 0;
+        }
+
+        .bank-details-box td.label {
+            color: #777;
+            width: 120px;
+        }
+
+        .checkout-input-group {
+            margin-bottom: 12px;
+        }
+
+        .checkout-input-group label {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .checkout-input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            font-size: 13px;
+        }
+
+        .paypal-btn-simulated {
+            background-color: #0070ba;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 12px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .paypal-btn-simulated:hover {
+            background-color: #005ea6;
         }
 
         .modal-gallery { display: flex; flex-direction: column; gap: 16px; }
@@ -498,7 +611,7 @@
         </ul>
     </div>
 
-    <div id="backdrop" class="overlay-backdrop" onclick="closeCart(); closeModal(); closeLegalModal();"></div>
+    <div id="backdrop" class="overlay-backdrop" onclick="closeCart(); closeModal(); closeLegalModal(); closeCheckoutModal();"></div>
 
     <!-- Warenkorb Drawer -->
     <div id="cartDrawer" class="cart-drawer">
@@ -512,7 +625,21 @@
                 <span>Gesamtsumme:</span>
                 <span id="cartTotal">0,00 €</span>
             </div>
-            <button class="checkout-btn" onclick="alert('Vielen Dank für Ihre Bestellung!')">Zur Kasse</button>
+
+            <!-- Auswahldetails Kaufoptionen -->
+            <div class="payment-selection">
+                <span class="payment-label">Zahlungsart wählen:</span>
+                <div class="payment-options">
+                    <button type="button" class="payment-option-btn selected" id="optPaypal" onclick="selectPayment('paypal')">
+                        💳 PayPal
+                    </button>
+                    <button type="button" class="payment-option-btn" id="optBank" onclick="selectPayment('bank')">
+                        🏦 Überweisung
+                    </button>
+                </div>
+            </div>
+
+            <button class="checkout-btn" onclick="startCheckout()">Zur Kasse</button>
         </div>
     </div>
 
@@ -569,6 +696,14 @@
 
                 <button id="modalAddBtn" class="checkout-btn">In die Tasche</button>
             </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT / KASSEN MODAL -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-checkout-content">
+            <button class="modal-close" onclick="closeCheckoutModal()">&times;</button>
+            <div id="checkoutContent"></div>
         </div>
     </div>
 
@@ -695,6 +830,7 @@
         });
 
         let cart = [];
+        let selectedPaymentMethod = 'paypal';
 
         function openMenu() { document.getElementById("navOverlay").classList.add("open"); }
         function closeMenu() { document.getElementById("navOverlay").classList.remove("open"); }
@@ -749,7 +885,9 @@
         }
         function closeCart() {
             document.getElementById("cartDrawer").classList.remove("open");
-            if (!document.getElementById("productModal").classList.contains("open") && !document.getElementById("legalModal").classList.contains("open")) {
+            if (!document.getElementById("productModal").classList.contains("open") && 
+                !document.getElementById("legalModal").classList.contains("open") &&
+                !document.getElementById("checkoutModal").classList.contains("open")) {
                 document.getElementById("backdrop").classList.remove("active");
             }
         }
@@ -769,6 +907,12 @@
                 if (item.qty <= 0) { cart = cart.filter(i => i.id !== productId); }
             }
             updateCartUI();
+        }
+
+        function selectPayment(method) {
+            selectedPaymentMethod = method;
+            document.getElementById('optPaypal').classList.toggle('selected', method === 'paypal');
+            document.getElementById('optBank').classList.toggle('selected', method === 'bank');
         }
 
         function updateCartUI() {
@@ -800,6 +944,106 @@
 
             document.getElementById('cartCount').textContent = totalCount;
             document.getElementById('cartTotal').textContent = totalPrice.toFixed(2) + ' €';
+        }
+
+        // Checkout Steuerung & Zahlungsarten-Logik
+        function startCheckout() {
+            if (cart.length === 0) {
+                alert('Ihre Einkaufstasche ist leer.');
+                return;
+            }
+
+            closeCart();
+            const container = document.getElementById('checkoutContent');
+            const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0).toFixed(2);
+            const orderNum = 'EST-' + Math.floor(100000 + Math.random() * 900000);
+
+            if (selectedPaymentMethod === 'bank') {
+                container.innerHTML = `
+                    <h2>Bestellung & Überweisung</h2>
+                    <p>Vielen Dank! Ihre Bestellnummer lautet <strong>${orderNum}</strong>.</p>
+                    <p>Gesamtsumme: <strong>${total} €</strong></p>
+
+                    <h3>1. Kundendaten</h3>
+                    <div class="checkout-input-group">
+                        <label>Vollständiger Name</label>
+                        <input type="text" placeholder="Max Mustermann">
+                    </div>
+                    <div class="checkout-input-group">
+                        <label>E-Mail-Adresse für Bestätigung</label>
+                        <input type="email" placeholder="max@beispiel.at">
+                    </div>
+                    <div class="checkout-input-group">
+                        <label>Lieferadresse</label>
+                        <input type="text" placeholder="Straße, Hausnummer, PLZ, Ort">
+                    </div>
+
+                    <h3>2. Bankverbindung (Vorkasse)</h3>
+                    <p>Bitte überweisen Sie den Betrag von <strong>${total} €</strong> unter Angabe des Verwendungszwecks auf folgendes Konto:</p>
+                    
+                    <div class="bank-details-box">
+                        <table>
+                            <tr><td class="label">Empfänger:</td><td><strong>ECHTSTEIN E-Commerce</strong></td></tr>
+                            <tr><td class="label">IBAN:</td><td><strong>AT89 3700 0000 1234 5678</strong></td></tr>
+                            <tr><td class="label">BIC:</td><td><strong>RVSGAT2GXXX</strong></td></tr>
+                            <tr><td class="label">Bank:</td><td>Raiffeisenbank Steiermark</td></tr>
+                            <tr><td class="label">Verwendungszweck:</td><td><strong>${orderNum}</strong></td></tr>
+                        </table>
+                    </div>
+                    
+                    <p style="font-size: 11px; color: #777;">Der Versand erfolgt umgehend nach Zahlungseingang auf unserem Konto.</p>
+                    <button class="checkout-btn" style="margin-top: 15px;" onclick="completeOrder('bank')">Kostenpflichtig bestellen</button>
+                `;
+            } else if (selectedPaymentMethod === 'paypal') {
+                container.innerHTML = `
+                    <h2>Bestellung & PayPal</h2>
+                    <p>Gesamtsumme: <strong>${total} €</strong></p>
+
+                    <h3>1. Lieferadresse</h3>
+                    <div class="checkout-input-group">
+                        <label>Vollständiger Name</label>
+                        <input type="text" placeholder="Max Mustermann">
+                    </div>
+                    <div class="checkout-input-group">
+                        <label>E-Mail-Adresse für Bestätigung</label>
+                        <input type="email" placeholder="max@beispiel.at">
+                    </div>
+                    <div class="checkout-input-group">
+                        <label>Lieferadresse</label>
+                        <input type="text" placeholder="Straße, Hausnummer, PLZ, Ort">
+                    </div>
+
+                    <h3>2. Mit PayPal bezahlen</h3>
+                    <p>Sie werden nach Klick auf den Button sicher zu PayPal weitergeleitet, um die Zahlung von <strong>${total} €</strong> abzuschließen.</p>
+                    
+                    <div class="paypal-details-box">
+                        <button class="paypal-btn-simulated" onclick="completeOrder('paypal')">
+                            <span>PayPal Express-Kauf</span>
+                        </button>
+                    </div>
+                    <p style="font-size: 11px; color: #777; text-align: center;">Käuferschutz inklusive. Schneller & sicherer Versand.</p>
+                `;
+            }
+
+            document.getElementById('checkoutModal').classList.add('open');
+            document.getElementById('backdrop').classList.add('active');
+        }
+
+        function completeOrder(method) {
+            cart = [];
+            updateCartUI();
+            closeCheckoutModal();
+
+            if (method === 'bank') {
+                alert('Vielen Dank für Ihre Bestellung! Wir haben Ihnen die Überweisungsdaten per E-Mail zugesendet.');
+            } else {
+                alert('Zahlung via PayPal erfolgreich durchgeführt! Vielen Dank für Ihren Einkauf bei ECHTSTEIN.');
+            }
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.remove('open');
+            document.getElementById('backdrop').classList.remove('active');
         }
 
         function openModal(productId) {
