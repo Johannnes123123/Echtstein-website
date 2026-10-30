@@ -10,7 +10,6 @@
     <style>
         * { box-sizing: border-box; }
         
-        /* Sanftes Scrollen für Anker-Links */
         html {
             scroll-behavior: smooth;
         }
@@ -131,7 +130,6 @@
             margin: 0;
         }
 
-        /* Startseiten-Banner */
         .hero-banner {
             width: 100%;
             max-width: 1400px;
@@ -153,7 +151,7 @@
 
         .hero-banner:hover img { transform: scale(1.02); }
 
-        /* Über Uns Sektion (Neu) */
+        /* Über Uns Sektion */
         .about-section {
             max-width: 800px;
             margin: 80px auto;
@@ -473,7 +471,7 @@
             z-index: 10;
         }
 
-        .bank-details-box, .paypal-details-box {
+        .bank-details-box {
             background-color: #f9f9f9;
             border: 1px solid #eee;
             padding: 16px;
@@ -505,25 +503,6 @@
             border: 1px solid #ddd;
             font-size: 13px;
         }
-
-        .paypal-btn-simulated {
-            background-color: #0070ba;
-            color: #fff;
-            border: none;
-            padding: 14px;
-            width: 100%;
-            font-weight: bold;
-            letter-spacing: 1px;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 12px;
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .paypal-btn-simulated:hover { background-color: #005ea6; }
 
         .modal-gallery { display: flex; flex-direction: column; gap: 16px; }
         .modal-main-img-wrap {
@@ -624,13 +603,13 @@
         <a href="javascript:void(0)" class="cart-icon" onclick="openCart()">Tasche (<span id="cartCount">0</span>)</a>
     </header>
 
-    <!-- Burger-Menü Overlay (Mit "Über uns" verlinkt) -->
+    <!-- Burger-Menü Overlay -->
     <div id="navOverlay" class="nav-overlay">
         <div class="nav-header">
             <button class="close-btn" onclick="closeMenu()">&times;</button>
         </div>
         <ul class="nav-links">
-            <li><a href="index.html" onclick="showHome(); closeMenu();">Startseite</a></li>
+            <li><a href="#" onclick="showHome();">Startseite</a></li>
             <li><a href="#uber-uns" onclick="closeMenu();">Über uns</a></li>
             <li><a href="#" onclick="showCategory('diy');">Do it yourself</a></li>
             <li><a href="#" onclick="showCategory('ohrringe');">Ohrringe</a></li>
@@ -686,7 +665,7 @@
         <div class="products-grid" id="productsGrid"></div>
     </section>
 
-    <!-- NEU: "ÜBER UNS" BEREICH (Als kompakter Fließtext) -->
+    <!-- Über Uns Sektion -->
     <section id="uber-uns" class="about-section">
         <h2>ECHTSTEIN – Schmuck mit Geschichte und Ruhe</h2>
         <p>Die Geschichte von ECHTSTEIN begann ganz organisch: In der Nachmittagsbetreuung mit Kindern fingen wir an, hochwertigen Schmuck herzustellen. Aus dieser Begeisterung und auf Reisen durch Indien und Nepal, wo ich Steine direkt vor Ort auswählte, wuchs eine tiefe Leidenschaft.</p>
@@ -781,7 +760,6 @@
             </div>
         </div>
         
-        <!-- Social Media Icons -->
         <div class="social-links-container">
             <a href="https://www.instagram.com/echtstein/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -933,6 +911,7 @@
             document.getElementById("cartDrawer").classList.add("open");
             document.getElementById("backdrop").classList.add("active");
         }
+
         function closeCart() {
             document.getElementById("cartDrawer").classList.remove("open");
             if (!document.getElementById("productModal").classList.contains("open") && 
@@ -961,8 +940,11 @@
 
         function selectPayment(method) {
             selectedPaymentMethod = method;
-            document.getElementById('optPaypal').classList.toggle('selected', method === 'paypal');
-            document.getElementById('optBank').classList.toggle('selected', method === 'bank');
+            const optPaypal = document.getElementById('optPaypal');
+            const optBank = document.getElementById('optBank');
+            
+            if (optPaypal) optPaypal.classList.toggle('selected', method === 'paypal');
+            if (optBank) optBank.classList.toggle('selected', method === 'bank');
         }
 
         function updateCartUI() {
@@ -1016,15 +998,15 @@
                     <h3>1. Kundendaten</h3>
                     <div class="checkout-input-group">
                         <label>Vollständiger Name</label>
-                        <input type="text" placeholder="Max Mustermann">
+                        <input type="text" id="custName" placeholder="Max Mustermann" required>
                     </div>
                     <div class="checkout-input-group">
                         <label>E-Mail-Adresse für Bestätigung</label>
-                        <input type="email" placeholder="max@beispiel.at">
+                        <input type="email" id="custEmail" placeholder="max@beispiel.at" required>
                     </div>
                     <div class="checkout-input-group">
                         <label>Lieferadresse</label>
-                        <input type="text" placeholder="Straße, Hausnummer, PLZ, Ort">
+                        <input type="text" id="custAddress" placeholder="Straße, Hausnummer, PLZ, Ort" required>
                     </div>
 
                     <h3>2. Bankverbindung (Vorkasse)</h3>
@@ -1041,7 +1023,7 @@
                     </div>
                     
                     <p style="font-size: 11px; color: #777;">Der Versand erfolgt umgehend nach Zahlungseingang auf unserem Konto.</p>
-                    <button class="checkout-btn" style="margin-top: 15px;" onclick="completeOrder('bank')">Kostenpflichtig bestellen</button>
+                    <button class="checkout-btn" style="margin-top: 15px;" onclick="completeOrder('bank', '${orderNum}')">Kostenpflichtig bestellen</button>
                 `;
             } else if (selectedPaymentMethod === 'paypal') {
                 container.innerHTML = `
@@ -1051,42 +1033,67 @@
                     <h3>1. Lieferadresse</h3>
                     <div class="checkout-input-group">
                         <label>Vollständiger Name</label>
-                        <input type="text" placeholder="Max Mustermann">
+                        <input type="text" id="custName" placeholder="Max Mustermann" required>
                     </div>
                     <div class="checkout-input-group">
                         <label>E-Mail-Adresse für Bestätigung</label>
-                        <input type="email" placeholder="max@beispiel.at">
+                        <input type="email" id="custEmail" placeholder="max@beispiel.at" required>
                     </div>
                     <div class="checkout-input-group">
                         <label>Lieferadresse</label>
-                        <input type="text" placeholder="Straße, Hausnummer, PLZ, Ort">
+                        <input type="text" id="custAddress" placeholder="Straße, Hausnummer, PLZ, Ort" required>
                     </div>
 
                     <h3>2. Mit PayPal bezahlen</h3>
-                    <p>Sie werden nach Klick auf den Button sicher zu PayPal weitergeleitet, um die Zahlung von <strong>${total} €</strong> abzuschließen.</p>
+                    <p>Klicken Sie auf den folgenden Button, um Ihre Bestellung über PayPal abzuschließen:</p>
                     
-                    <div class="paypal-details-box">
-                        <button class="paypal-btn-simulated" onclick="completeOrder('paypal')">
-                            <span>PayPal Express-Kauf</span>
-                        </button>
-                    </div>
-                    <p style="font-size: 11px; color: #777; text-align: center;">Käuferschutz inklusive. Schneller & sicherer Versand.</p>
+                    <div id="paypal-modal-button-container" style="margin-top: 15px;"></div>
                 `;
+
+                setTimeout(() => {
+                    if (window.paypal) {
+                        paypal.Buttons({
+                            createOrder: function(data, actions) {
+                                return actions.order.create({
+                                    purchase_units: [{
+                                        amount: {
+                                            value: total
+                                        }
+                                    }]
+                                });
+                            },
+                            onApprove: function(data, actions) {
+                                return actions.order.capture().then(function(details) {
+                                    completeOrder('paypal', orderNum);
+                                });
+                            }
+                        }).render('#paypal-modal-button-container');
+                    }
+                }, 100);
             }
 
             document.getElementById('checkoutModal').classList.add('open');
             document.getElementById('backdrop').classList.add('active');
         }
 
-        function completeOrder(method) {
+        function completeOrder(method, orderNum) {
+            const name = document.getElementById('custName')?.value || 'Kunde';
+            const email = document.getElementById('custEmail')?.value || '';
+            const address = document.getElementById('custAddress')?.value || '';
+
+            if (method === 'bank' && (!name || !email || !address)) {
+                alert('Bitte füllen Sie alle Felder (Name, E-Mail und Adresse) aus.');
+                return;
+            }
+
             cart = [];
             updateCartUI();
             closeCheckoutModal();
 
             if (method === 'bank') {
-                alert('Vielen Dank für Ihre Bestellung! Wir haben Ihnen die Überweisungsdaten per E-Mail zugesendet.');
+                alert(`Vielen Dank für Ihre Bestellung, ${name}! Wir haben Ihre Bestellung (${orderNum}) aufgenommen und senden eine Bestätigung an ${email}.`);
             } else {
-                alert('Zahlung via PayPal erfolgreich durchgeführt! Vielen Dank für Ihren Einkauf bei ECHTSTEIN.');
+                alert(`Zahlung via PayPal erfolgreich durchgeführt! Vielen Dank für Ihren Einkauf bei ECHTSTEIN, ${name}.`);
             }
         }
 
@@ -1185,7 +1192,7 @@
                     <h3>Datenerfassung auf unserer Website</h3>
                     <p>Wir erheben Daten zur Vertragserfüllung (Name, Adresse, E-Mail), wenn Sie eine Bestellung aufgeben. Eine Weitergabe an Dritte erfolgt nur an Versandunternehmen (z. B. Österreichische Post) zur Zustellung der Ware.</p>
                     <h3>Ihre Rechte</h3>
-                    <p>Ihnen stehen grundsätzlich die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerruf und Widerspruch zu.</p>
+                    <p>Ihnen stehen grundsätzlich die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung und Widerruf zu. Kontaktieren Sie uns hierzu jederzeit unter office@echtstein.at.</p>
                 `;
             }
 
