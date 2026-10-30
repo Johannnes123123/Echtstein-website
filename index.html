@@ -151,12 +151,17 @@
 
         .hero-banner:hover img { transform: scale(1.02); }
 
-        /* Über Uns Sektion */
+        /* Über Uns Sektion (Standardmäßig versteckt) */
         .about-section {
+            display: none;
             max-width: 800px;
-            margin: 80px auto;
+            margin: 40px auto 80px auto;
             padding: 0 32px;
             text-align: left;
+        }
+
+        .about-section.active {
+            display: block;
         }
 
         .about-section h2 {
@@ -609,13 +614,13 @@
             <button class="close-btn" onclick="closeMenu()">&times;</button>
         </div>
         <ul class="nav-links">
-            <li><a href="#" onclick="showHome();">Startseite</a></li>
-            <li><a href="#uber-uns" onclick="closeMenu();">Über uns</a></li>
-            <li><a href="#" onclick="showCategory('diy');">Do it yourself</a></li>
-            <li><a href="#" onclick="showCategory('ohrringe');">Ohrringe</a></li>
-            <li><a href="#" onclick="showCategory('halsketten');">Halsketten</a></li>
-            <li><a href="#" onclick="showCategory('armbaender');">Armbänder</a></li>
-            <li><a href="#" onclick="showCategory('ringe');">Ringe</a></li>
+            <li><a href="javascript:void(0)" onclick="showHome();">Startseite</a></li>
+            <li><a href="javascript:void(0)" onclick="showAbout();">Über uns</a></li>
+            <li><a href="javascript:void(0)" onclick="showCategory('diy');">Do it yourself</a></li>
+            <li><a href="javascript:void(0)" onclick="showCategory('ohrringe');">Ohrringe</a></li>
+            <li><a href="javascript:void(0)" onclick="showCategory('halsketten');">Halsketten</a></li>
+            <li><a href="javascript:void(0)" onclick="showCategory('armbaender');">Armbänder</a></li>
+            <li><a href="javascript:void(0)" onclick="showCategory('ringe');">Ringe</a></li>
         </ul>
     </div>
 
@@ -665,7 +670,7 @@
         <div class="products-grid" id="productsGrid"></div>
     </section>
 
-    <!-- Über Uns Sektion -->
+    <!-- Über Uns Sektion (Wird erst per Klick eingeblendet) -->
     <section id="uber-uns" class="about-section">
         <h2>ECHTSTEIN – Schmuck mit Geschichte und Ruhe</h2>
         <p>Die Geschichte von ECHTSTEIN begann ganz organisch: In der Nachmittagsbetreuung mit Kindern fingen wir an, hochwertigen Schmuck herzustellen. Aus dieser Begeisterung und auf Reisen durch Indien und Nepal, wo ich Steine direkt vor Ort auswählte, wuchs eine tiefe Leidenschaft.</p>
@@ -736,6 +741,7 @@
             <div class="footer-col">
                 <h4>Über ECHTSTEIN</h4>
                 <ul>
+                    <li><a onclick="showAbout()">Unsere Geschichte</a></li>
                     <li>100% Echte Natursteine</li>
                     <li>Handgefertigt in Österreich</li>
                     <li>Nachhaltige Verpackung</li>
@@ -869,6 +875,19 @@
             document.getElementById('heroSubtitle').textContent = 'Zeitlose Eleganz aus echten Steinen';
             document.getElementById('heroBanner').style.display = 'block';
             document.getElementById('productsSection').classList.remove('active');
+            document.getElementById('uber-uns').classList.remove('active');
+        }
+
+        function showAbout() {
+            closeMenu();
+            document.getElementById('heroTitle').textContent = 'Über ECHTSTEIN';
+            document.getElementById('heroSubtitle').textContent = 'Geschichte, Kraftplatz & Philosophie';
+            
+            document.getElementById('heroBanner').style.display = 'none';
+            document.getElementById('productsSection').classList.remove('active');
+            document.getElementById('uber-uns').classList.add('active');
+            
+            document.getElementById('uber-uns').scrollIntoView({ behavior: 'smooth' });
         }
 
         function showCategory(category) {
@@ -885,6 +904,7 @@
             document.getElementById('heroSubtitle').textContent = 'Exklusive Handgemachte Kollektion';
 
             document.getElementById('heroBanner').style.display = 'none';
+            document.getElementById('uber-uns').classList.remove('active');
             document.getElementById('productsSection').classList.add('active');
 
             const grid = document.getElementById('productsGrid');
