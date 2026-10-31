@@ -1,1229 +1,305 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECHTSTEIN – Handgemacht. 100% Naturprodukt.</title>
-    
-    <script src="https://www.paypal.com/sdk/js?client-id=Af5cgcWw50_BjmgYOKZSbOBlxe4cT2u53uTWSfxP9TVs5KT9ASoVFkjYSj-9jafwuANTQQTqICgmyzsg&currency=EUR"></script>
-    
-    <style>
-        * { box-sizing: border-box; }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fff;
-            color: #111;
-        }
-
-        /* Header */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 24px 32px;
-            border-bottom: 1px solid #f0f0f0;
-            position: sticky;
-            top: 0;
-            background-color: #fff;
-            z-index: 1000;
-        }
-
-        .menu-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 24px;
-            height: 18px;
-            padding: 0;
-        }
-
-        .menu-btn span {
-            display: block;
-            height: 2px;
-            width: 100%;
-            background-color: #111;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 300;
-            letter-spacing: 5px;
-            text-decoration: none;
-            color: #111;
-            cursor: pointer;
-        }
-
-        .cart-icon {
-            font-size: 13px;
-            text-decoration: none;
-            color: #111;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
-        /* Burger-Menü Overlay */
-        .nav-overlay {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background-color: #fff;
-            z-index: 2000;
-            transition: left 0.3s ease;
-            overflow-y: auto;
-        }
-
-        .nav-overlay.open { left: 0; }
-        .nav-header { display: flex; justify-content: flex-end; padding: 24px 32px; }
-        .close-btn { background: none; border: none; font-size: 36px; cursor: pointer; color: #111; font-weight: 200; }
-        
-        .nav-links {
-            list-style: none;
-            padding: 40px 10%;
-            margin: 0;
-        }
-
-        .nav-links li { margin-bottom: 28px; }
-
-        .nav-links a {
-            text-decoration: none;
-            font-size: 24px;
-            color: #111;
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .nav-links a:hover { color: #777; }
-
-        /* Startseiten Hero */
-        .hero {
-            text-align: center;
-            padding: 60px 20px 20px 20px;
-        }
-
-        .hero h1 {
-            font-size: 28px;
-            font-weight: 300;
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .hero p {
-            font-size: 13px;
-            color: #666;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin: 0;
-        }
-
-        .hero-banner {
-            width: 100%;
-            max-width: 1400px;
-            height: 450px;
-            margin: 30px auto 60px auto;
-            padding: 0 32px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .hero-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background-color: #f7f7f7;
-            transition: transform 0.6s ease;
-        }
-
-        .hero-banner:hover img { transform: scale(1.02); }
-
-        /* Über Uns Sektion (Standardmäßig versteckt) */
-        .about-section {
-            display: none;
-            max-width: 800px;
-            margin: 40px auto 80px auto;
-            padding: 0 32px;
-            text-align: left;
-        }
-
-        .about-section.active {
-            display: block;
-        }
-
-        .about-section h2 {
-            font-size: 20px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            color: #111;
-        }
-
-        .about-section p {
-            font-size: 15px;
-            line-height: 1.8;
-            color: #444;
-            margin-bottom: 20px;
-        }
-
-        /* Produktbereich */
-        .products-section {
-            display: none;
-            max-width: 1400px;
-            margin: 0 auto 80px auto;
-            padding: 0 32px;
-        }
-
-        .products-section.active { display: block; }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px 32px;
-        }
-
-        .product-card {
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .product-image {
-            width: 100%;
-            height: 380px;
-            background-color: #f7f7f7;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .product-card:hover .product-image img { transform: scale(1.05); }
-
-        .product-title {
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 1.5px;
-            margin: 0 0 6px 0;
-            text-transform: uppercase;
-        }
-
-        .product-price {
-            font-size: 13px;
-            font-weight: 300;
-            color: #555;
-            margin-bottom: 14px;
-        }
-
-        .add-to-cart-btn {
-            background-color: #fff;
-            border: 1px solid #111;
-            color: #111;
-            padding: 12px;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .add-to-cart-btn:hover {
-            background-color: #111;
-            color: #fff;
-        }
-
-        /* Warenkorb Drawer */
-        .cart-drawer {
-            position: fixed;
-            top: 0;
-            right: -420px;
-            width: 100%;
-            max-width: 420px;
-            height: 100%;
-            background-color: #fff;
-            box-shadow: -4px 0 20px rgba(0,0,0,0.08);
-            z-index: 2500;
-            transition: right 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .cart-drawer.open { right: 0; }
-
-        .cart-drawer-header {
-            padding: 24px;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .cart-drawer-header h2 {
-            margin: 0;
-            font-size: 14px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .cart-items { flex: 1; overflow-y: auto; padding: 24px; }
-
-        .cart-item {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #f7f7f7;
-        }
-
-        .cart-item-img {
-            width: 70px;
-            height: 70px;
-            background-color: #f7f7f7;
-            object-fit: cover;
-        }
-
-        .cart-item-details { flex: 1; }
-        .cart-item-title { font-size: 12px; margin: 0 0 4px 0; text-transform: uppercase; letter-spacing: 1px; }
-        .cart-item-price { font-size: 12px; color: #555; margin-bottom: 8px; }
-        .cart-item-qty { display: flex; align-items: center; gap: 10px; font-size: 12px; }
-
-        .qty-btn {
-            background: none;
-            border: 1px solid #ccc;
-            width: 22px;
-            height: 22px;
-            cursor: pointer;
-        }
-
-        .cart-drawer-footer {
-            padding: 24px;
-            border-top: 1px solid #eee;
-            background-color: #fafafa;
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            margin-bottom: 16px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .payment-selection {
-            margin-bottom: 16px;
-        }
-
-        .payment-label {
-            font-size: 10px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #777;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .payment-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .payment-option-btn {
-            border: 1px solid #ddd;
-            background: #fff;
-            padding: 10px 8px;
-            font-size: 11px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            transition: all 0.2s ease;
-        }
-
-        .payment-option-btn.selected {
-            border-color: #111;
-            background-color: #111;
-            color: #fff;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            background-color: #111;
-            color: #fff;
-            border: none;
-            padding: 16px;
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: opacity 0.2s ease;
-        }
-
-        .checkout-btn:hover { opacity: 0.9; }
-
-        .overlay-backdrop {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.4);
-            z-index: 2400;
-            display: none;
-        }
-
-        .overlay-backdrop.active { display: block; }
-
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px);
-            z-index: 3000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal.open { display: flex; }
-
-        .modal-content {
-            background: #fff;
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 40px;
-            padding: 40px;
-        }
-
-        .modal-legal-content, .modal-checkout-content {
-            background: #fff;
-            max-width: 650px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            position: relative;
-            padding: 40px;
-            line-height: 1.6;
-            font-size: 13px;
-            color: #444;
-        }
-
-        .modal-legal-content h2, .modal-checkout-content h2 {
-            font-size: 18px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 0;
-            margin-bottom: 20px;
-            color: #111;
-        }
-
-        .modal-legal-content h3, .modal-checkout-content h3 {
-            font-size: 13px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-top: 24px;
-            margin-bottom: 8px;
-            color: #111;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 24px;
-            font-size: 32px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            color: #111;
-            font-weight: 200;
-            z-index: 10;
-        }
-
-        .bank-details-box {
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
-            padding: 16px;
-            margin: 16px 0;
-            border-radius: 4px;
-        }
-
-        .bank-details-box table {
-            width: 100%;
-            font-size: 12px;
-            border-collapse: collapse;
-        }
-
-        .bank-details-box td { padding: 4px 0; }
-        .bank-details-box td.label { color: #777; width: 120px; }
-
-        .checkout-input-group { margin-bottom: 12px; }
-        .checkout-input-group label {
-            display: block;
-            font-size: 10px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #666;
-            margin-bottom: 4px;
-        }
-        .checkout-input-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            font-size: 13px;
-        }
-
-        .modal-gallery { display: flex; flex-direction: column; gap: 16px; }
-        .modal-main-img-wrap {
-            width: 100%;
-            height: 380px;
-            background-color: #f9f9f9;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-main-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-        .modal-thumbnails { display: flex; gap: 12px; }
-        .thumb {
-            width: 70px;
-            height: 70px;
-            background-color: #f7f7f7;
-            object-fit: cover;
-            cursor: pointer;
-            border: 1px solid transparent;
-            opacity: 0.7;
-        }
-        .thumb.active, .thumb:hover { border-color: #111; opacity: 1; }
-
-        .modal-details { display: flex; flex-direction: column; justify-content: space-between; }
-        .modal-tag { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: #888; margin-bottom: 8px; }
-        .modal-title { font-size: 20px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; margin: 0 0 12px 0; }
-        .modal-price { font-size: 18px; font-weight: 300; color: #111; margin-bottom: 20px; }
-        .modal-divider { height: 1px; background-color: #eee; margin: 16px 0; }
-        .modal-desc { font-size: 13px; color: #555; line-height: 1.7; margin-bottom: 20px; }
-
-        .modal-specs {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 24px 0;
-            font-size: 12px;
-            color: #444;
-        }
-        .modal-specs li {
-            margin-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px dashed #eee;
-            padding-bottom: 4px;
-        }
-        .modal-specs span.label { color: #888; text-transform: uppercase; letter-spacing: 1px; font-size: 10px; }
-
-        .trust-badges { display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; font-size: 11px; color: #666; }
-
-        /* Footer */
-        footer { border-top: 1px solid #eee; padding: 60px 32px 30px 32px; background-color: #fafafa; }
-        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-col h4 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-top: 0; margin-bottom: 16px; }
-        .footer-col ul { list-style: none; padding: 0; margin: 0; }
-        .footer-col li { margin-bottom: 10px; font-size: 12px; color: #666; }
-        .footer-col a { color: #666; text-decoration: none; cursor: pointer; }
-        .footer-col a:hover { color: #111; }
-        .copyright { text-align: center; font-size: 11px; color: #888; border-top: 1px solid #eee; padding-top: 24px; letter-spacing: 1px; }
-
-        .social-links-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin: 25px 0;
-        }
-        .social-links-container a {
-            color: #333333;
-            transition: transform 0.2s ease, color 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .social-links-container a:hover {
-            color: #000000;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .hero-banner { padding: 0 16px; height: 260px; }
-            .hero h1 { font-size: 20px; }
-            .modal-content { grid-template-columns: 1fr; padding: 24px; gap: 24px; }
-            .modal-main-img-wrap { height: 280px; }
-            .cart-drawer { width: 85%; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ECHTSTEIN – Handgemacht. 100 % Naturprodukt.</title>
+<script src="https://www.paypal.com/sdk/js?client-id=Af5cgcWw50_BjmgYOKZSbOBlxe4cT2u53uTWSfxP9TVs5KT9ASoVFkjYSj-9jafwuANTQQTqICgmyzsg&currency=EUR"></script>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}[hidden]{display:none!important}
+body{font-family:'Helvetica Neue',Arial,sans-serif;margin:0;color:#111;background:#fff}
+button{font:inherit;cursor:pointer}:focus-visible{outline:2px solid #111;outline-offset:2px}
+a{color:inherit}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 32px;border-bottom:1px solid #f0f0f0;position:sticky;top:0;background:#fff;z-index:100}
+.link{background:none;border:0;color:#111;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;padding:0}
+.burger{background:none;border:0;width:24px;height:18px;padding:0;display:flex;flex-direction:column;justify-content:space-between}
+.burger i{height:2px;background:#111}
+.logo{font-size:22px;font-weight:300;letter-spacing:5px;text-decoration:none}
+.nav{position:fixed;inset:0;background:#fff;z-index:300;transform:translateX(-100%);transition:transform .3s;overflow:auto}
+.nav.open{transform:none}
+.nav ul{list-style:none;padding:20px 10%;margin:0}.nav li{margin-bottom:26px}
+.nav .link{font-size:24px;font-weight:300;letter-spacing:2px}
+.x{position:absolute;top:14px;right:22px;background:none;border:0;font-size:34px;font-weight:200;color:#111}
+.hero{text-align:center;padding:56px 20px 10px}
+.hero h1{font-size:26px;font-weight:300;letter-spacing:4px;text-transform:uppercase;margin:0 0 10px}
+.hero p{font-size:13px;color:#666;letter-spacing:2px;text-transform:uppercase;margin:0}
+.banner{max-width:1400px;height:420px;margin:30px auto 60px;padding:0 32px;cursor:pointer;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover;background:#f7f7f7}
+.wrap{max-width:1400px;margin:30px auto 80px;padding:0 32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:40px 30px}
+.pimg{width:100%;height:360px;background:#f7f7f7;margin-bottom:14px;overflow:hidden;cursor:pointer}
+.pimg img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.pimg:hover img{transform:scale(1.04)}
+.pt{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;margin:0 0 6px;cursor:pointer}
+.pp{font-size:13px;color:#555;margin-bottom:12px}
+.btn{background:#fff;border:1px solid #111;color:#111;padding:12px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;width:100%}
+.btn:hover,.btn.dark{background:#111;color:#fff}
+.about{max-width:800px;margin:40px auto 80px;padding:0 32px}
+.about p{font-size:15px;line-height:1.8;color:#444}
+.bd{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:400}
+.drawer{position:fixed;top:0;right:0;width:100%;max-width:420px;height:100%;background:#fff;z-index:500;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .3s}
+.drawer.open{transform:none}
+.dh{padding:22px 24px;border-bottom:1px solid #eee;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+.items{flex:1;overflow:auto;padding:24px}
+.ci{display:flex;gap:14px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #f3f3f3;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+.ci img{width:70px;height:70px;object-fit:cover}
+.ci button{width:24px;height:24px;border:1px solid #ccc;background:none}
+.df{padding:24px;border-top:1px solid #eee;background:#fafafa}
+.tot{display:flex;justify-content:space-between;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px;font-size:14px}
+.pay{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.pay button{border:1px solid #ddd;background:#fff;padding:10px;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.pay button.sel{background:#111;color:#fff;border-color:#111}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:600;display:flex;align-items:center;justify-content:center;padding:20px}
+.box{background:#fff;max-width:900px;width:100%;max-height:90vh;overflow:auto;position:relative;padding:40px;font-size:13px;line-height:1.6;color:#444}
+.box h2{font-size:18px;font-weight:300;letter-spacing:2px;text-transform:uppercase;color:#111;margin-top:0}
+.box h3{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#111;margin:22px 0 8px}
+.pm{display:grid;grid-template-columns:1fr 1fr;gap:36px}.pm img{width:100%;aspect-ratio:1;object-fit:cover;background:#f7f7f7}
+.pm ul{list-style:none;padding:0;font-size:12px}.pm li{border-bottom:1px dashed #eee;padding:5px 0}
+.f{margin-bottom:12px}.f label{display:block;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#666;margin-bottom:4px}
+.f input{width:100%;padding:10px;border:1px solid #ddd;font-size:13px}
+.bank{background:#f9f9f9;border:1px solid #eee;padding:14px;margin:14px 0}
+footer{border-top:1px solid #eee;padding:50px 32px 26px;background:#fafafa;text-align:center;font-size:12px;color:#666}
+footer .link{font-size:12px;color:#666;margin:0 12px;letter-spacing:1px}
+.soc{display:flex;justify-content:center;align-items:center;gap:22px;margin:22px 0}.soc a{color:#333;display:flex;transition:transform .2s}.soc a:hover{color:#000;transform:translateY(-2px)}
+@media(max-width:768px){.banner{height:240px;padding:0 16px}.pm{grid-template-columns:1fr}.box{padding:24px}header{padding:18px 16px}}
+</style>
 </head>
 <body>
+<header>
+  <button class="burger" aria-label="Menü öffnen" onclick="$('nav').classList.add('open')"><i></i><i></i><i></i></button>
+  <a href="#" class="logo" onclick="show('home');return false">ECHTSTEIN</a>
+  <button class="link" onclick="openCart()">Tasche (<span id="cc">0</span>)</button>
+</header>
 
-    <!-- Header -->
-    <header>
-        <button class="menu-btn" onclick="openMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <a onclick="showHome()" class="logo">ECHTSTEIN</a>
-        <a href="javascript:void(0)" class="cart-icon" onclick="openCart()">Tasche (<span id="cartCount">0</span>)</a>
-    </header>
+<nav id="nav" class="nav" aria-label="Hauptmenü">
+  <button class="x" aria-label="Menü schließen" onclick="closeAll()">&times;</button>
+  <ul style="padding-top:70px">
+    <li><button class="link" onclick="show('home')">Startseite</button></li>
+    <li><button class="link" onclick="show('about')">Über uns</button></li>
+    <li><button class="link" onclick="show('shop','diy')">Do it yourself</button></li>
+    <li><button class="link" onclick="show('shop','ohrringe')">Ohrringe</button></li>
+    <li><button class="link" onclick="show('shop','halsketten')">Halsketten</button></li>
+    <li><button class="link" onclick="show('shop','armbaender')">Armbänder</button></li>
+    <li><button class="link" onclick="show('shop','ringe')">Ringe</button></li>
+  </ul>
+</nav>
 
-    <!-- Burger-Menü Overlay -->
-    <div id="navOverlay" class="nav-overlay">
-        <div class="nav-header">
-            <button class="close-btn" onclick="closeMenu()">&times;</button>
-        </div>
-        <ul class="nav-links">
-            <li><a href="javascript:void(0)" onclick="showHome();">Startseite</a></li>
-            <li><a href="javascript:void(0)" onclick="showAbout();">Über uns</a></li>
-            <li><a href="javascript:void(0)" onclick="showCategory('diy');">Do it yourself</a></li>
-            <li><a href="javascript:void(0)" onclick="showCategory('ohrringe');">Ohrringe</a></li>
-            <li><a href="javascript:void(0)" onclick="showCategory('halsketten');">Halsketten</a></li>
-            <li><a href="javascript:void(0)" onclick="showCategory('armbaender');">Armbänder</a></li>
-            <li><a href="javascript:void(0)" onclick="showCategory('ringe');">Ringe</a></li>
-        </ul>
+<div id="bd" class="bd" hidden onclick="closeAll()"></div>
+
+<aside id="drawer" class="drawer" aria-label="Einkaufstasche">
+  <div class="dh">Einkaufstasche<button class="x" aria-label="Schließen" onclick="closeAll()">&times;</button></div>
+  <div id="items" class="items"></div>
+  <div class="df">
+    <div class="tot"><span>Gesamtsumme:</span><span id="total"></span></div>
+    <div class="pay">
+      <button id="payPaypal" class="sel" onclick="setPay('paypal')">PayPal</button>
+      <button id="payBank" onclick="setPay('bank')">Überweisung</button>
     </div>
-
-    <div id="backdrop" class="overlay-backdrop" onclick="closeCart(); closeModal(); closeLegalModal(); closeCheckoutModal();"></div>
-
-    <!-- Warenkorb Drawer -->
-    <div id="cartDrawer" class="cart-drawer">
-        <div class="cart-drawer-header">
-            <h2>Einkaufstasche</h2>
-            <button class="close-btn" onclick="closeCart()">&times;</button>
-        </div>
-        <div id="cartItems" class="cart-items"></div>
-        <div class="cart-drawer-footer">
-            <div class="cart-total">
-                <span>Gesamtsumme:</span>
-                <span id="cartTotal">0,00 €</span>
-            </div>
-
-            <div class="payment-selection">
-                <span class="payment-label">Zahlungsart wählen:</span>
-                <div class="payment-options">
-                    <button type="button" class="payment-option-btn selected" id="optPaypal" onclick="selectPayment('paypal')">
-                        🅿️ PayPal
-                    </button>
-                    <button type="button" class="payment-option-btn" id="optBank" onclick="selectPayment('bank')">
-                        🏦 Überweisung
-                    </button>
-                </div>
-            </div>
-
-            <button class="checkout-btn" onclick="startCheckout()">Zur Kasse</button>
-        </div>
-    </div>
-
-    <!-- Startseiten Hero -->
-    <section class="hero">
-        <h1 id="heroTitle">Handgemacht. 100 % Naturprodukt.</h1>
-        <p id="heroSubtitle">Zeitlose Eleganz aus echten Steinen</p>
-    </section>
-
-    <div id="heroBanner" class="hero-banner" onclick="showCategory('ringe')">
-        <img id="bannerImg" src="hero-banner.jpg" alt="ECHTSTEIN Banner">
-    </div>
-
-    <!-- Produkt-Katalog Bereich -->
-    <section id="productsSection" class="products-section">
-        <div class="products-grid" id="productsGrid"></div>
-    </section>
-
-    <!-- Über Uns Sektion (Wird erst per Klick eingeblendet) -->
-    <section id="uber-uns" class="about-section">
-        <h2>ECHTSTEIN – Schmuck mit Geschichte und Ruhe</h2>
-        <p>Die Geschichte von ECHTSTEIN begann ganz organisch: In der Nachmittagsbetreuung mit Kindern fingen wir an, hochwertigen Schmuck herzustellen. Aus dieser Begeisterung und auf Reisen durch Indien und Nepal, wo ich Steine direkt vor Ort auswählte, wuchs eine tiefe Leidenschaft.</p>
-        <p>Heute fertige ich schlichten, zeitlosen Schmuck in reiner Handarbeit aus 925 Sterling Silber und Gold Filled. Im Mittelpunkt steht die Vielfalt echter Natursteine – bevorzugt in harmonischen, runden Formen. Ob schimmernde Opale, Rubin, Kyanit und Aquamarin oder sanfter Rosenquarz, Sonnenstein, Aventurin, Achat und stabilisierter Türkis: Jedes Stück ist ein Unikat.</p>
-        <p>Gefertigt wird der Schmuck in meinem Atelier auf einem abgelegenen Landhaus – einem Kraftplatz in der Natur, ganz ohne Nachbarn. Getragen von Meditation, Ruhe und klarer Energie entsteht hier ECHTSTEIN für Menschen, die das Echte schätzen und ein Stück dieser Gelassenheit bei sich tragen möchten.</p>
-    </section>
-
-    <!-- Detail-Modal -->
-    <div id="productModal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            
-            <div class="modal-gallery">
-                <div class="modal-main-img-wrap">
-                    <img id="modalImg" src="" alt="ECHTSTEIN Produktansicht">
-                </div>
-                <div class="modal-thumbnails" id="modalThumbnails"></div>
-            </div>
-
-            <div class="modal-details">
-                <div>
-                    <div class="modal-tag">100% Unikat & Handarbeit</div>
-                    <h2 id="modalTitle" class="modal-title"></h2>
-                    <div id="modalPrice" class="modal-price"></div>
-                    
-                    <div class="modal-divider"></div>
-                    
-                    <p id="modalDesc" class="modal-desc"></p>
-                    
-                    <ul class="modal-specs">
-                        <li><span class="label">Material</span> <span>925 Sterling Silber</span></li>
-                        <li><span class="label">Steinart</span> <span id="modalStoneType">Naturstein</span></li>
-                        <li><span class="label">Herkunft</span> <span>Ethisch gewonnen</span></li>
-                        <li><span class="label">Fertigung</span> <span>Handgemacht in Österreich</span></li>
-                    </ul>
-
-                    <div class="trust-badges">
-                        <div>✓ Kostenloser Versand in AT/DE</div>
-                        <div>✓ Echtheitszertifikat inklusive</div>
-                        <div>✓ 14 Tage Rückgaberecht</div>
-                    </div>
-                </div>
-
-                <button id="modalAddBtn" class="checkout-btn">In die Tasche</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- CHECKOUT / KASSEN MODAL -->
-    <div id="checkoutModal" class="modal">
-        <div class="modal-checkout-content">
-            <button class="modal-close" onclick="closeCheckoutModal()">&times;</button>
-            <div id="checkoutContent"></div>
-        </div>
-    </div>
-
-    <!-- IMPRESSUM / RECHTLICHES MODAL -->
-    <div id="legalModal" class="modal">
-        <div class="modal-legal-content">
-            <button class="modal-close" onclick="closeLegalModal()">&times;</button>
-            <div id="legalContent"></div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-col">
-                <h4>Über ECHTSTEIN</h4>
-                <ul>
-                    <li><a onclick="showAbout()">Unsere Geschichte</a></li>
-                    <li>100% Echte Natursteine</li>
-                    <li>Handgefertigt in Österreich</li>
-                    <li>Nachhaltige Verpackung</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Kollektionen</h4>
-                <ul>
-                    <li><a onclick="showCategory('halsketten')">Halsketten</a></li>
-                    <li><a onclick="showCategory('ohrringe')">Ohrringe</a></li>
-                    <li><a onclick="showCategory('armbaender')">Armbänder</a></li>
-                    <li><a onclick="showCategory('ringe')">Ringe</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Rechtliches & Service</h4>
-                <ul>
-                    <li><a onclick="openLegal('impressum')">Impressum & Kontakt</a></li>
-                    <li><a onclick="openLegal('widerruf')">Rückgabe & Widerrufsrecht</a></li>
-                    <li><a onclick="openLegal('datenschutz')">Datenschutz</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="social-links-container">
-            <a href="https://www.instagram.com/echtstein/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-            </a>
-            <a href="https://www.facebook.com/Echtsteine" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                </svg>
-            </a>
-            <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" aria-label="Etsy">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M9.82 2.75h4.36v2.18h-2.18v14.14h2.18v2.18H9.82v-2.18h2.18V4.93H9.82V2.75zm-6.54 0h5.45v2.18H5.46v5.45h3.27v2.18H5.46v6.55h3.27v2.18H3.28V2.75zm13.09 0h4.36v2.18h-2.18v14.14h2.18v2.18h-4.36v-2.18h2.18V4.93h-2.18V2.75z"/>
-                </svg>
-            </a>
-        </div>
-
-        <div class="copyright">
-            &copy; 2026 ECHTSTEIN. Alle Rechte vorbehalten.
-        </div>
-    </footer>
-
-    <script>
-        function makePlaceholder(text) {
-            return 'data:image/svg+xml;utf8,' + encodeURIComponent(`
-                <svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
-                    <rect width="100%" height="100%" fill="#f4f4f4"/>
-                    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#a0a0a0" letter-spacing="3">${text.toUpperCase()}</text>
-                </svg>
-            `);
-        }
-
-        const products = [
-            { id: 101, title: 'Bergkristall Ring Silver', category: 'ringe', price: 39.00, stone: 'Bergkristall', desc: 'Klar geschliffener Bergkristall gefasst in massives 925er Sterlingsilber.' },
-            { id: 102, title: 'Amethyst Statement Ring', category: 'ringe', price: 45.00, stone: 'Amethyst', desc: 'Dunkelvioletter Roh-Amethyst auf einem handgeschmiedeten Silberband.' },
-            { id: 103, title: 'Rosenquarz Solitär Ring', category: 'ringe', price: 42.00, stone: 'Rosenquarz', desc: 'Sanft geschliffener Cabochon-Rosenquarz mit edler Goldplattierung.' },
-            { id: 104, title: 'Obsidian Minimalist Ring', category: 'ringe', price: 35.00, stone: 'Obsidian', desc: 'Tiefschwarzer Vulkan-Obsidian im zeitlosen Facettenschliff.' },
-            { id: 105, title: 'Tigerauge Bandring', category: 'ringe', price: 48.00, stone: 'Tigerauge', desc: 'Schimmerndes Tigerauge im Breitschliff mit geschwungener Maserung.' },
-            { id: 106, title: 'Smaragdgrün Onyx Ring', category: 'ringe', price: 52.00, stone: 'Grüner Onyx', desc: 'Grüner Onyx Naturstein in klassisch-moderner Kronenfassung.' },
-            { id: 107, title: 'Mondstein Boho Ring', category: 'ringe', price: 46.00, stone: 'Mondstein', desc: 'Regenbogen-Mondstein mit magischem bläulichem Schimmer.' },
-            { id: 108, title: 'Lapis Lazuli Ring Gold', category: 'ringe', price: 49.00, stone: 'Lapis Lazuli', desc: 'Tiefblauer Lapis Lazuli mit natürlichen Pyrit-Sprenkeln.' },
-            { id: 109, title: 'Rauchquarz Elegance Ring', category: 'ringe', price: 44.00, stone: 'Rauchquarz', desc: 'Edler braun-transparenter Rauchquarz im Baguette-Schliff.' },
-            { id: 110, title: 'Granat Vintage Ring', category: 'ringe', price: 55.00, stone: 'Granat', desc: 'Tiefroter Granat-Naturstein mit feinen Ziselierungen.' },
-
-            { id: 201, title: 'Obsidian Perlenarmband', category: 'armbaender', price: 38.00, stone: 'Obsidian', desc: 'Handaufgezogenes Armband aus matten schwarzen Obsidian-Kugeln.' },
-            { id: 202, title: 'Achat Harmonie Armband', category: 'armbaender', price: 42.00, stone: 'Achat', desc: 'Naturbelassene Achat-Perlen mit vergoldetem Charm-Anhänger.' },
-            { id: 203, title: 'Lava & Tigerauge Armband', category: 'armbaender', price: 35.00, stone: 'Lava & Tigerauge', desc: 'Kombination aus rauer Vulkanlava und glänzendem Tigerauge.' },
-            { id: 204, title: 'Rosenquarz Zartes Armband', category: 'armbaender', price: 39.00, stone: 'Rosenquarz', desc: 'Feine Rosenquarz-Facettenperlen auf wetterfester Seidenschnur.' },
-            { id: 205, title: 'Aquamarin Kordelarmband', category: 'armbaender', price: 45.00, stone: 'Aquamarin', desc: 'Hellblauer Roh-Aquamarin als Mittelstück an verstellbarem Band.' },
-            { id: 206, title: 'Malachit Statement Armband', category: 'armbaender', price: 58.00, stone: 'Malachit', desc: 'Bändermalachit mit intensiver grüner Naturmaserung.' },
-            { id: 207, title: 'Amethyst Splitterarmband', category: 'armbaender', price: 29.00, stone: 'Amethyst', desc: 'Natürliche Amethyst-Natursteinsplitter auf flexiblem Zugband.' },
-            { id: 208, title: 'Turmalin Schutz Armband', category: 'armbaender', price: 49.00, stone: 'Schwarzer Turmalin', desc: 'Schwarzer Schörl-Turmalin kombiniert mit 925er Silberperlen.' },
-            { id: 209, title: 'Jade Balance Armkette', category: 'armbaender', price: 44.00, stone: 'Jade', desc: 'Hellgrüne Neuseeland-Jade eingebunden in feines Silberkettchen.' },
-            { id: 210, title: 'Citrin Energy Armband', category: 'armbaender', price: 46.00, stone: 'Citrin', desc: 'Sonnengelber Citrin-Quarz bringt strahlende Akzente.' },
-
-            { id: 301, title: 'Amethyst Solitär Kette', category: 'halsketten', price: 55.00, stone: 'Amethyst', desc: 'Echter Amethyst-Kristall an filigraner Sterlingsilber-Kette.' },
-            { id: 302, title: 'Bergkristall Spitze Kette', category: 'halsketten', price: 49.00, stone: 'Bergkristall', desc: 'Naturbelassene Bergkristall-Doppelspitze mit Silberöse.' },
-            { id: 303, title: 'Lapis Lazuli Medaillon', category: 'halsketten', price: 62.00, stone: 'Lapis Lazuli', desc: 'Rund geschliffener Lapis Lazuli Anhänger in vergoldeter Fassung.' },
-            { id: 304, title: 'Onyx Drop Halskette', category: 'halsketten', price: 48.00, stone: 'Onyx', desc: 'Tropfenförmiger schwarzer Onyx an feiner Ankerkette.' },
-            { id: 305, title: 'Tigerauge Kordel Kette', category: 'halsketten', price: 45.00, stone: 'Tigerauge', desc: 'Schimmernder Tigerauge-Stein im Schliff an Baumwollkordel.' },
-            { id: 306, title: 'Rosenquarz Herz Kette', category: 'halsketten', price: 42.00, stone: 'Rosenquarz', desc: 'Handgeschnitztes Rosenquarz-Herz an vergoldeter Erbskette.' },
-            { id: 307, title: 'Labradorit Magie Kette', category: 'halsketten', price: 68.00, stone: 'Labradorit', desc: 'Labradorit mit starkem grün-blauem Schiller-Effekt.' },
-            { id: 308, title: 'Amazonit Boho Kette', category: 'halsketten', price: 52.00, stone: 'Amazonit', desc: 'Türkis-grüner Amazonit-Rohstein mit rustikaler Einfassung.' },
-            { id: 309, title: 'Mondstein Y-Kette', category: 'halsketten', price: 59.00, stone: 'Mondstein', desc: 'Moderne Y-Halskette bestückt mit drei kleinen Mondstein-Cabochons.' },
-            { id: 310, title: 'Fluorit Regenbogen Kette', category: 'halsketten', price: 47.00, stone: 'Fluorit', desc: 'Mehrfarbig transluzenter Fluorit-Kristall an Silberkette.' },
-
-            { id: 401, title: 'Rosenquarz Tropfen Ohrringe', category: 'ohrringe', price: 35.00, stone: 'Rosenquarz', desc: 'Zartrosa Rosenquarz-Tropfen an Sterling Silber Haken.' },
-            { id: 402, title: 'Amethyst Creolen Silber', category: 'ohrringe', price: 42.00, stone: 'Amethyst', desc: 'Klassische Silbercreolen mit abnehmbarem Amethyst-Anhänger.' },
-            { id: 403, title: 'Achat Stecker Gold', category: 'ohrringe', price: 29.00, stone: 'Achat', desc: 'Kleine, elegante Ohrstecker mit flach geschliffenem Achat.' },
-            { id: 404, title: 'Bergkristall Ohrhänger', category: 'ohrringe', price: 38.00, stone: 'Bergkristall', desc: 'Frei schwingende Bergkristall-Perlen an feinen Kettenhängern.' },
-            { id: 405, title: 'Obsidian Minimal Studs', category: 'ohrringe', price: 27.00, stone: 'Obsidian', desc: 'Dezente runde Ohrstecker aus tiefschwarzem Obsidian.' },
-            { id: 406, title: 'Mondstein Creolen Gold', category: 'ohrringe', price: 46.00, stone: 'Mondstein', desc: '18K vergoldete Ohrringe verziert mit schimmerndem Mondstein.' },
-            { id: 407, title: 'Lapis Lazuli Hänger', category: 'ohrringe', price: 39.00, stone: 'Lapis Lazuli', desc: 'Königsblaue Steinperlen an handgebogenen Silberbügeln.' },
-            { id: 408, title: 'Jade Drop Earrings', category: 'ohrringe', price: 44.00, stone: 'Jade', desc: 'Grüne Jade im facettierten Tropfenschliff.' },
-            { id: 409, title: 'Granat Raw Stone Stecker', category: 'ohrringe', price: 36.00, stone: 'Granat', desc: 'Roh belassener roter Granat als feiner Akzent am Ohr.' },
-            { id: 410, title: 'Tigerauge Chandelier Ohrringe', category: 'ohrringe', price: 54.00, stone: 'Tigerauge', desc: 'Mehrgliedrige Ohrringe mit goldenen Tigerauge-Perlen.' },
-
-            { id: 501, title: 'DIY Set – Amethyst Creator', category: 'diy', price: 55.00, stone: 'Amethyst Set', desc: 'Komplettset mit Roh-Amethysten, Silberdraht und Schmuckzange.' },
-            { id: 502, title: 'DIY Set – Perlenarmband Custom', category: 'diy', price: 39.00, stone: 'Mix Natursteine', desc: 'Inklusive 50 Natursteinperlen und Elastikband.' },
-            { id: 503, title: 'DIY Set – Drahtwickel Kette', category: 'diy', price: 49.00, stone: 'Wire Wrapping Kit', desc: 'Lerne das Wrapping von Edelsteinen mit Messing- und Silberdraht.' },
-            { id: 504, title: 'DIY Set – Ohrringe Gold Deluxe', category: 'diy', price: 45.00, stone: 'Goldschmiede Set', desc: 'Alles was du brauchst, um 3 Paar individuelle Goldohrhänger zu kreieren.' },
-            { id: 505, title: 'DIY Box – Edelstein Schleif-Kit', category: 'diy', price: 65.00, stone: 'Schleifsteine', desc: 'Polier- und Schleifpapiere inkl. 4 Rohsteinen zum Selberformen.' },
-            { id: 506, title: 'DIY Set – Makramee & Stein', category: 'diy', price: 38.00, stone: 'Garn & Gems', desc: 'Knüpfe wunderschöne Kettennetze für Cabochon-Gems.' },
-            { id: 507, title: 'DIY Set – Ring Sizing & Wire', category: 'diy', price: 42.00, stone: 'Ring Tool Set', desc: 'Inklusive Ringriegel, Hammer und Draht für perfekt passende Steinringe.' },
-            { id: 508, title: 'DIY Starter Box – Mineralien', category: 'diy', price: 59.00, stone: '12 Mineralien Box', desc: '12 ausgewählte Mineralien und Zubehör zur eigenen Schmuckherstellung.' },
-            { id: 509, title: 'DIY Set – Mala Gebetskette', category: 'diy', price: 69.00, stone: 'Lapis & Sandelholz', desc: 'Knüpfe deine eigene 108-Perlen Mala aus Sandelholz und Lapis Lazuli.' },
-            { id: 510, title: 'DIY Set – Einsteiger & Kids', category: 'diy', price: 29.00, stone: 'Bunter Mix', desc: 'Einfaches Fädelset mit abgerundeten bunten Natursteinen.' }
-        ];
-
-        products.forEach(p => {
-            p.img = makePlaceholder(p.title);
-            p.imgModel = makePlaceholder(p.title + ' Tragefoto');
-        });
-
-        let cart = [];
-        let selectedPaymentMethod = 'paypal';
-
-        function openMenu() { document.getElementById("navOverlay").classList.add("open"); }
-        function closeMenu() { document.getElementById("navOverlay").classList.remove("open"); }
-
-        function showHome() {
-            closeMenu();
-            document.getElementById('heroTitle').textContent = 'Handgemacht. 100 % Naturprodukt.';
-            document.getElementById('heroSubtitle').textContent = 'Zeitlose Eleganz aus echten Steinen';
-            document.getElementById('heroBanner').style.display = 'block';
-            document.getElementById('productsSection').classList.remove('active');
-            document.getElementById('uber-uns').classList.remove('active');
-        }
-
-        function showAbout() {
-            closeMenu();
-            document.getElementById('heroTitle').textContent = 'Über ECHTSTEIN';
-            document.getElementById('heroSubtitle').textContent = 'Geschichte, Kraftplatz & Philosophie';
-            
-            document.getElementById('heroBanner').style.display = 'none';
-            document.getElementById('productsSection').classList.remove('active');
-            document.getElementById('uber-uns').classList.add('active');
-            
-            document.getElementById('uber-uns').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function showCategory(category) {
-            closeMenu();
-            const titles = {
-                'ringe': 'Ringe (10 Modelle)',
-                'ohrringe': 'Ohrringe (10 Modelle)',
-                'halsketten': 'Halsketten (10 Modelle)',
-                'armbaender': 'Armbänder (10 Modelle)',
-                'diy': 'Do It Yourself Sets (10 Sets)'
-            };
-
-            document.getElementById('heroTitle').textContent = titles[category] || category.toUpperCase();
-            document.getElementById('heroSubtitle').textContent = 'Exklusive Handgemachte Kollektion';
-
-            document.getElementById('heroBanner').style.display = 'none';
-            document.getElementById('uber-uns').classList.remove('active');
-            document.getElementById('productsSection').classList.add('active');
-
-            const grid = document.getElementById('productsGrid');
-            grid.innerHTML = '';
-
-            const filtered = products.filter(p => p.category === category);
-
-            filtered.forEach(p => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
-                    <div class="product-image" onclick="openModal(${p.id})">
-                        <img src="${p.img}" alt="${p.title}">
-                    </div>
-                    <div class="product-title" onclick="openModal(${p.id})">${p.title}</div>
-                    <div class="product-price">${p.price.toFixed(2)} €</div>
-                    <button class="add-to-cart-btn" onclick="addToCart(${p.id}); event.stopPropagation();">In die Tasche</button>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function openCart() {
-            document.getElementById("cartDrawer").classList.add("open");
-            document.getElementById("backdrop").classList.add("active");
-        }
-
-        function closeCart() {
-            document.getElementById("cartDrawer").classList.remove("open");
-            if (!document.getElementById("productModal").classList.contains("open") && 
-                !document.getElementById("legalModal").classList.contains("open") &&
-                !document.getElementById("checkoutModal").classList.contains("open")) {
-                document.getElementById("backdrop").classList.remove("active");
-            }
-        }
-
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            const existing = cart.find(item => item.id === productId);
-            if (existing) { existing.qty += 1; } else { cart.push({ ...product, qty: 1 }); }
-            updateCartUI();
-            openCart();
-        }
-
-        function updateQty(productId, delta) {
-            const item = cart.find(i => i.id === productId);
-            if (item) {
-                item.qty += delta;
-                if (item.qty <= 0) { cart = cart.filter(i => i.id !== productId); }
-            }
-            updateCartUI();
-        }
-
-        function selectPayment(method) {
-            selectedPaymentMethod = method;
-            const optPaypal = document.getElementById('optPaypal');
-            const optBank = document.getElementById('optBank');
-            
-            if (optPaypal) optPaypal.classList.toggle('selected', method === 'paypal');
-            if (optBank) optBank.classList.toggle('selected', method === 'bank');
-        }
-
-        function updateCartUI() {
-            const container = document.getElementById('cartItems');
-            container.innerHTML = '';
-            let totalCount = 0;
-            let totalPrice = 0;
-
-            cart.forEach(item => {
-                totalCount += item.qty;
-                totalPrice += item.price * item.qty;
-
-                const el = document.createElement('div');
-                el.className = 'cart-item';
-                el.innerHTML = `
-                    <img class="cart-item-img" src="${item.img}" alt="${item.title}">
-                    <div class="cart-item-details">
-                        <div class="cart-item-title">${item.title}</div>
-                        <div class="cart-item-price">${item.price.toFixed(2)} €</div>
-                        <div class="cart-item-qty">
-                            <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
-                            <span>${item.qty}</span>
-                            <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(el);
-            });
-
-            document.getElementById('cartCount').textContent = totalCount;
-            document.getElementById('cartTotal').textContent = totalPrice.toFixed(2) + ' €';
-        }
-
-        function startCheckout() {
-            if (cart.length === 0) {
-                alert('Ihre Einkaufstasche ist leer.');
-                return;
-            }
-
-            closeCart();
-            const container = document.getElementById('checkoutContent');
-            const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0).toFixed(2);
-            const orderNum = 'EST-' + Math.floor(100000 + Math.random() * 900000);
-
-            if (selectedPaymentMethod === 'bank') {
-                container.innerHTML = `
-                    <h2>Bestellung & Überweisung</h2>
-                    <p>Vielen Dank! Ihre Bestellnummer lautet <strong>${orderNum}</strong>.</p>
-                    <p>Gesamtsumme: <strong>${total} €</strong></p>
-
-                    <h3>1. Kundendaten</h3>
-                    <div class="checkout-input-group">
-                        <label>Vollständiger Name</label>
-                        <input type="text" id="custName" placeholder="Max Mustermann" required>
-                    </div>
-                    <div class="checkout-input-group">
-                        <label>E-Mail-Adresse für Bestätigung</label>
-                        <input type="email" id="custEmail" placeholder="max@beispiel.at" required>
-                    </div>
-                    <div class="checkout-input-group">
-                        <label>Lieferadresse</label>
-                        <input type="text" id="custAddress" placeholder="Straße, Hausnummer, PLZ, Ort" required>
-                    </div>
-
-                    <h3>2. Bankverbindung (Vorkasse)</h3>
-                    <p>Bitte überweisen Sie den Betrag von <strong>${total} €</strong> unter Angabe des Verwendungszwecks auf folgendes Konto:</p>
-                    
-                    <div class="bank-details-box">
-                        <table>
-                            <tr><td class="label">Empfänger:</td><td><strong>ECHTSTEIN E-Commerce</strong></td></tr>
-                            <tr><td class="label">IBAN:</td><td><strong>AT89 3700 0000 1234 5678</strong></td></tr>
-                            <tr><td class="label">BIC:</td><td><strong>RVSGAT2GXXX</strong></td></tr>
-                            <tr><td class="label">Bank:</td><td>Raiffeisenbank Steiermark</td></tr>
-                            <tr><td class="label">Verwendungszweck:</td><td><strong>${orderNum}</strong></td></tr>
-                        </table>
-                    </div>
-                    
-                    <p style="font-size: 11px; color: #777;">Der Versand erfolgt umgehend nach Zahlungseingang auf unserem Konto.</p>
-                    <button class="checkout-btn" style="margin-top: 15px;" onclick="completeOrder('bank', '${orderNum}')">Kostenpflichtig bestellen</button>
-                `;
-            } else if (selectedPaymentMethod === 'paypal') {
-                container.innerHTML = `
-                    <h2>Bestellung & PayPal</h2>
-                    <p>Gesamtsumme: <strong>${total} €</strong></p>
-
-                    <h3>1. Lieferadresse</h3>
-                    <div class="checkout-input-group">
-                        <label>Vollständiger Name</label>
-                        <input type="text" id="custName" placeholder="Max Mustermann" required>
-                    </div>
-                    <div class="checkout-input-group">
-                        <label>E-Mail-Adresse für Bestätigung</label>
-                        <input type="email" id="custEmail" placeholder="max@beispiel.at" required>
-                    </div>
-                    <div class="checkout-input-group">
-                        <label>Lieferadresse</label>
-                        <input type="text" id="custAddress" placeholder="Straße, Hausnummer, PLZ, Ort" required>
-                    </div>
-
-                    <h3>2. Mit PayPal bezahlen</h3>
-                    <p>Klicken Sie auf den folgenden Button, um Ihre Bestellung über PayPal abzuschließen:</p>
-                    
-                    <div id="paypal-modal-button-container" style="margin-top: 15px;"></div>
-                `;
-
-                setTimeout(() => {
-                    if (window.paypal) {
-                        paypal.Buttons({
-                            createOrder: function(data, actions) {
-                                return actions.order.create({
-                                    purchase_units: [{
-                                        amount: {
-                                            value: total
-                                        }
-                                    }]
-                                });
-                            },
-                            onApprove: function(data, actions) {
-                                return actions.order.capture().then(function(details) {
-                                    completeOrder('paypal', orderNum);
-                                });
-                            }
-                        }).render('#paypal-modal-button-container');
-                    }
-                }, 100);
-            }
-
-            document.getElementById('checkoutModal').classList.add('open');
-            document.getElementById('backdrop').classList.add('active');
-        }
-
-        function completeOrder(method, orderNum) {
-            const name = document.getElementById('custName')?.value || 'Kunde';
-            const email = document.getElementById('custEmail')?.value || '';
-            const address = document.getElementById('custAddress')?.value || '';
-
-            if (method === 'bank' && (!name || !email || !address)) {
-                alert('Bitte füllen Sie alle Felder (Name, E-Mail und Adresse) aus.');
-                return;
-            }
-
-            cart = [];
-            updateCartUI();
-            closeCheckoutModal();
-
-            if (method === 'bank') {
-                alert(`Vielen Dank für Ihre Bestellung, ${name}! Wir haben Ihre Bestellung (${orderNum}) aufgenommen und senden eine Bestätigung an ${email}.`);
-            } else {
-                alert(`Zahlung via PayPal erfolgreich durchgeführt! Vielen Dank für Ihren Einkauf bei ECHTSTEIN, ${name}.`);
-            }
-        }
-
-        function closeCheckoutModal() {
-            document.getElementById('checkoutModal').classList.remove('open');
-            document.getElementById('backdrop').classList.remove('active');
-        }
-
-        function openModal(productId) {
-            const p = products.find(prod => prod.id === productId);
-            if (!p) return;
-
-            document.getElementById('modalTitle').textContent = p.title;
-            document.getElementById('modalPrice').textContent = p.price.toFixed(2) + ' €';
-            document.getElementById('modalDesc').textContent = p.desc;
-            document.getElementById('modalStoneType').textContent = p.stone;
-
-            const mainImg = document.getElementById('modalImg');
-            mainImg.src = p.img;
-
-            const thumbsContainer = document.getElementById('modalThumbnails');
-            thumbsContainer.innerHTML = '';
-
-            const images = [
-                { src: p.img, label: 'Freisteller' },
-                { src: p.imgModel, label: 'Tragefoto' }
-            ];
-
-            images.forEach((imgObj, idx) => {
-                const thumb = document.createElement('img');
-                thumb.className = `thumb ${idx === 0 ? 'active' : ''}`;
-                thumb.src = imgObj.src;
-                thumb.onclick = () => {
-                    mainImg.src = imgObj.src;
-                    document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-                    thumb.classList.add('active');
-                };
-                thumbsContainer.appendChild(thumb);
-            });
-
-            const addBtn = document.getElementById('modalAddBtn');
-            addBtn.onclick = () => { addToCart(p.id); closeModal(); };
-
-            document.getElementById('productModal').classList.add('open');
-            document.getElementById('backdrop').classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('productModal').classList.remove('open');
-            document.getElementById('backdrop').classList.remove('active');
-        }
-
-        function openLegal(type) {
-            const container = document.getElementById('legalContent');
-            
-            if (type === 'impressum') {
-                container.innerHTML = `
-                    <h2>Impressum & Kontakt</h2>
-                    <p><strong>Angaben gemäß § 5 ECG / Offenlegung gemäß § 25 Mediengesetz:</strong></p>
-                    <p>
-                        <strong>ECHTSTEIN E-Commerce</strong><br>
-                        Inhaber: [Dein Vor- und Nachname]<br>
-                        Musterstraße 123<br>
-                        8010 Graz, Österreich
-                    </p>
-                    <h3>Kontakt</h3>
-                    <p>
-                        Telefon: +43 [Deine Telefonnummer]<br>
-                        E-Mail: office@echtstein.at
-                    </p>
-                    <h3>Gewerberechtliche Angaben</h3>
-                    <p>
-                        Gewerbebezeichnung: Erzeugung von Kunstgewerbegegenständen / Handel mit Juwelen und Goldwaren<br>
-                        Aufsichtsbehörde: Magistrat der Stadt Graz / BH Graz-Umgebung<br>
-                        Mitgliedschaft: Wirtschaftskammer Steiermark (WKO)<br>
-                        Anwendbare Rechtsvorschriften: Gewerbeordnung (www.ris.bka.gv.at)
-                    </p>
-                    <p><em>Kleinunternehmer gemäß § 6 Abs. 1 Z 27 UStG (Umsatzsteuerbefreit).</em></p>
-                `;
-            } else if (type === 'widerruf') {
-                container.innerHTML = `
-                    <h2>Widerrufsbelehrung & Rückgabe</h2>
-                    <p>Verbraucher haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.</p>
-                    <h3>Widerrufsfrist</h3>
-                    <p>Die Widerrufsfrist beträgt 14 Tage ab dem Tag, an dem Sie oder ein von Ihnen benannter Dritter die Waren in Besitz genommen haben.</p>
-                    <h3>Ausübung des Widerrufs</h3>
-                    <p>Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (ECHTSTEIN, Graz, E-Mail: office@echtstein.at) mittels einer eindeutigen Erklärung über Ihren Entschluss informieren.</p>
-                    <h3>Folgen des Widerrufs</h3>
-                    <p>Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, unverzüglich und spätestens binnen 14 Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf bei uns eingegangen ist.</p>
-                    <p><strong>Rücksendekosten:</strong> Sie tragen die unmittelbaren Kosten der Rücksendung der Waren.</p>
-                `;
-            } else if (type === 'datenschutz') {
-                container.innerHTML = `
-                    <h2>Datenschutzerklärung</h2>
-                    <p>Wir verarbeiten Ihre personenbezogenen Daten unter Einhaltung der Datenschutz-Grundverordnung (DSGVO) sowie des österreichischen Datenschutzgesetzes (DSG).</p>
-                    <h3>Datenerfassung auf unserer Website</h3>
-                    <p>Wir erheben Daten zur Vertragserfüllung (Name, Adresse, E-Mail), wenn Sie eine Bestellung aufgeben. Eine Weitergabe an Dritte erfolgt nur an Versandunternehmen (z. B. Österreichische Post) zur Zustellung der Ware.</p>
-                    <h3>Ihre Rechte</h3>
-                    <p>Ihnen stehen grundsätzlich die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung und Widerruf zu. Kontaktieren Sie uns hierzu jederzeit unter office@echtstein.at.</p>
-                `;
-            }
-
-            document.getElementById('legalModal').classList.add('open');
-            document.getElementById('backdrop').classList.add('active');
-        }
-
-        function closeLegalModal() {
-            document.getElementById('legalModal').classList.remove('open');
-            document.getElementById('backdrop').classList.remove('active');
-        }
-    </script>
+    <button class="btn dark" onclick="checkout()">Zur Kasse</button>
+  </div>
+</aside>
+
+<section id="hero" class="hero"><h1 id="ht"></h1><p id="hs"></p></section>
+<div id="banner" class="banner" onclick="show('shop','ringe')"><img id="bimg" src="hero-banner.jpg" alt="ECHTSTEIN" onerror="this.onerror=null;this.src=ph('Echtstein')"></div>
+<main id="shop" class="wrap" hidden><div id="grid" class="grid"></div></main>
+<section id="about" class="about" hidden>
+  <h2 style="font-weight:300;letter-spacing:2px;text-transform:uppercase;font-size:20px">ECHTSTEIN – Schmuck mit Geschichte und Ruhe</h2>
+  <p>Die Geschichte von ECHTSTEIN begann ganz organisch: In der Nachmittagsbetreuung mit Kindern fingen wir an, hochwertigen Schmuck herzustellen. Aus dieser Begeisterung und auf Reisen durch Indien und Nepal, wo ich Steine direkt vor Ort auswählte, wuchs eine tiefe Leidenschaft.</p>
+  <p>Heute fertige ich schlichten, zeitlosen Schmuck in reiner Handarbeit aus 925 Sterling Silber und Gold Filled. Im Mittelpunkt steht die Vielfalt echter Natursteine – bevorzugt in harmonischen, runden Formen. Ob schimmernde Opale, Rubin, Kyanit und Aquamarin oder sanfter Rosenquarz, Sonnenstein, Aventurin, Achat und stabilisierter Türkis: Jedes Stück ist ein Unikat.</p>
+  <p>Gefertigt wird der Schmuck in meinem Atelier auf einem abgelegenen Landhaus – einem Kraftplatz in der Natur, ganz ohne Nachbarn. Getragen von Meditation, Ruhe und klarer Energie entsteht hier ECHTSTEIN für Menschen, die das Echte schätzen und ein Stück dieser Gelassenheit bei sich tragen möchten.</p>
+</section>
+
+<div id="modal" class="modal" role="dialog" aria-modal="true" hidden onclick="if(event.target===this)closeAll()">
+  <div class="box"><button class="x" aria-label="Schließen" onclick="closeAll()">&times;</button><div id="mbody"></div></div>
+</div>
+
+<footer>
+  <p><button class="link" onclick="show('about')">Unsere Geschichte</button>
+  <button class="link" onclick="legal('impressum')">Impressum & Kontakt</button>
+  <button class="link" onclick="legal('widerruf')">Rückgabe & Widerruf</button>
+  <button class="link" onclick="legal('datenschutz')">Datenschutz</button></p>
+  <div class="soc">
+    <a href="https://www.instagram.com/echtstein/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.4A4 4 0 1 1 12.6 8 4 4 0 0 1 16 11.4z"/><path d="M17.5 6.5h.01"/></svg></a>
+    <a href="https://www.facebook.com/Echtsteine" target="_blank" rel="noopener" aria-label="Facebook"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+    <span id="etsy" hidden><a id="etsyA" target="_blank" rel="noopener" aria-label="Etsy"><svg width="24" height="24" viewBox="0 0 24 24"><text x="12" y="19" text-anchor="middle" font-size="20" font-family="Georgia,serif" fill="currentColor">E</text></svg></a></span>
+  </div>
+  <p>&copy; 2026 ECHTSTEIN. Alle Rechte vorbehalten.</p>
+</footer>
+
+<script>
+const CONFIG={
+  FORMSPREE_URL:'', // Bestell-Mails: auf formspree.io Formular anlegen, Link eintragen (z. B. 'https://formspree.io/f/abcdwxyz')
+  ETSY_URL:'',      // z. B. 'https://www.etsy.com/shop/DeinShopName' (leer = Link bleibt versteckt)
+  BANK:{name:'ECHTSTEIN E-Commerce',iban:'AT89 3700 0000 1234 5678',bic:'RVSGAT2GXXX',bank:'Raiffeisenbank Steiermark'}
+};
+const IMG={}; // Fotos später z. B.: 101:'bilder/ring-bergkristall.jpg'
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(n);
+const ph=t=>'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><rect width="100%" height="100%" fill="#f4f4f4"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="20" fill="#a0a0a0">'+t.toUpperCase().replace(/&/g,'&amp;')+'</text></svg>');
+// id|Kategorie|Titel|Preis|Stein|Beschreibung
+const P=`101|ringe|Bergkristall Ring Silver|39|Bergkristall|Klar geschliffener Bergkristall gefasst in massives 925er Sterlingsilber.
+102|ringe|Amethyst Statement Ring|45|Amethyst|Dunkelvioletter Roh-Amethyst auf einem handgeschmiedeten Silberband.
+103|ringe|Rosenquarz Solitär Ring|42|Rosenquarz|Sanft geschliffener Cabochon-Rosenquarz mit edler Goldplattierung.
+104|ringe|Obsidian Minimalist Ring|35|Obsidian|Tiefschwarzer Vulkan-Obsidian im zeitlosen Facettenschliff.
+105|ringe|Tigerauge Bandring|48|Tigerauge|Schimmerndes Tigerauge im Breitschliff mit geschwungener Maserung.
+106|ringe|Smaragdgrün Onyx Ring|52|Grüner Onyx|Grüner Onyx Naturstein in klassisch-moderner Kronenfassung.
+107|ringe|Mondstein Boho Ring|46|Mondstein|Regenbogen-Mondstein mit magischem bläulichem Schimmer.
+108|ringe|Lapis Lazuli Ring Gold|49|Lapis Lazuli|Tiefblauer Lapis Lazuli mit natürlichen Pyrit-Sprenkeln.
+109|ringe|Rauchquarz Elegance Ring|44|Rauchquarz|Edler braun-transparenter Rauchquarz im Baguette-Schliff.
+110|ringe|Granat Vintage Ring|55|Granat|Tiefroter Granat-Naturstein mit feinen Ziselierungen.
+201|armbaender|Obsidian Perlenarmband|38|Obsidian|Handaufgezogenes Armband aus matten schwarzen Obsidian-Kugeln.
+202|armbaender|Achat Harmonie Armband|42|Achat|Naturbelassene Achat-Perlen mit vergoldetem Charm-Anhänger.
+203|armbaender|Lava & Tigerauge Armband|35|Lava & Tigerauge|Kombination aus rauer Vulkanlava und glänzendem Tigerauge.
+204|armbaender|Rosenquarz Zartes Armband|39|Rosenquarz|Feine Rosenquarz-Facettenperlen auf wetterfester Seidenschnur.
+205|armbaender|Aquamarin Kordelarmband|45|Aquamarin|Hellblauer Roh-Aquamarin als Mittelstück an verstellbarem Band.
+206|armbaender|Malachit Statement Armband|58|Malachit|Bändermalachit mit intensiver grüner Naturmaserung.
+207|armbaender|Amethyst Splitterarmband|29|Amethyst|Natürliche Amethyst-Natursteinsplitter auf flexiblem Zugband.
+208|armbaender|Turmalin Schutz Armband|49|Schwarzer Turmalin|Schwarzer Schörl-Turmalin kombiniert mit 925er Silberperlen.
+209|armbaender|Jade Balance Armkette|44|Jade|Hellgrüne Neuseeland-Jade eingebunden in feines Silberkettchen.
+210|armbaender|Citrin Energy Armband|46|Citrin|Sonnengelber Citrin-Quarz bringt strahlende Akzente.
+301|halsketten|Amethyst Solitär Kette|55|Amethyst|Echter Amethyst-Kristall an filigraner Sterlingsilber-Kette.
+302|halsketten|Bergkristall Spitze Kette|49|Bergkristall|Naturbelassene Bergkristall-Doppelspitze mit Silberöse.
+303|halsketten|Lapis Lazuli Medaillon|62|Lapis Lazuli|Rund geschliffener Lapis Lazuli Anhänger in vergoldeter Fassung.
+304|halsketten|Onyx Drop Halskette|48|Onyx|Tropfenförmiger schwarzer Onyx an feiner Ankerkette.
+305|halsketten|Tigerauge Kordel Kette|45|Tigerauge|Schimmernder Tigerauge-Stein im Schliff an Baumwollkordel.
+306|halsketten|Rosenquarz Herz Kette|42|Rosenquarz|Handgeschnitztes Rosenquarz-Herz an vergoldeter Erbskette.
+307|halsketten|Labradorit Magie Kette|68|Labradorit|Labradorit mit starkem grün-blauem Schiller-Effekt.
+308|halsketten|Amazonit Boho Kette|52|Amazonit|Türkis-grüner Amazonit-Rohstein mit rustikaler Einfassung.
+309|halsketten|Mondstein Y-Kette|59|Mondstein|Moderne Y-Halskette bestückt mit drei kleinen Mondstein-Cabochons.
+310|halsketten|Fluorit Regenbogen Kette|47|Fluorit|Mehrfarbig transluzenter Fluorit-Kristall an Silberkette.
+401|ohrringe|Rosenquarz Tropfen Ohrringe|35|Rosenquarz|Zartrosa Rosenquarz-Tropfen an Sterling Silber Haken.
+402|ohrringe|Amethyst Creolen Silber|42|Amethyst|Klassische Silbercreolen mit abnehmbarem Amethyst-Anhänger.
+403|ohrringe|Achat Stecker Gold|29|Achat|Kleine, elegante Ohrstecker mit flach geschliffenem Achat.
+404|ohrringe|Bergkristall Ohrhänger|38|Bergkristall|Frei schwingende Bergkristall-Perlen an feinen Kettenhängern.
+405|ohrringe|Obsidian Minimal Studs|27|Obsidian|Dezente runde Ohrstecker aus tiefschwarzem Obsidian.
+406|ohrringe|Mondstein Creolen Gold|46|Mondstein|18K vergoldete Ohrringe verziert mit schimmerndem Mondstein.
+407|ohrringe|Lapis Lazuli Hänger|39|Lapis Lazuli|Königsblaue Steinperlen an handgebogenen Silberbügeln.
+408|ohrringe|Jade Drop Earrings|44|Jade|Grüne Jade im facettierten Tropfenschliff.
+409|ohrringe|Granat Raw Stone Stecker|36|Granat|Roh belassener roter Granat als feiner Akzent am Ohr.
+410|ohrringe|Tigerauge Chandelier Ohrringe|54|Tigerauge|Mehrgliedrige Ohrringe mit goldenen Tigerauge-Perlen.
+501|diy|DIY Set – Amethyst Creator|55|Amethyst Set|Komplettset mit Roh-Amethysten, Silberdraht und Schmuckzange.
+502|diy|DIY Set – Perlenarmband Custom|39|Mix Natursteine|Inklusive 50 Natursteinperlen und Elastikband.
+503|diy|DIY Set – Drahtwickel Kette|49|Wire Wrapping Kit|Lerne das Wrapping von Edelsteinen mit Messing- und Silberdraht.
+504|diy|DIY Set – Ohrringe Gold Deluxe|45|Goldschmiede Set|Alles, was du brauchst, um 3 Paar individuelle Goldohrhänger zu kreieren.
+505|diy|DIY Box – Edelstein Schleif-Kit|65|Schleifsteine|Polier- und Schleifpapiere inkl. 4 Rohsteinen zum Selberformen.
+506|diy|DIY Set – Makramee & Stein|38|Garn & Gems|Knüpfe wunderschöne Kettennetze für Cabochon-Gems.
+507|diy|DIY Set – Ring Sizing & Wire|42|Ring Tool Set|Inklusive Ringriegel, Hammer und Draht für perfekt passende Steinringe.
+508|diy|DIY Starter Box – Mineralien|59|12 Mineralien Box|12 ausgewählte Mineralien und Zubehör zur eigenen Schmuckherstellung.
+509|diy|DIY Set – Mala Gebetskette|69|Lapis & Sandelholz|Knüpfe deine eigene 108-Perlen Mala aus Sandelholz und Lapis Lazuli.
+510|diy|DIY Set – Einsteiger & Kids|29|Bunter Mix|Einfaches Fädelset mit abgerundeten bunten Natursteinen.`
+.split('\n').map(l=>{const[a,b,c,d,e,f]=l.split('|');return{id:+a,cat:b,title:c,price:+d,stone:e,desc:f}});
+const byId=id=>P.find(p=>p.id===id);
+const img=p=>IMG[p.id]||ph(p.title);
+const TITLES={ringe:'Ringe',ohrringe:'Ohrringe',halsketten:'Halsketten',armbaender:'Armbänder',diy:'Do It Yourself Sets'};
+
+let cart=[],pay='paypal';
+try{cart=(JSON.parse(localStorage.getItem('echtstein_cart'))||[]).filter(i=>byId(i.id))}catch(e){}
+
+/* Navigation */
+function closeAll(){
+  $('nav').classList.remove('open');$('drawer').classList.remove('open');
+  $('modal').hidden=true;$('bd').hidden=true;
+}
+function show(v,c){
+  closeAll();
+  $('hero').hidden=v==='about'&&false;
+  $('banner').hidden=v!=='home';$('shop').hidden=v!=='shop';$('about').hidden=v!=='about';
+  $('ht').textContent=v==='home'?'Handgemacht. 100 % Naturprodukt.':v==='about'?'Über ECHTSTEIN':TITLES[c];
+  $('hs').textContent=v==='home'?'Zeitlose Eleganz aus echten Steinen':v==='about'?'Geschichte, Kraftplatz & Philosophie':'Exklusive handgemachte Kollektion';
+  if(v==='shop')$('grid').innerHTML=P.filter(p=>p.cat===c).map(p=>`
+    <article>
+      <div class="pimg" role="button" tabindex="0" aria-label="${p.title} ansehen" onclick="openProduct(${p.id})" onkeydown="if(event.key==='Enter')openProduct(${p.id})"><img src="${img(p)}" alt="${p.title}"></div>
+      <h3 class="pt" role="button" tabindex="0" onclick="openProduct(${p.id})" onkeydown="if(event.key==='Enter')openProduct(${p.id})">${p.title}</h3>
+      <div class="pp">${money(p.price)}</div>
+      <button class="btn" onclick="add(${p.id})">In die Tasche</button>
+    </article>`).join('');
+  scrollTo(0,0);
+}
+function openModal(html){$('mbody').innerHTML=html;$('modal').hidden=false;}
+function openProduct(id){
+  const p=byId(id);
+  openModal(`<div class="pm"><img src="${img(p)}" alt="${p.title}"><div>
+    <div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#888">100% Unikat & Handarbeit</div>
+    <h2 style="margin:8px 0">${p.title}</h2><div style="font-size:18px;margin-bottom:14px">${money(p.price)}</div>
+    <p>${p.desc}</p>
+    <ul><li>Steinart: ${p.stone}</li><li>Material: 925 Sterling Silber</li><li>Fertigung: Handgemacht in Österreich</li></ul>
+    <p style="font-size:11px">✓ Kostenloser Versand in AT/DE · ✓ Echtheitszertifikat · ✓ 14 Tage Rückgaberecht</p>
+    <button class="btn dark" onclick="add(${p.id})">In die Tasche</button></div></div>`);
+}
+
+/* Warenkorb */
+const total=()=>cart.reduce((s,i)=>s+byId(i.id).price*i.qty,0);
+function add(id){const i=cart.find(x=>x.id===id);i?i.qty++:cart.push({id,qty:1});renderCart();openCart();}
+function qty(id,d){const i=cart.find(x=>x.id===id);i.qty+=d;if(i.qty<=0)cart=cart.filter(x=>x!==i);renderCart();}
+function openCart(){closeAll();$('drawer').classList.add('open');$('bd').hidden=false;}
+function setPay(m){pay=m;$('payPaypal').classList.toggle('sel',m==='paypal');$('payBank').classList.toggle('sel',m==='bank');}
+function renderCart(){
+  $('items').innerHTML=cart.length?cart.map(i=>{const p=byId(i.id);return`<div class="ci"><img src="${img(p)}" alt="">
+    <div><div>${p.title}</div><div style="color:#555;margin:4px 0 8px">${money(p.price)}</div>
+    <button aria-label="Menge verringern" onclick="qty(${p.id},-1)">-</button> ${i.qty} <button aria-label="Menge erhöhen" onclick="qty(${p.id},1)">+</button></div></div>`}).join(''):'<p>Ihre Einkaufstasche ist leer.</p>';
+  $('cc').textContent=cart.reduce((s,i)=>s+i.qty,0);
+  $('total').textContent=money(total());
+  try{localStorage.setItem('echtstein_cart',JSON.stringify(cart))}catch(e){}
+}
+
+/* Kasse */
+const field=(id,l,t,p)=>`<div class="f"><label for="${id}">${l}</label><input id="${id}" type="${t}" placeholder="${p}" required></div>`;
+function customer(){
+  const g=id=>($(id)?.value||'').trim();
+  const c={name:g('cn'),email:g('ce'),address:g('ca')};
+  c.ok=!!(c.name&&/^\S+@\S+\.\S+$/.test(c.email)&&c.address);return c;
+}
+async function sendOrder(method,num,c,extra){
+  if(!CONFIG.FORMSPREE_URL)throw new Error('FORMSPREE_URL fehlt');
+  const r=await fetch(CONFIG.FORMSPREE_URL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+    body:JSON.stringify({_subject:'Neue Bestellung '+num,Bestellnummer:num,Zahlungsart:method,Name:c.name,email:c.email,Adresse:c.address,
+      Artikel:cart.map(i=>`${i.qty} x ${byId(i.id).title} (${money(byId(i.id).price)})`).join('\n'),Summe:money(total()),Zusatz:extra||''})});
+  if(!r.ok)throw new Error('Senden fehlgeschlagen');
+}
+function finish(msg){cart=[];renderCart();closeAll();alert(msg);}
+function checkout(){
+  if(!cart.length){alert('Ihre Einkaufstasche ist leer.');return;}
+  const bank=pay==='bank',num='EST-'+Math.floor(100000+Math.random()*900000),b=CONFIG.BANK;
+  closeAll();
+  openModal(`<h2>${bank?'Bestellung & Überweisung':'Bestellung & PayPal'}</h2>
+    <p>Bestellnummer: <strong>${num}</strong><br>Gesamtsumme: <strong>${money(total())}</strong></p>
+    <h3>1. Kundendaten</h3>${field('cn','Vollständiger Name','text','Max Mustermann')}${field('ce','E-Mail-Adresse','email','max@beispiel.at')}${field('ca','Lieferadresse','text','Straße, Hausnummer, PLZ, Ort')}
+    ${bank?`<h3>2. Bankverbindung (Vorkasse)</h3><p>Bitte überweisen Sie <strong>${money(total())}</strong> mit dem Verwendungszweck <strong>${num}</strong>:</p>
+      <div class="bank">Empfänger: <strong>${b.name}</strong><br>IBAN: <strong>${b.iban}</strong><br>BIC: <strong>${b.bic}</strong><br>Bank: ${b.bank}</div>
+      <p style="font-size:11px">Der Versand erfolgt nach Zahlungseingang.</p><button class="btn dark" onclick="payBank('${num}')">Kostenpflichtig bestellen</button>`
+    :`<h3>2. Mit PayPal bezahlen</h3><div id="pp"></div>`}`);
+  $('bd').hidden=false;
+  if(bank)return;
+  if(!window.paypal){$('pp').textContent='PayPal konnte nicht geladen werden. Bitte später erneut versuchen.';return;}
+  paypal.Buttons({
+    onClick:(d,a)=>customer().ok?a.resolve():(alert('Bitte zuerst Name, gültige E-Mail und Lieferadresse ausfüllen.'),a.reject()),
+    createOrder:(d,a)=>a.order.create({purchase_units:[{custom_id:num,amount:{currency_code:'EUR',value:total().toFixed(2)}}]}),
+    onApprove:(d,a)=>a.order.capture().then(async det=>{
+      const c=customer();let sent=true;
+      try{await sendOrder('PayPal',num,c,'PayPal-ID: '+det.id)}catch(e){sent=false}
+      finish(`Zahlung erfolgreich, ${c.name}! Bestellnummer ${num}.`+(sent?' Wir haben Ihre Bestellung erhalten.':' Bitte melden Sie sich mit der Bestellnummer unter office@echtstein.at, damit wir Ihre Lieferadresse haben.'));
+    }),
+    onError:()=>alert('Bei PayPal ist ein Fehler aufgetreten. Bitte erneut versuchen.')
+  }).render('#pp');
+}
+async function payBank(num){
+  const c=customer();
+  if(!c.ok){alert('Bitte Name, gültige E-Mail und Lieferadresse ausfüllen.');return;}
+  try{await sendOrder('Überweisung',num,c);finish(`Vielen Dank, ${c.name}! Ihre Bestellung ${num} ist eingegangen. Die Bestätigung senden wir an ${c.email}.`);}
+  catch(e){alert('Die Bestellung konnte nicht gesendet werden. Bitte erneut versuchen oder an office@echtstein.at schreiben.');}
+}
+
+/* Rechtliches (Platzhalter – bitte prüfen und ergänzen) */
+function legal(t){
+  openModal({
+    impressum:`<h2>Impressum & Kontakt</h2><p><strong>ECHTSTEIN E-Commerce</strong><br>Inhaber: [Dein Vor- und Nachname]<br>Musterstraße 123<br>8010 Graz, Österreich</p><p>Telefon: +43 [Deine Telefonnummer]<br>E-Mail: office@echtstein.at</p><p>Gewerbe: Erzeugung von Kunstgewerbegegenständen / Handel mit Juwelen und Goldwaren<br>Mitglied der WKO Steiermark · Gewerbeordnung: www.ris.bka.gv.at</p><p><em>Kleinunternehmer gemäß § 6 Abs. 1 Z 27 UStG.</em></p>`,
+    widerruf:`<h2>Widerrufsbelehrung & Rückgabe</h2><p>Verbraucher haben das Recht, binnen 14 Tagen ohne Angabe von Gründen den Vertrag zu widerrufen. Die Frist beginnt mit dem Tag, an dem Sie die Ware erhalten haben.</p><p>Schreiben Sie uns dazu eindeutig an office@echtstein.at. Erhaltene Zahlungen erstatten wir spätestens 14 Tage nach Eingang des Widerrufs. Die Kosten der Rücksendung tragen Sie.</p>`,
+    datenschutz:`<h2>Datenschutzerklärung</h2><p>Wir verarbeiten personenbezogene Daten nach DSGVO und DSG. Bei einer Bestellung erheben wir Name, Adresse und E-Mail zur Vertragserfüllung und geben sie nur an Versand- und Zahlungsdienstleister (z. B. Österreichische Post, PayPal) weiter.</p><p>Sie haben Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung und Widerspruch: office@echtstein.at.</p>`
+  }[t]);
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+if(CONFIG.ETSY_URL){$('etsyA').href=CONFIG.ETSY_URL;$('etsy').hidden=false;}
+show('home');renderCart();
+</script>
 </body>
 </html>
