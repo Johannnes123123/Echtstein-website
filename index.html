@@ -187,8 +187,33 @@ const P=`101|ringe|Bergkristall Ring Silver|39|Bergkristall|Klar geschliffener B
 509|diy|DIY Set – Mala Gebetskette|69|Lapis & Sandelholz|Knüpfe deine eigene 108-Perlen Mala aus Sandelholz und Lapis Lazuli.
 510|diy|DIY Set – Einsteiger & Kids|29|Bunter Mix|Einfaches Fädelset mit abgerundeten bunten Natursteinen.`
 .split('\n').map(l=>{const[a,b,c,d,e,f]=l.split('|');return{id:+a,cat:b,title:c,price:+d,stone:e,desc:f}});
+/* Gruppen-Angebote: 1 Foto, mehrere nummerierte Einzelstücke (je 1 Stück).
+   Verkauft? Bei der Nummer sold:true setzen und Datei neu hochladen. */
+const G=[{
+  id:60,cat:'armbaender',title:'Handgemachte Edelstein-Armbänder',photo:'armbaender.jpg',
+  desc:'Jedes Armband ist ein Unikat und nur einmal vorhanden. Die Nummern zählen auf dem Foto von oben nach unten.',
+  variants:[
+    {n:1,name:'Lapislazuli',price:38},
+    {n:2,name:'Welo Opal',price:38},
+    {n:3,name:'Türkis',price:38},
+    {n:4,name:'Bergkristall',price:38},
+    {n:5,name:'Karneol',price:38},
+    {n:6,name:'Amethyst',price:38},
+    {n:7,name:'Mondstein',price:38},
+    {n:8,name:'Bergkristall',price:38}
+  ]}];
+G.forEach(g=>g.variants.forEach(v=>P.push({id:g.id*10+v.n,cat:g.cat,title:`${g.title} – Nr. ${v.n} (${v.name})`,price:v.price,stone:v.name,desc:g.desc,group:g.id,sold:!!v.sold,photo:g.photo})));
 const byId=id=>P.find(p=>p.id===id);
-const img=p=>IMG[p.id]||ph(p.title);
+const img=p=>IMG[p.id]||p.photo||ph(p.title);
+const bad="this.onerror=null;this.src=ph('Foto folgt')";
+const groupCard=g=>{
+  const open=g.variants.filter(v=>!v.sold),min=Math.min(...(open.length?open:g.variants).map(v=>v.price));
+  return`<article><div class="pimg" style="height:auto" role="button" tabindex="0" aria-label="Foto vergrößern" onclick="zoom(${g.id})" onkeydown="if(event.key==='Enter')zoom(${g.id})"><img src="${g.photo}" alt="${g.title}" style="height:auto" onerror="${bad}"></div>
+  <h3 class="pt">${g.title}</h3><div class="pp">ab ${money(min)} · ${open.length} von ${g.variants.length} verfügbar</div>
+  <select id="sel${g.id}" aria-label="Modell wählen" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd">${g.variants.map(v=>`<option value="${g.id*10+v.n}"${v.sold?' disabled':''}>Nr. ${v.n} – ${v.name} – ${v.sold?'ausverkauft':money(v.price)}</option>`).join('')}</select>
+  <button class="btn" onclick="add(+$('sel${g.id}').value)"${open.length?'':' disabled'}>In die Tasche</button></article>`;
+};
+const zoom=id=>{const g=G.find(x=>x.id===id);openModal(`<img src="${g.photo}" alt="${g.title}" style="width:100%" onerror="${bad}"><p>${g.desc}</p>`)};
 const TITLES={ringe:'Ringe',ohrringe:'Ohrringe',halsketten:'Halsketten',armbaender:'Armbänder',diy:'Do It Yourself Sets'};
 
 let cart=[],pay='paypal';
@@ -205,13 +230,13 @@ function show(v,c){
   $('banner').hidden=v!=='home';$('shop').hidden=v!=='shop';$('about').hidden=v!=='about';
   $('ht').textContent=v==='home'?'Handgemacht. 100 % Naturprodukt.':v==='about'?'Über ECHTSTEIN':TITLES[c];
   $('hs').textContent=v==='home'?'Zeitlose Eleganz aus echten Steinen':v==='about'?'Geschichte, Kraftplatz & Philosophie':'Exklusive handgemachte Kollektion';
-  if(v==='shop')$('grid').innerHTML=P.filter(p=>p.cat===c).map(p=>`
+  if(v==='shop')$('grid').innerHTML=P.filter(p=>p.cat===c&&!p.group).map(p=>`
     <article>
       <div class="pimg" role="button" tabindex="0" aria-label="${p.title} ansehen" onclick="openProduct(${p.id})" onkeydown="if(event.key==='Enter')openProduct(${p.id})"><img src="${img(p)}" alt="${p.title}"></div>
       <h3 class="pt" role="button" tabindex="0" onclick="openProduct(${p.id})" onkeydown="if(event.key==='Enter')openProduct(${p.id})">${p.title}</h3>
       <div class="pp">${money(p.price)}</div>
       <button class="btn" onclick="add(${p.id})">In die Tasche</button>
-    </article>`).join('');
+    </article>`).join('')+G.filter(g=>g.cat===c).map(groupCard).join('');
   scrollTo(0,0);
 }
 function openModal(html){$('mbody').innerHTML=html;$('modal').hidden=false;}
@@ -228,8 +253,8 @@ function openProduct(id){
 
 /* Warenkorb */
 const total=()=>cart.reduce((s,i)=>s+byId(i.id).price*i.qty,0);
-function add(id){const i=cart.find(x=>x.id===id);i?i.qty++:cart.push({id,qty:1});renderCart();openCart();}
-function qty(id,d){const i=cart.find(x=>x.id===id);i.qty+=d;if(i.qty<=0)cart=cart.filter(x=>x!==i);renderCart();}
+function add(id){const p=byId(id);if(!p||p.sold)return;const i=cart.find(x=>x.id===id);if(i){if(!p.group)i.qty++}else cart.push({id,qty:1});renderCart();openCart();}
+function qty(id,d){const i=cart.find(x=>x.id===id);if(d>0&&byId(id).group)return;i.qty+=d;if(i.qty<=0)cart=cart.filter(x=>x!==i);renderCart();}
 function openCart(){closeAll();$('drawer').classList.add('open');$('bd').hidden=false;}
 function setPay(m){pay=m;$('payPaypal').classList.toggle('sel',m==='paypal');$('payBank').classList.toggle('sel',m==='bank');}
 function renderCart(){
