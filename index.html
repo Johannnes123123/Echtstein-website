@@ -137,8 +137,10 @@ header{display:flex;justify-content:space-between;align-items:center;padding:20p
 .slider-slide .p-meta{font-size:9px;letter-spacing:1.5px}
 .slider-slide .p-price{font-size:13px}
 .slider-slide .p-add-link{font-size:10px;letter-spacing:1.5px}
-.p-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1);display:block;pointer-events:none}
-.p-card:hover .p-img-wrap img{transform:scale(1.04)}
+.p-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .45s ease;display:block;pointer-events:none}
+.p-img-wrap img.img-hover{position:absolute;inset:0;opacity:0;z-index:1}
+.p-card:hover .p-img-wrap img.img-hover,.p-card.is-touched .p-img-wrap img.img-hover{opacity:1;transform:scale(1.03)}
+.p-card:hover .p-img-wrap img.img-main,.p-card.is-touched .p-img-wrap img.img-main{transform:scale(1.03)}
 .p-badge{position:absolute;top:16px;left:16px;background:var(--bg);color:var(--ink);font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 10px;z-index:2;border:1px solid var(--border-subtle)}
 .p-badge.sale{background:var(--sale);color:#fff;border-color:var(--sale)}
 
@@ -555,64 +557,65 @@ footer{border-top:1px solid var(--border-subtle);padding:72px 40px 40px;backgrou
 
 <script>
 // Vollständiger Produktkatalog (55+ handgefertigte Unikate & DIY-Sets)
+// Tipp: Bei "hoverImg" kannst du jeweils dein Tragefoto (Hand, Ohr, Hals) eintragen!
 const PRODUCTS = [
   // RINGE (10 Artikel)
-  {id:'r1',cat:'ringe',title:'Ring Opal Tropfen Gold Filled',material:'14k Gold Filled · Äthiopischer Opal',price:68,img:'Gemini_Generated_Image (3).jpeg',featured:true,desc:'Zarter, handgeschmiedeter Ring aus 14k Gold Filled mit einem irisierenden äthiopischen Opal-Cabochon.'},
-  {id:'r2',cat:'ringe',title:'Ring Rosenquarz Kugel Silber',material:'925 Sterling Silber · Rosenquarz',price:54,img:'Gemini_Generated_Image (3).jpeg',desc:'Sanft schimmernder natürlicher Rosenquarz auf einer feinen 925 Sterling Silber Ringschiene.'},
-  {id:'r3',cat:'ringe',title:'Ring Kyanit Tiefblau Gold',material:'14k Gold Filled · Kyanit',price:72,oldPrice:90,sale:true,img:'Gemini_Generated_Image (3).jpeg',desc:'Ausdrucksstarker blauer Kyanit aus Nepal, von Hand in warmes Gold Filled gefasst.'},
-  {id:'r4',cat:'ringe',title:'Ring Aquamarin Klarheit',material:'925 Sterling Silber · Aquamarin',price:64,img:'Gemini_Generated_Image (3).jpeg',desc:'Meeresblauer Aquamarin in schlichter, zeitloser Silberfassung.'},
-  {id:'r5',cat:'ringe',title:'Ring Sonnenstein Schimmer',material:'14k Gold Filled · Sonnenstein',price:62,img:'Gemini_Generated_Image (3).jpeg',desc:'Warmer indischer Sonnenstein mit feinen goldenen Einschlüssen.'},
-  {id:'r6',cat:'ringe',title:'Ring Mondstein Regenbogen',material:'925 Sterling Silber · Mondstein',price:59,img:'Gemini_Generated_Image (3).jpeg',desc:'Klassischer Regenbogen-Mondstein mit bläulichem Lichtspiel.'},
-  {id:'r7',cat:'ringe',title:'Ring Grüner Aventurin Ruhe',material:'14k Gold Filled · Aventurin',price:49,oldPrice:62,sale:true,img:'Gemini_Generated_Image (3).jpeg',desc:'Beruhigender grüner Aventurin in minimalistischer Goldfassung.'},
-  {id:'r8',cat:'ringe',title:'Ring Rubin Facettiert',material:'14k Gold Filled · Rubin',price:79,img:'Gemini_Generated_Image (3).jpeg',desc:'Edler natürlicher Rubin, handverlesen in Jaipur und fein gefasst.'},
-  {id:'r9',cat:'ringe',title:'Ring Türkis Naturstein',material:'925 Sterling Silber · Stabilisierter Türkis',price:56,img:'Gemini_Generated_Image (3).jpeg',desc:'Lebendiger Türkis mit feiner natürlicher Matrix.'},
-  {id:'r10',cat:'ringe',title:'Stapelring-Set Drei Steine',material:'14k Gold Filled · Opal, Mondstein, Quarz',price:118,oldPrice:148,sale:true,img:'Gemini_Generated_Image (3).jpeg',desc:'Drei aufeinander abgestimmte zarte Ringe zum Kombinieren.'},
+  {id:'r1',cat:'ringe',title:'Ring Opal Tropfen Gold Filled',material:'14k Gold Filled · Äthiopischer Opal',price:68,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',featured:true,desc:'Zarter, handgeschmiedeter Ring aus 14k Gold Filled mit einem irisierenden äthiopischen Opal-Cabochon.'},
+  {id:'r2',cat:'ringe',title:'Ring Rosenquarz Kugel Silber',material:'925 Sterling Silber · Rosenquarz',price:54,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Sanft schimmernder natürlicher Rosenquarz auf einer feinen 925 Sterling Silber Ringschiene.'},
+  {id:'r3',cat:'ringe',title:'Ring Kyanit Tiefblau Gold',material:'14k Gold Filled · Kyanit',price:72,oldPrice:90,sale:true,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Ausdrucksstarker blauer Kyanit aus Nepal, von Hand in warmes Gold Filled gefasst.'},
+  {id:'r4',cat:'ringe',title:'Ring Aquamarin Klarheit',material:'925 Sterling Silber · Aquamarin',price:64,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Meeresblauer Aquamarin in schlichter, zeitloser Silberfassung.'},
+  {id:'r5',cat:'ringe',title:'Ring Sonnenstein Schimmer',material:'14k Gold Filled · Sonnenstein',price:62,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Warmer indischer Sonnenstein mit feinen goldenen Einschlüssen.'},
+  {id:'r6',cat:'ringe',title:'Ring Mondstein Regenbogen',material:'925 Sterling Silber · Mondstein',price:59,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Klassischer Regenbogen-Mondstein mit bläulichem Lichtspiel.'},
+  {id:'r7',cat:'ringe',title:'Ring Grüner Aventurin Ruhe',material:'14k Gold Filled · Aventurin',price:49,oldPrice:62,sale:true,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Beruhigender grüner Aventurin in minimalistischer Goldfassung.'},
+  {id:'r8',cat:'ringe',title:'Ring Rubin Facettiert',material:'14k Gold Filled · Rubin',price:79,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Edler natürlicher Rubin, handverlesen in Jaipur und fein gefasst.'},
+  {id:'r9',cat:'ringe',title:'Ring Türkis Naturstein',material:'925 Sterling Silber · Stabilisierter Türkis',price:56,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Lebendiger Türkis mit feiner natürlicher Matrix.'},
+  {id:'r10',cat:'ringe',title:'Stapelring-Set Drei Steine',material:'14k Gold Filled · Opal, Mondstein, Quarz',price:118,oldPrice:148,sale:true,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Drei aufeinander abgestimmte zarte Ringe zum Kombinieren.'},
 
   // OHRRINGE (10 Artikel)
-  {id:'o1',cat:'ohrringe',title:'Ohrhänger Pfauenfeder & Opal',material:'14k Gold Filled · Äthiopischer Opal',price:78,img:'Gemini_Generated_Image (6).jpeg',featured:true,desc:'Einzigartige Ohrhänger mit echter Pfauenfeder und leuchtendem Opal-Tropfen.'},
-  {id:'o2',cat:'ohrringe',title:'Ohrstecker Stern & Naturstein',material:'14k Gold Filled · Mondstein',price:52,img:'Gemini_Generated_Image (1).jpeg',featured:true,desc:'Feine Stern-Stecker kombiniert mit schimmerndem Mondstein.'},
-  {id:'o3',cat:'ohrringe',title:'Creolen mit Aquamarin-Tropfen',material:'925 Sterling Silber · Aquamarin',price:68,img:'Gemini_Generated_Image.jpeg',desc:'Leichte Creolen mit abnehmbaren Aquamarin-Anhängern.'},
-  {id:'o4',cat:'ohrringe',title:'Ohrhänger Rubin & Gold',material:'14k Gold Filled · Rubin',price:76,oldPrice:95,sale:true,img:'Gemini_Generated_Image.jpeg',desc:'Tiefrote Rubine an feinen Gold-Filled-Ohrhaken.'},
-  {id:'o5',cat:'ohrringe',title:'Ohrstecker Rosenquarz Minimal',material:'925 Sterling Silber · Rosenquarz',price:44,img:'Gemini_Generated_Image (1).jpeg',desc:'Schlichte, runde Rosenquarz-Ohrstecker für jeden Tag.'},
-  {id:'o6',cat:'ohrringe',title:'Ohrhänger Kyanit & Silber',material:'925 Sterling Silber · Kyanit',price:64,img:'Gemini_Generated_Image.jpeg',desc:'Längliche Kyanit-Tropfen in feiner Silberarbeit.'},
-  {id:'o7',cat:'ohrringe',title:'Ohrhänger Sonnenstein Tropfen',material:'14k Gold Filled · Sonnenstein',price:58,oldPrice:72,sale:true,img:'Gemini_Generated_Image (6).jpeg',desc:'Warmer Goldglanz für festliche Abende und den Alltag.'},
-  {id:'o8',cat:'ohrringe',title:'Ohrstecker Opal Mini',material:'14k Gold Filled · Opal',price:59,img:'Gemini_Generated_Image (1).jpeg',desc:'Zarte 4mm Opal-Stecker mit intensivem Farbspiel.'},
-  {id:'o9',cat:'ohrringe',title:'Ohrhänger Achat Erdton',material:'14k Gold Filled · Naturachat',price:54,img:'Gemini_Generated_Image.jpeg',desc:'Harmonische Erdtöne aus handgeschliffenem Achat.'},
-  {id:'o10',cat:'ohrringe',title:'Creolen Gold mit Türkis',material:'14k Gold Filled · Türkis',price:66,img:'Gemini_Generated_Image (1).jpeg',desc:'Frischer Türkis an klassischen Gold-Filled-Creolen.'},
+  {id:'o1',cat:'ohrringe',title:'Ohrhänger Pfauenfeder & Opal',material:'14k Gold Filled · Äthiopischer Opal',price:78,img:'Gemini_Generated_Image (6).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',featured:true,desc:'Einzigartige Ohrhänger mit echter Pfauenfeder und leuchtendem Opal-Tropfen.'},
+  {id:'o2',cat:'ohrringe',title:'Ohrstecker Stern & Naturstein',material:'14k Gold Filled · Mondstein',price:52,img:'Gemini_Generated_Image (1).jpeg',hoverImg:'Gemini_Generated_Image (6).jpeg',featured:true,desc:'Feine Stern-Stecker kombiniert mit schimmerndem Mondstein.'},
+  {id:'o3',cat:'ohrringe',title:'Creolen mit Aquamarin-Tropfen',material:'925 Sterling Silber · Aquamarin',price:68,img:'Gemini_Generated_Image.jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Leichte Creolen mit abnehmbaren Aquamarin-Anhängern.'},
+  {id:'o4',cat:'ohrringe',title:'Ohrhänger Rubin & Gold',material:'14k Gold Filled · Rubin',price:76,oldPrice:95,sale:true,img:'Gemini_Generated_Image.jpeg',hoverImg:'Gemini_Generated_Image (6).jpeg',desc:'Tiefrote Rubine an feinen Gold-Filled-Ohrhaken.'},
+  {id:'o5',cat:'ohrringe',title:'Ohrstecker Rosenquarz Minimal',material:'925 Sterling Silber · Rosenquarz',price:44,img:'Gemini_Generated_Image (1).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Schlichte, runde Rosenquarz-Ohrstecker für jeden Tag.'},
+  {id:'o6',cat:'ohrringe',title:'Ohrhänger Kyanit & Silber',material:'925 Sterling Silber · Kyanit',price:64,img:'Gemini_Generated_Image.jpeg',hoverImg:'Gemini_Generated_Image (6).jpeg',desc:'Längliche Kyanit-Tropfen in feiner Silberarbeit.'},
+  {id:'o7',cat:'ohrringe',title:'Ohrhänger Sonnenstein Tropfen',material:'14k Gold Filled · Sonnenstein',price:58,oldPrice:72,sale:true,img:'Gemini_Generated_Image (6).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Warmer Goldglanz für festliche Abende und den Alltag.'},
+  {id:'o8',cat:'ohrringe',title:'Ohrstecker Opal Mini',material:'14k Gold Filled · Opal',price:59,img:'Gemini_Generated_Image (1).jpeg',hoverImg:'Gemini_Generated_Image (6).jpeg',desc:'Zarte 4mm Opal-Stecker mit intensivem Farbspiel.'},
+  {id:'o9',cat:'ohrringe',title:'Ohrhänger Achat Erdton',material:'14k Gold Filled · Naturachat',price:54,img:'Gemini_Generated_Image.jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Harmonische Erdtöne aus handgeschliffenem Achat.'},
+  {id:'o10',cat:'ohrringe',title:'Creolen Gold mit Türkis',material:'14k Gold Filled · Türkis',price:66,img:'Gemini_Generated_Image (1).jpeg',hoverImg:'Gemini_Generated_Image (6).jpeg',desc:'Frischer Türkis an klassischen Gold-Filled-Creolen.'},
 
   // HALSKETTEN (10 Artikel)
-  {id:'h1',cat:'halsketten',title:'Halskette Opal Solitär',material:'14k Gold Filled · Äthiopischer Opal',price:84,img:'Gemini_Generated_Image (4).jpeg',featured:true,desc:'Ein einzelner leuchtender Opal an einer hauchzarten Gold-Filled-Kette.'},
-  {id:'h2',cat:'halsketten',title:'Halskette Kyanit & Gold',material:'14k Gold Filled · Kyanit',price:79,img:'Gemini_Generated_Image (4).jpeg',desc:'Tiefblauer Kyanit-Anhänger an einer 42–45 cm verstellbaren Kette.'},
-  {id:'h3',cat:'halsketten',title:'Halskette Rosenquarz Harmonie',material:'925 Sterling Silber · Rosenquarz',price:68,oldPrice:85,sale:true,img:'Gemini_Generated_Image (4).jpeg',desc:'Sanfter Rosenquarz-Tropfen an einer feinen Ankerkette aus 925 Silber.'},
-  {id:'h4',cat:'halsketten',title:'Halskette Aquamarin Meer',material:'925 Sterling Silber · Aquamarin',price:74,img:'Gemini_Generated_Image (4).jpeg',desc:'Klarer blauer Aquamarin, von Hand gefasst.'},
-  {id:'h5',cat:'halsketten',title:'Halskette Mondstein Licht',material:'14k Gold Filled · Regenbogen-Mondstein',price:82,img:'Gemini_Generated_Image (4).jpeg',desc:'Schimmernder Mondstein im Cabochon-Schliff.'},
-  {id:'h6',cat:'halsketten',title:'Collier Sieben Edelsteine',material:'14k Gold Filled · Gemischte Natursteine',price:112,oldPrice:140,sale:true,img:'Gemini_Generated_Image (4).jpeg',desc:'Sieben harmonisch abgestimmte Edelsteine entlang des Dekolletés.'},
-  {id:'h7',cat:'halsketten',title:'Halskette Rubin Tropfen',material:'14k Gold Filled · Rubin',price:89,img:'Gemini_Generated_Image (4).jpeg',desc:'Kostbarer Rubin-Anhänger aus unserer Jaipur-Auswahl.'},
-  {id:'h8',cat:'halsketten',title:'Halskette Aventurin Natur',material:'925 Sterling Silber · Grüner Aventurin',price:62,img:'Gemini_Generated_Image (4).jpeg',desc:'Natürlicher grüner Aventurin für Ruhe und Ausgleich.'},
-  {id:'h9',cat:'halsketten',title:'Halskette Sonnenstein Wärme',material:'14k Gold Filled · Sonnenstein',price:72,img:'Gemini_Generated_Image (4).jpeg',desc:'Funkelnder Sonnenstein an einer zarten Goldkette.'},
-  {id:'h10',cat:'halsketten',title:'Y-Kette Opal & Goldperlen',material:'14k Gold Filled · Opal',price:96,img:'Gemini_Generated_Image (4).jpeg',desc:'Elegante Y-Kette für tiefere Ausschnitte.'},
+  {id:'h1',cat:'halsketten',title:'Halskette Opal Solitär',material:'14k Gold Filled · Äthiopischer Opal',price:84,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',featured:true,desc:'Ein einzelner leuchtender Opal an einer hauchzarten Gold-Filled-Kette.'},
+  {id:'h2',cat:'halsketten',title:'Halskette Kyanit & Gold',material:'14k Gold Filled · Kyanit',price:79,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Tiefblauer Kyanit-Anhänger an einer 42–45 cm verstellbaren Kette.'},
+  {id:'h3',cat:'halsketten',title:'Halskette Rosenquarz Harmonie',material:'925 Sterling Silber · Rosenquarz',price:68,oldPrice:85,sale:true,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Sanfter Rosenquarz-Tropfen an einer feinen Ankerkette aus 925 Silber.'},
+  {id:'h4',cat:'halsketten',title:'Halskette Aquamarin Meer',material:'925 Sterling Silber · Aquamarin',price:74,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Klarer blauer Aquamarin, von Hand gefasst.'},
+  {id:'h5',cat:'halsketten',title:'Halskette Mondstein Licht',material:'14k Gold Filled · Regenbogen-Mondstein',price:82,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Schimmernder Mondstein im Cabochon-Schliff.'},
+  {id:'h6',cat:'halsketten',title:'Collier Sieben Edelsteine',material:'14k Gold Filled · Gemischte Natursteine',price:112,oldPrice:140,sale:true,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Sieben harmonisch abgestimmte Edelsteine entlang des Dekolletés.'},
+  {id:'h7',cat:'halsketten',title:'Halskette Rubin Tropfen',material:'14k Gold Filled · Rubin',price:89,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Kostbarer Rubin-Anhänger aus unserer Jaipur-Auswahl.'},
+  {id:'h8',cat:'halsketten',title:'Halskette Aventurin Natur',material:'925 Sterling Silber · Grüner Aventurin',price:62,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Natürlicher grüner Aventurin für Ruhe und Ausgleich.'},
+  {id:'h9',cat:'halsketten',title:'Halskette Sonnenstein Wärme',material:'14k Gold Filled · Sonnenstein',price:72,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Funkelnder Sonnenstein an einer zarten Goldkette.'},
+  {id:'h10',cat:'halsketten',title:'Y-Kette Opal & Goldperlen',material:'14k Gold Filled · Opal',price:96,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Elegante Y-Kette für tiefere Ausschnitte.'},
 
   // ARMBÄNDER (10 Artikel)
-  {id:'a1',cat:'armbaender',title:'Armband Opal & Goldkugeln',material:'14k Gold Filled · Äthiopischer Opal',price:69,img:'Gemini_Generated_Image (2).jpeg',featured:true,desc:'Zartes Armband mit facettierten Opal-Perlen und 14k Gold Filled Elementen.'},
-  {id:'a2',cat:'armbaender',title:'Armband Rosenquarz Zart',material:'925 Sterling Silber · Rosenquarz',price:52,img:'Gemini_Generated_Image (2).jpeg',desc:'Feine Rosenquarz-Kugeln auf reißfestem Juwelierdraht mit Silberverschluss.'},
-  {id:'a3',cat:'armbaender',title:'Armband Kyanit & Silber',material:'925 Sterling Silber · Kyanit',price:58,oldPrice:72,sale:true,img:'Gemini_Generated_Image (2).jpeg',desc:'Tiefblauer Kyanit kombiniert mit handgefertigten Silberdetails.'},
-  {id:'a4',cat:'armbaender',title:'Armband Aquamarin Brise',material:'925 Sterling Silber · Aquamarin',price:62,img:'Gemini_Generated_Image (2).jpeg',desc:'Helle Aquamarin-Perlen mit Verlängerungskettchen.'},
-  {id:'a5',cat:'armbaender',title:'Armband Sonnenstein Gold',material:'14k Gold Filled · Sonnenstein',price:59,img:'Gemini_Generated_Image (2).jpeg',desc:'Warmer Sonnenstein mit feinen Gold-Filled-Zwischenteilen.'},
-  {id:'a6',cat:'armbaender',title:'Armband Mondstein Schimmer',material:'925 Sterling Silber · Mondstein',price:64,img:'Gemini_Generated_Image (2).jpeg',desc:'Irisierender Mondstein für ein elegantes Handgelenk.'},
-  {id:'a7',cat:'armbaender',title:'Armband Türkis & Gold',material:'14k Gold Filled · Stabilisierter Türkis',price:54,oldPrice:68,sale:true,img:'Gemini_Generated_Image (2).jpeg',desc:'Lebendiger Türkis in Kombination mit warmem Gold.'},
-  {id:'a8',cat:'armbaender',title:'Armband Rubin Facettiert',material:'14k Gold Filled · Rubin',price:78,img:'Gemini_Generated_Image (2).jpeg',desc:'Fein facettierte Rubin-Rondelle mit Goldverschluss.'},
-  {id:'a9',cat:'armbaender',title:'Armband Achat Natur',material:'925 Sterling Silber · Achat',price:48,img:'Gemini_Generated_Image (2).jpeg',desc:'Erdige Achattöne in ruhiger, harmonischer Abfolge.'},
-  {id:'a10',cat:'armbaender',title:'Armband-Duo Opal & Mondstein',material:'14k Gold Filled · Opal & Mondstein',price:108,oldPrice:135,sale:true,img:'Gemini_Generated_Image (2).jpeg',desc:'Zwei feine Armbänder im abgestimmten Set.'},
+  {id:'a1',cat:'armbaender',title:'Armband Opal & Goldkugeln',material:'14k Gold Filled · Äthiopischer Opal',price:69,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',featured:true,desc:'Zartes Armband mit facettierten Opal-Perlen und 14k Gold Filled Elementen.'},
+  {id:'a2',cat:'armbaender',title:'Armband Rosenquarz Zart',material:'925 Sterling Silber · Rosenquarz',price:52,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Feine Rosenquarz-Kugeln auf reißfestem Juwelierdraht mit Silberverschluss.'},
+  {id:'a3',cat:'armbaender',title:'Armband Kyanit & Silber',material:'925 Sterling Silber · Kyanit',price:58,oldPrice:72,sale:true,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Tiefblauer Kyanit kombiniert mit handgefertigten Silberdetails.'},
+  {id:'a4',cat:'armbaender',title:'Armband Aquamarin Brise',material:'925 Sterling Silber · Aquamarin',price:62,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Helle Aquamarin-Perlen mit Verlängerungskettchen.'},
+  {id:'a5',cat:'armbaender',title:'Armband Sonnenstein Gold',material:'14k Gold Filled · Sonnenstein',price:59,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Warmer Sonnenstein mit feinen Gold-Filled-Zwischenteilen.'},
+  {id:'a6',cat:'armbaender',title:'Armband Mondstein Schimmer',material:'925 Sterling Silber · Mondstein',price:64,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Irisierender Mondstein für ein elegantes Handgelenk.'},
+  {id:'a7',cat:'armbaender',title:'Armband Türkis & Gold',material:'14k Gold Filled · Stabilisierter Türkis',price:54,oldPrice:68,sale:true,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Lebendiger Türkis in Kombination mit warmem Gold.'},
+  {id:'a8',cat:'armbaender',title:'Armband Rubin Facettiert',material:'14k Gold Filled · Rubin',price:78,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Fein facettierte Rubin-Rondelle mit Goldverschluss.'},
+  {id:'a9',cat:'armbaender',title:'Armband Achat Natur',material:'925 Sterling Silber · Achat',price:48,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Erdige Achattöne in ruhiger, harmonischer Abfolge.'},
+  {id:'a10',cat:'armbaender',title:'Armband-Duo Opal & Mondstein',material:'14k Gold Filled · Opal & Mondstein',price:108,oldPrice:135,sale:true,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Zwei feine Armbänder im abgestimmten Set.'},
 
   // DO IT YOURSELF (8 Artikel)
-  {id:'d1',cat:'diy',title:'DIY-Set Halskette Opal selbst knüpfen',material:'14k Gold Filled · Opal-Perlen · Seidenfaden',price:49,img:'Gemini_Generated_Image (5).jpeg',featured:true,desc:'Komplett-Set mit handverlesenen Opal-Perlen, 14k Gold Filled Verschluss, Nadel und Schritt-für-Schritt-Anleitung.'},
-  {id:'d2',cat:'diy',title:'DIY-Set Armband Rosenquarz & Silber',material:'925 Sterling Silber · Rosenquarz',price:36,img:'Gemini_Generated_Image (5).jpeg',desc:'Alles für zwei eigene Rosenquarz-Armbänder inklusive Verschlüssen und Juwelierdraht.'},
-  {id:'d3',cat:'diy',title:'DIY-Set Ohrringe Kyanit & Gold',material:'14k Gold Filled · Kyanit-Tropfen',price:42,oldPrice:52,sale:true,img:'Gemini_Generated_Image (5).jpeg',desc:'Gestalten Sie Ihre eigenen Kyanit-Ohrhänger mit hochwertigen Gold-Filled-Ohrhaken.'},
-  {id:'d4',cat:'diy',title:'Edelstein-Mix Box (40 Steine)',material:'100 % Natursteine · Sortiert',price:58,img:'Gemini_Generated_Image (5).jpeg',desc:'Eine kuratierte Auswahl aus Opal, Aquamarin, Mondstein, Rubin und Sonnenstein für eigene Kreationen.'},
-  {id:'d5',cat:'diy',title:'DIY-Set Familien-Nachmittag (3 Armbänder)',material:'925 Silber · Aventurin, Achat, Quarz',price:64,img:'Gemini_Generated_Image (5).jpeg',desc:'Inspiriert von unseren Anfängen – ideal zum gemeinsamen Schmuckgestalten.'},
-  {id:'d6',cat:'diy',title:'Verschluss- & Draht-Set 14k Gold Filled',material:'14k Gold Filled · Karabiner & Biegeringe',price:28,img:'Gemini_Generated_Image (5).jpeg',desc:'Hochwertige Gold-Filled-Komponenten für langlebige eigene Schmuckstücke.'},
-  {id:'d7',cat:'diy',title:'DIY-Set Mondstein-Choker',material:'925 Sterling Silber · Mondstein',price:44,img:'Gemini_Generated_Image (5).jpeg',desc:'Feine Mondstein-Rondelle und Silberverschluss für eine zeitlose Halskette.'},
-  {id:'d8',cat:'diy',title:'Juwelier-Zangen-Set Basis',material:'Edelstahl · Ergonomisch',price:32,img:'Gemini_Generated_Image (5).jpeg',desc:'Rundzange, Flachzange und Seitenschneider für präzises Arbeiten zu Hause.'}
+  {id:'d1',cat:'diy',title:'DIY-Set Halskette Opal selbst knüpfen',material:'14k Gold Filled · Opal-Perlen · Seidenfaden',price:49,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (4).jpeg',featured:true,desc:'Komplett-Set mit handverlesenen Opal-Perlen, 14k Gold Filled Verschluss, Nadel und Schritt-für-Schritt-Anleitung.'},
+  {id:'d2',cat:'diy',title:'DIY-Set Armband Rosenquarz & Silber',material:'925 Sterling Silber · Rosenquarz',price:36,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (2).jpeg',desc:'Alles für zwei eigene Rosenquarz-Armbänder inklusive Verschlüssen und Juwelierdraht.'},
+  {id:'d3',cat:'diy',title:'DIY-Set Ohrringe Kyanit & Gold',material:'14k Gold Filled · Kyanit-Tropfen',price:42,oldPrice:52,sale:true,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (6).jpeg',desc:'Gestalten Sie Ihre eigenen Kyanit-Ohrhänger mit hochwertigen Gold-Filled-Ohrhaken.'},
+  {id:'d4',cat:'diy',title:'Edelstein-Mix Box (40 Steine)',material:'100 % Natursteine · Sortiert',price:58,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Eine kuratierte Auswahl aus Opal, Aquamarin, Mondstein, Rubin und Sonnenstein für eigene Kreationen.'},
+  {id:'d5',cat:'diy',title:'DIY-Set Familien-Nachmittag (3 Armbänder)',material:'925 Silber · Aventurin, Achat, Quarz',price:64,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (2).jpeg',desc:'Inspiriert von unseren Anfängen – ideal zum gemeinsamen Schmuckgestalten.'},
+  {id:'d6',cat:'diy',title:'Verschluss- & Draht-Set 14k Gold Filled',material:'14k Gold Filled · Karabiner & Biegeringe',price:28,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Hochwertige Gold-Filled-Komponenten für langlebige eigene Schmuckstücke.'},
+  {id:'d7',cat:'diy',title:'DIY-Set Mondstein-Choker',material:'925 Sterling Silber · Mondstein',price:44,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (4).jpeg',desc:'Feine Mondstein-Rondelle und Silberverschluss für eine zeitlose Halskette.'},
+  {id:'d8',cat:'diy',title:'Juwelier-Zangen-Set Basis',material:'Edelstahl · Ergonomisch',price:32,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Rundzange, Flachzange und Seitenschneider für präzises Arbeiten zu Hause.'}
 ];
 
 const CAT_META = {
@@ -642,11 +645,15 @@ function createProductCardHTML(p, isSlide) {
     ? `<span class="p-price"><s>${formatPrice(p.oldPrice)}</s><span class="sale-val">${formatPrice(p.price)}</span></span>`
     : `<span class="p-price">${formatPrice(p.price)}</span>`;
   const badgeHTML = p.sale ? `<span class="p-badge sale">-20 %</span>` : '';
+  const hoverImgHTML = p.hoverImg
+    ? `<img class="img-hover" src="${p.hoverImg}" alt="${p.title} getragen" loading="lazy" onerror="this.style.display='none'">`
+    : '';
   const inner = `
-    <article class="p-card">
+    <article class="p-card" ontouchstart="handleCardTouch(this)">
       <div class="p-img-wrap" onclick="openProductModal('${p.id}')">
         ${badgeHTML}
-        <img src="${p.img}" alt="${p.title}" loading="lazy" onerror="this.src='https://placehold.co/800x1000/f3efe7/111?text=ECHTSTEIN'">
+        <img class="img-main" src="${p.img}" alt="${p.title}" loading="lazy" onerror="this.src='https://placehold.co/800x1000/f3efe7/111?text=ECHTSTEIN'">
+        ${hoverImgHTML}
       </div>
       <div class="p-info">
         <div>
@@ -661,6 +668,13 @@ function createProductCardHTML(p, isSlide) {
     </article>
   `;
   return isSlide ? `<div class="slider-slide">${inner}</div>` : inner;
+}
+
+function handleCardTouch(cardEl) {
+  document.querySelectorAll('.p-card.is-touched').forEach(el => {
+    if (el !== cardEl) el.classList.remove('is-touched');
+  });
+  cardEl.classList.add('is-touched');
 }
 
 function renderHomeSliders() {
@@ -695,10 +709,14 @@ function enableSmoothDragScroll(id) {
     scrollLeft = track.scrollLeft;
   });
 
-  window.addEventListener('mouseup', () => {
+  const stopDrag = () => {
+    if (!isDown) return;
     isDown = false;
     track.classList.remove('dragging');
-  });
+  };
+
+  track.addEventListener('mouseup', stopDrag);
+  track.addEventListener('mouseleave', stopDrag);
 
   track.addEventListener('mousemove', (e) => {
     if (!isDown) return;
