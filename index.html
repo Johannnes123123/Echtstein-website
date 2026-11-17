@@ -120,14 +120,23 @@ header{display:flex;justify-content:space-between;align-items:center;padding:20p
 .slider-track{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;cursor:grab;user-select:none;width:100%;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);background:var(--border-subtle);gap:1px;scrollbar-width:none}
 .slider-track.dragging{cursor:grabbing;scroll-behavior:auto}
 .slider-track::-webkit-scrollbar{display:none}
-.slider-slide{flex:0 0 82%;background:var(--bg)}
-@media(min-width:768px){
-  .slider-slide{flex:0 0 calc(33.3333% - 0.67px)}
+.slider-slide{flex:0 0 46%;background:var(--bg)}
+@media(min-width:640px){
+  .slider-slide{flex:0 0 32%}
+}
+@media(min-width:1024px){
+  .slider-slide{flex:0 0 calc(20% - 0.8px)}
 }
 
-/* Produktkarten im 3er-Raster */
+/* Produktkarten im 3er-Raster & kompakte Slideshow-Variante */
 .p-card{background:var(--bg);display:flex;flex-direction:column;height:100%;position:relative}
 .p-img-wrap{position:relative;aspect-ratio:4/5;overflow:hidden;background:#f3efe7;cursor:pointer}
+.slider-slide .p-img-wrap{aspect-ratio:1/1;max-height:230px}
+.slider-slide .p-info{padding:14px 16px 16px;gap:8px}
+.slider-slide .p-title{font-size:17px}
+.slider-slide .p-meta{font-size:9px;letter-spacing:1.5px}
+.slider-slide .p-price{font-size:13px}
+.slider-slide .p-add-link{font-size:10px;letter-spacing:1.5px}
 .p-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1);display:block;pointer-events:none}
 .p-card:hover .p-img-wrap img{transform:scale(1.04)}
 .p-badge{position:absolute;top:16px;left:16px;background:var(--bg);color:var(--ink);font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 10px;z-index:2;border:1px solid var(--border-subtle)}
@@ -185,15 +194,19 @@ header{display:flex;justify-content:space-between;align-items:center;padding:20p
 .pay-tab.active{border-color:var(--ink);background:var(--ink);color:#fff}
 
 /* Footer */
-footer{border-top:1px solid var(--border-subtle);padding:64px 40px 36px;background:var(--bg);margin-top:0}
+footer{border-top:1px solid var(--border-subtle);padding:72px 40px 40px;background:var(--bg);margin-top:0}
 @media(max-width:640px){
-  footer{padding:48px 20px 28px}
+  footer{padding:52px 20px 32px}
 }
-.footer-grid{display:grid;grid-template-columns:1fr;gap:40px;max-width:1360px;margin:0 auto 48px}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:44px;max-width:1360px;margin:0 auto 52px}
 @media(min-width:768px){
-  .footer-grid{grid-template-columns:1.2fr 1fr 1fr 1.2fr}
+  .footer-grid{grid-template-columns:1.4fr 1fr 1fr 1.2fr}
 }
-.footer-logo{width:140px;height:auto;display:block;margin-bottom:16px}
+.footer-logo{width:280px;max-width:100%;height:auto;display:block;margin-bottom:20px}
+.footer-social{display:flex;gap:14px;margin-top:20px;align-items:center}
+.social-link{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border-subtle);padding:9px 15px;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink);transition:all .2s ease}
+.social-link:hover{border-color:var(--ink);background:var(--ink);color:#fff}
+.social-link svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.6}
 .footer-h{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;margin:0 0 18px;font-weight:500}
 .footer-links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;font-size:13px}
 .footer-links button{background:none;border:0;padding:0;text-align:left;color:#333}
@@ -475,7 +488,17 @@ footer{border-top:1px solid var(--border-subtle);padding:64px 40px 36px;backgrou
   <div class="footer-grid">
     <div>
       <img src="echtstein-logo-dunkel.svg" alt="ECHTSTEIN Logo" class="footer-logo" onerror="this.style.display='none'">
-      <p style="font-size:13px;line-height:1.7;color:#444;margin:0">Handgefertigter Natursteinschmuck aus Österreich. 925 Sterling Silber, 14k Gold Filled und echte Edelsteine.</p>
+      <p style="font-size:13px;line-height:1.7;color:#444;margin:0;max-width:340px">Handgefertigter Natursteinschmuck aus Österreich. 925 Sterling Silber, 14k Gold Filled und echte Edelsteine.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="ECHTSTEIN auf Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="ECHTSTEIN auf Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          <span>Facebook</span>
+        </a>
+      </div>
     </div>
     <div>
       <h3 class="footer-h">Kollektionen</h3>
@@ -489,12 +512,12 @@ footer{border-top:1px solid var(--border-subtle);padding:64px 40px 36px;backgrou
       </ul>
     </div>
     <div>
-      <h3 class="footer-h">Service</h3>
+      <h3 class="footer-h">Rechtliches &amp; Service</h3>
       <ul class="footer-links">
         <li><button onclick="navigate('story')">Unsere Geschichte</button></li>
-        <li><button onclick="showInfoToast('Versandkostenfrei ab 90 € in AT & DE · 14 Tage Rückgaberecht')">Versand &amp; Rückgabe</button></li>
-        <li><button onclick="showInfoToast('ECHTSTEIN · Österreich · kontakt@echtstein.com')">Impressum &amp; Kontakt</button></li>
-        <li><button onclick="showInfoToast('Ihre Daten werden ausschließlich für Ihre Bestellung verwendet.')">Datenschutz</button></li>
+        <li><button onclick="openLegalModal('impressum')">Impressum</button></li>
+        <li><button onclick="openLegalModal('versand')">Versand &amp; Rückgabe</button></li>
+        <li><button onclick="openLegalModal('datenschutz')">Datenschutz</button></li>
       </ul>
     </div>
     <div>
@@ -507,10 +530,26 @@ footer{border-top:1px solid var(--border-subtle);padding:64px 40px 36px;backgrou
     </div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; 2026 ECHTSTEIN. Alle Rechte vorbehalten.</span>
-    <span>Handgemacht in Österreich · 100 % Naturprodukt</span>
+    <span>&copy; 2026 ECHTSTEIN · Alle Rechte vorbehalten.</span>
+    <span>
+      <button onclick="openLegalModal('impressum')" style="background:none;border:0;padding:0;color:inherit;text-decoration:underline">Impressum</button> ·
+      <button onclick="openLegalModal('datenschutz')" style="background:none;border:0;padding:0;color:inherit;text-decoration:underline">Datenschutz</button> ·
+      Handgemacht in Österreich
+    </span>
   </div>
 </footer>
+
+<!-- Impressum / Rechtliches Modal -->
+<div class="modal-overlay" id="legalModal" hidden onclick="if(event.target===this)closeLegalModal()">
+  <div class="modal-box" style="grid-template-columns:1fr;max-width:640px">
+    <button class="modal-close" onclick="closeLegalModal()" aria-label="Schließen">&times;</button>
+    <div class="modal-body" style="padding:44px 36px">
+      <div class="p-meta" style="margin-bottom:8px">ECHTSTEIN · Österreich</div>
+      <h2 id="legalModalTitle" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:32px;font-weight:400;margin:0 0 18px">Impressum</h2>
+      <div id="legalModalBody" style="font-size:14px;line-height:1.8;color:#333"></div>
+    </div>
+  </div>
+</div>
 
 <div class="toast" id="toast"></div>
 
@@ -742,6 +781,49 @@ function openProductModal(id) {
 
 function closeProductModal() {
   document.getElementById('productModal').hidden = true;
+}
+
+const LEGAL_CONTENT = {
+  impressum: {
+    title: 'Impressum',
+    html: `
+      <p style="margin:0 0 12px"><strong>ECHTSTEIN – Handgefertigter Natursteinschmuck</strong><br>
+      Inhaberin: ECHTSTEIN Atelier<br>
+      Österreich</p>
+      <p style="margin:0 0 12px"><strong>Kontakt:</strong><br>
+      E-Mail: kontakt@echtstein.com<br>
+      Instagram &amp; Facebook: @echtstein</p>
+      <p style="margin:0;color:#666;font-size:13px">Unternehmensgegenstand: Herstellung und Vertrieb von handgefertigtem Schmuck aus 925 Sterling Silber, 14k Gold Filled und Natursteinen.<br>
+      Plattform der EU-Kommission zur Online-Streitbeilegung: https://ec.europa.eu/consumers/odr</p>
+    `
+  },
+  versand: {
+    title: 'Versand & Rückgabe',
+    html: `
+      <p style="margin:0 0 12px"><strong>Versandkosten:</strong><br>
+      Kostenloser Versand innerhalb Österreichs und Deutschlands ab einem Bestellwert von 90,00 € (darunter 4,90 € versicherter Versand).</p>
+      <p style="margin:0"><strong>Rückgaberecht:</strong><br>
+      Sie können ungetragene Schmuckstücke innerhalb von 14 Tagen nach Erhalt problemlos an uns zurücksenden.</p>
+    `
+  },
+  datenschutz: {
+    title: 'Datenschutz',
+    html: `
+      <p style="margin:0 0 12px">Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir verarbeiten Ihre Daten ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TKG).</p>
+      <p style="margin:0">Ihre Bestell- und Kontaktdaten werden ausschließlich zur Abwicklung Ihrer Bestellung und für eventuelle Rückfragen verwendet und nicht an unbefugte Dritte weitergegeben.</p>
+    `
+  }
+};
+
+function openLegalModal(type) {
+  const entry = LEGAL_CONTENT[type] || LEGAL_CONTENT.impressum;
+  document.getElementById('legalModalTitle').textContent = entry.title;
+  document.getElementById('legalModalBody').innerHTML = entry.html;
+  document.getElementById('legalModal').hidden = false;
+}
+
+function closeLegalModal() {
+  document.getElementById('legalModal').hidden = true;
 }
 
 // Warenkorb-Logik
