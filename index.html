@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ECHTSTEIN — Natursteinschmuck</title>
-<!-- Extra-dickes, markantes Tropfen-Favicon für die Browser-Kopfzeile (www.) -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111111'/%3E%3Cpath d='M32 7C32 7 12 29.5 12 42.5C12 52.8 20.8 58 32 58C43.2 58 52 52.8 52 42.5C52 29.5 32 7 32 7Z' fill='%23fbf9f4' stroke='%23fbf9f4' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M22.5 42C22.5 47 26.5 50.5 32 50.5' fill='none' stroke='%23111111' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="alternate icon" type="image/svg+xml" href="echtstein-stein-icon.svg">
+<title>ECHTSTEIN</title>
+<!-- Originales ECHTSTEIN Tropfen-Icon für die Browser-Kopfzeile -->
+<link rel="icon" type="image/svg+xml" href="echtstein-stein-icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -32,17 +32,14 @@
   @media(max-width:768px){header{padding:14px 20px}}
   .header-left{display:flex;align-items:center;gap:42px}
   .logo{color:var(--ink);display:inline-flex;align-items:center;gap:14px;line-height:1}
-  .logo-text-wrap{display:flex;flex-direction:column;justify-content:center;gap:3px}
-  .logo-main{font-family:'Cormorant Garamond',Georgia,serif;font-size:38px;font-weight:700;letter-spacing:5.5px;text-transform:uppercase;line-height:0.88;-webkit-text-stroke:0.45px var(--ink)}
-  .logo-sub{font-size:8.5px;letter-spacing:3.4px;text-transform:uppercase;color:#4f4434;font-weight:500;padding-left:2px}
-  .logo-drop-svg{width:38px;height:38px;flex-shrink:0;display:block;transition:transform .3s ease}
+  .logo-main{font-family:'Cormorant Garamond',Georgia,serif;font-size:38px;font-weight:700;letter-spacing:5.5px;text-transform:uppercase;line-height:0.9;-webkit-text-stroke:0.45px var(--ink)}
+  .logo-icon{width:38px;height:38px;object-fit:contain;flex-shrink:0;display:block;transition:transform .3s ease}
   @media(max-width:640px){
     .logo{gap:9px}
     .logo-main{font-size:27px;letter-spacing:3.8px}
-    .logo-sub{font-size:7.5px;letter-spacing:2.3px}
-    .logo-drop-svg{width:28px;height:28px}
+    .logo-icon{width:28px;height:28px}
   }
-  .logo:hover .logo-drop-svg{transform:scale(1.06)}
+  .logo:hover .logo-icon{transform:scale(1.06)}
 
   .top-nav{display:none;gap:24px;align-items:center}
   @media(min-width:1024px){.top-nav{display:flex}}
@@ -230,15 +227,8 @@
 <header>
   <div class="header-left">
     <a href="#" class="logo" onclick="showHome();return false">
-      <span class="logo-text-wrap">
-        <span class="logo-main">ECHTSTEIN</span>
-        <span class="logo-sub">Natursteinschmuck</span>
-      </span>
-      <!-- Extra-starkes Tropfen-Logo mit dicken Konturen im Header -->
-      <svg class="logo-drop-svg" viewBox="0 0 48 48" fill="none" stroke="#111111" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-label="ECHTSTEIN Tropfen">
-        <path d="M24 4.5C24 4.5 9.5 21 9.5 31.5C9.5 39.5 16 44 24 44C32 44 38.5 39.5 38.5 31.5C38.5 21 24 4.5 24 4.5Z"/>
-        <path d="M17.5 31.5C17.5 35.3 20.3 38 24 38" stroke-width="3"/>
-      </svg>
+      <span class="logo-main">ECHTSTEIN</span>
+      <img class="logo-icon" src="echtstein-stein-icon.svg" alt="ECHTSTEIN" onerror="this.style.display='none'">
     </a>
     <nav class="top-nav" aria-label="Hauptnavigation">
       <a href="#ringe" data-cat="Ringe" onclick="openCategory('Ringe');return false">Ringe</a>
