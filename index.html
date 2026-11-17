@@ -3,977 +3,983 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ECHTSTEIN – Handgemacht. 100 % Naturprodukt.</title>
+<title>ECHTSTEIN — Natursteinschmuck</title>
+<!-- Favicon für die Browser-Adresszeile / Tab -->
 <link rel="icon" type="image/svg+xml" href="echtstein-stein-icon.svg">
-<link rel="shortcut icon" href="echtstein-stein-icon.svg">
+<link rel="alternate icon" type="image/png" href="https://placehold.co/64x64/111111/fbf9f4?text=E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://www.paypal.com/sdk/js?client-id=test&currency=EUR" data-namespace="paypalSDK"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-[hidden]{display:none!important}
-body{font-family:'Plus Jakarta Sans',sans-serif;font-weight:300;margin:0;color:#111;background:#fbf9f4;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-button{font:inherit;cursor:pointer}
-:focus-visible{outline:2px solid #111;outline-offset:2px}
-a{color:inherit;text-decoration:none}
+  :root{
+    --bg:#fbf9f4;
+    --bg-alt:#f4f0e8;
+    --ink:#111111;
+    --muted:#6e685f;
+    --line:#e2dcd2;
+    --sale:#8a3324;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer}
+  img{display:block;max-width:100%}
 
-:root{
-  --bg:#fbf9f4;
-  --ink:#111111;
-  --gold:#b8975a;
-  --sale:#9a2a2a;
-  --border-subtle:#e2dcd2;
-  --card-bg:#ffffff;
-}
+  .ann{background:var(--bg-alt);border-bottom:1px solid var(--line);text-align:center;font-size:11px;letter-spacing:2.4px;text-transform:uppercase;padding:10px 16px;color:var(--ink)}
 
-/* Top-Ankündigungsleiste */
-.trust{background:#1a1a1a;color:#fbf9f4;text-align:center;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:9px 12px}
+  /* Header mit Variante 3 (+25% größer, kräftige Schrift & Untertitel) */
+  header{position:sticky;top:0;z-index:40;background:rgba(251,249,244,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:18px 40px}
+  @media(max-width:768px){header{padding:14px 20px}}
+  .header-left{display:flex;align-items:center;gap:42px}
+  .logo{color:var(--ink);display:inline-flex;align-items:center;gap:13px;line-height:1}
+  .logo-text-wrap{display:flex;flex-direction:column;gap:3px}
+  .logo-main{font-family:'Cormorant Garamond',Georgia,serif;font-size:34px;font-weight:700;letter-spacing:6.5px;text-transform:uppercase;line-height:0.95}
+  .logo-sub{font-size:8.5px;letter-spacing:3.4px;text-transform:uppercase;color:#6b5d47;font-weight:500;padding-left:2px}
+  @media(max-width:640px){
+    .logo{gap:9px}
+    .logo-main{font-size:25px;letter-spacing:4.5px}
+    .logo-sub{font-size:7.5px;letter-spacing:2.4px}
+  }
+  .logo-icon{width:38px;height:auto;display:block;transition:transform .3s ease;filter:drop-shadow(0 0 0.4px #111)}
+  @media(max-width:640px){
+    .logo-icon{width:28px}
+  }
+  .logo:hover .logo-icon{transform:scale(1.05)}
 
-/* Aurate-Style Header */
-header{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;border-bottom:1px solid var(--border-subtle);position:sticky;top:0;background:rgba(251,249,244,0.97);backdrop-filter:blur(8px);z-index:100}
-@media(max-width:640px){
-  header{padding:16px 20px}
-}
-.header-left{display:flex;align-items:center;gap:40px}
-.logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:600;letter-spacing:7px;text-transform:uppercase;color:var(--ink);display:inline-flex;align-items:center;gap:14px;line-height:1}
-@media(max-width:640px){
-  .logo{font-size:24px;letter-spacing:5px;gap:10px}
-}
-.logo-icon{width:34px;height:auto;display:block;transition:transform .3s ease;filter:drop-shadow(0 0 0.35px #111)}
-@media(max-width:640px){
-  .logo-icon{width:28px}
-}
-.logo:hover .logo-icon{transform:scale(1.05)}
+  .top-nav{display:none;gap:24px;align-items:center}
+  @media(min-width:1024px){.top-nav{display:flex}}
+  .top-nav a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);position:relative;padding:4px 0}
+  .top-nav a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .28s ease}
+  .top-nav a:hover::after,.top-nav a.active::after{transform:scaleX(1)}
+  .top-nav a.sale-link{color:var(--sale)}
 
-.top-nav{display:none;gap:28px;align-items:center}
-.top-nav .link{background:none;border:0;color:var(--ink);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:6px 0;position:relative;font-weight:400}
-.top-nav .link::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--ink);transition:width .25s ease}
-.top-nav .link:hover::after,.top-nav .link[aria-current="page"]::after{width:100%}
-.top-nav .link.sale-link{color:var(--sale);font-weight:500}
+  .header-actions{display:flex;align-items:center;gap:22px}
+  .icon-btn{background:none;border:0;padding:4px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);display:inline-flex;align-items:center;gap:6px}
+  .menu-btn{display:inline-flex;flex-direction:column;gap:5px;padding:6px}
+  @media(min-width:1024px){.menu-btn{display:none}}
+  .menu-btn span{width:22px;height:1px;background:var(--ink);display:block}
 
-.header-right{display:flex;align-items:center;gap:20px}
-.link-cart{background:none;border:0;color:var(--ink);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:6px 0;font-weight:400}
-.burger{background:none;border:0;width:24px;height:18px;padding:0;display:flex;flex-direction:column;justify-content:space-between}
-.burger i{display:block;height:1.5px;background:var(--ink);width:100%}
-@media(min-width:960px){
-  .top-nav{display:flex}
-  .burger{display:none}
-}
+  /* Kampagnen-Banner (Volle Breite) */
+  .hero{position:relative;width:100%;height:78vh;min-height:480px;max-height:840px;overflow:hidden;background:#26221e;color:#fff;display:flex;align-items:flex-end}
+  .hero.campaign-banner{height:68vh;min-height:420px;max-height:740px}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.88;transition:transform 1.2s ease}
+  .hero:hover img{transform:scale(1.02)}
+  .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.12) 55%,rgba(0,0,0,0.06) 100%)}
+  .hero-content{position:relative;z-index:2;padding:56px 40px;max-width:720px}
+  @media(max-width:768px){.hero{height:68vh;min-height:420px}.hero.campaign-banner{height:56vh;min-height:360px}.hero-content{padding:36px 20px}}
+  .eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;display:block;opacity:0.92}
+  .hero h1,.hero h2.banner-title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:56px;line-height:1.06;margin:0 0 24px;letter-spacing:0.3px}
+  @media(max-width:768px){.hero h1,.hero h2.banner-title{font-size:38px}}
+  .hero-cta{display:inline-block;padding:14px 30px;border:1px solid #fff;font-size:11px;letter-spacing:2.4px;text-transform:uppercase;background:transparent;color:#fff;transition:background .25s,color .25s}
+  .hero-cta:hover{background:#fff;color:var(--ink)}
 
-/* Mobiles Overlay-Menü & Warenkorb */
-.bd{position:fixed;inset:0;background:rgba(0,0,0,.38);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s ease}
-.bd.open{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;right:0;width:100%;max-width:420px;height:100%;background:var(--bg);z-index:300;transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;border-left:1px solid var(--border-subtle)}
-.drawer.left{right:auto;left:0;transform:translateX(-100%);border-left:0;border-right:1px solid var(--border-subtle)}
-.drawer.open{transform:translateX(0)}
-.dh{padding:22px 24px;border-bottom:1px solid var(--border-subtle);font-size:12px;letter-spacing:2.5px;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
-.x{background:none;border:0;font-size:24px;line-height:1;padding:4px 8px;color:var(--ink)}
-.db{flex:1;overflow-y:auto;padding:24px}
-.nav-list{list-style:none;margin:0 0 28px;padding:0}
-.nav-list li{border-bottom:1px solid var(--border-subtle)}
-.nav-list button{width:100%;text-align:left;background:none;border:0;padding:16px 0;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);display:flex;justify-content:space-between;align-items:center}
-.nav-list button.sale-btn{color:var(--sale);font-weight:500}
+  /* Kompaktere Produktkategorien (2x3 Raster bis zum Rand) */
+  .full-bleed-section{width:100%;padding:0;margin:0}
+  .section-bar{display:flex;justify-content:space-between;align-items:flex-end;padding:52px 40px 24px;gap:20px;flex-wrap:wrap}
+  @media(max-width:768px){.section-bar{padding:36px 20px 18px}}
+  .section-title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:34px;margin:0;letter-spacing:0.4px}
+  .section-sub{font-size:12px;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase}
 
-/* Edge-to-Edge Banner */
-.edge-banner{position:relative;width:100%;height:78vh;min-height:480px;max-height:840px;overflow:hidden;background:#111;color:#fff;display:flex;align-items:flex-end}
-.edge-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 1.2s ease}
-.edge-banner:hover img{transform:scale(1.02)}
-.edge-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.62) 0%,rgba(0,0,0,0.12) 55%,rgba(0,0,0,0.05) 100%);pointer-events:none}
-.edge-banner-content{position:relative;z-index:2;padding:52px 40px;max-width:740px}
-@media(max-width:640px){
-  .edge-banner-content{padding:36px 20px}
-}
-.edge-banner-kicker{font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;opacity:0.92}
-.edge-banner h1,.edge-banner h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(34px,4.5vw,60px);font-weight:400;line-height:1.08;margin:0 0 16px}
-.edge-banner p{font-size:14px;line-height:1.65;margin:0 0 24px;opacity:0.92;max-width:520px}
-.btn-outline-light{display:inline-block;border:1px solid #fff;color:#fff;background:transparent;padding:14px 30px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;transition:all .25s ease}
-.btn-outline-light:hover{background:#fff;color:#111}
+  .aurate-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line);width:100%}
+  @media(max-width:900px){.aurate-grid-3{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.aurate-grid-3{grid-template-columns:1fr}}
 
-/* Aurate-Style Full-Bleed 3er-Raster am Desktop */
-.full-bleed-section{width:100%;padding:0;margin:0}
-.section-header-bar{display:flex;justify-content:space-between;align-items:flex-end;padding:56px 40px 26px;width:100%;gap:16px;flex-wrap:wrap}
-@media(max-width:640px){
-  .section-header-bar{padding:40px 20px 20px}
-}
-.section-header-bar h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(26px,3vw,38px);font-weight:400;margin:0;letter-spacing:0.5px}
-.section-header-bar .sub-kicker{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#777;display:block;margin-bottom:6px}
+  .cat-card{position:relative;aspect-ratio:1/1;max-height:420px;overflow:hidden;background:var(--bg-alt);display:flex;align-items:flex-end;padding:28px;color:#fff}
+  @media(max-width:768px){.cat-card{aspect-ratio:4/3;max-height:none;padding:22px}}
+  .cat-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .cat-card:hover img{transform:scale(1.04)}
+  .cat-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.52) 0%,rgba(0,0,0,0.06) 55%)}
+  .cat-card-info{position:relative;z-index:2}
+  .cat-card-info span{display:block;font-size:10px;letter-spacing:2.4px;text-transform:uppercase;opacity:0.88;margin-bottom:5px}
+  .cat-card-info strong{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:28px;letter-spacing:0.6px;display:block}
 
-.aurate-grid-3{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border-subtle);width:100%;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)}
-@media(min-width:768px){
-  .aurate-grid-3{grid-template-columns:repeat(3,1fr)}
-}
+  /* Produkt-Slideshows (Halbe Bannerhöhe, 4:5 Schnitt, flüssiges Finger- & Maus-Ziehen) */
+  .slider-wrap{position:relative;width:100%;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--line)}
+  .slider-track{display:flex;gap:1px;overflow-x:auto;scroll-behavior:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab;user-select:none}
+  .slider-track.dragging{cursor:grabbing}
+  .slider-track::-webkit-scrollbar{display:none}
+  .slider-item{flex:0 0 calc(28.5% - 1px);min-width:290px;background:var(--bg)}
+  @media(max-width:1100px){.slider-item{flex:0 0 calc(42% - 1px);min-width:250px}}
+  @media(max-width:640px){.slider-item{flex:0 0 74%;min-width:230px}}
+  .slider-item .prod-media{aspect-ratio:4/5;max-height:380px}
+  @media(max-width:640px){.slider-item .prod-media{max-height:310px}}
+  .slider-item .prod-info{padding:16px 20px 22px}
+  .slider-item .prod-name{font-size:19px}
 
-/* Kategorie-Kacheln (2 Reihen à 3 Kacheln bis zum Rand) */
-.cat-tile{position:relative;aspect-ratio:4/5;overflow:hidden;background:#f4f0e8;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;border:0;padding:0;text-align:left}
-.cat-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
-.cat-tile:hover img{transform:scale(1.05)}
-.cat-tile::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.58) 0%,rgba(0,0,0,0.06) 48%,transparent 100%);pointer-events:none}
-.cat-tile-label{position:relative;z-index:2;padding:28px 32px;color:#fff;width:100%;display:flex;justify-content:space-between;align-items:center}
-.cat-tile-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:400;letter-spacing:0.5px}
-.cat-tile-cta{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.7);padding-bottom:3px}
+  .slider-controls{display:flex;gap:10px;align-items:center}
+  .slider-btn{width:40px;height:40px;border:1px solid var(--ink);background:var(--bg);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;font-size:15px;transition:background .2s,color .2s}
+  .slider-btn:hover{background:var(--ink);color:#fff}
 
-/* Produkt-Slideshow (Aurate 3-Spalten-Slider bis zum Rand, frei verschiebbar) */
-.slider-controls{display:flex;gap:10px}
-.slider-btn{width:42px;height:42px;border:1px solid var(--border-subtle);background:var(--bg);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s ease}
-.slider-btn:hover{border-color:var(--ink);background:var(--ink);color:#fff}
+  /* Produktkarte mit AURATE Hover-/Touch-Bildwechsel */
+  .prod-card{background:var(--bg);display:flex;flex-direction:column;transition:background .2s}
+  .prod-media{position:relative;aspect-ratio:4/5;background:var(--bg-alt);overflow:hidden;cursor:pointer}
+  .prod-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s ease,transform .75s ease}
+  .prod-media img.img-hover{opacity:0}
+  .prod-card:hover .prod-media img.img-hover,
+  .prod-card.touch-preview .prod-media img.img-hover{opacity:1;transform:scale(1.03)}
+  .prod-card:hover .prod-media img.img-main,
+  .prod-card.touch-preview .prod-media img.img-main{opacity:0}
+  .prod-tag{position:absolute;top:14px;left:14px;z-index:2;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 9px;background:rgba(251,249,244,0.92);color:var(--ink)}
+  .prod-tag.sale{color:var(--sale);font-weight:500}
+  .prod-quick{position:absolute;left:14px;right:14px;bottom:14px;z-index:2;padding:11px 12px;background:rgba(251,249,244,0.95);border:1px solid var(--ink);font-size:10px;letter-spacing:2px;text-transform:uppercase;text-align:center;opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s,background .2s,color .2s}
+  .prod-card:hover .prod-quick{opacity:1;transform:translateY(0)}
+  .prod-quick:hover{background:var(--ink);color:#fff}
+  @media(max-width:768px){.prod-quick{opacity:1;transform:none;position:static;border-left:0;border-right:0;border-bottom:0;margin-top:auto}}
+  .prod-info{padding:18px 22px 24px;display:flex;flex-direction:column;gap:5px}
+  .prod-cat{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+  .prod-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:21px;font-weight:400;line-height:1.25;cursor:pointer}
+  .prod-price{font-size:13px;color:var(--ink);margin-top:2px;display:flex;gap:8px;align-items:center}
+  .prod-price .old{text-decoration:line-through;color:var(--muted)}
+  .prod-price .sale-val{color:var(--sale);font-weight:400}
 
-.slider-track{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;cursor:grab;user-select:none;width:100%;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);background:var(--border-subtle);gap:1px;scrollbar-width:none}
-.slider-track.dragging{cursor:grabbing;scroll-behavior:auto}
-.slider-track::-webkit-scrollbar{display:none}
-.slider-slide{flex:0 0 68%;background:var(--bg)}
-@media(min-width:640px){
-  .slider-slide{flex:0 0 44%}
-}
-@media(min-width:1024px){
-  .slider-slide{flex:0 0 calc(28.5% - 0.8px)}
-}
+  /* Shop-Unterseiten */
+  .shop-section{width:100%;padding:48px 0 80px}
+  .shop-head{display:flex;justify-content:space-between;align-items:flex-end;padding:0 40px 24px;flex-wrap:wrap;gap:16px}
+  @media(max-width:768px){.shop-head{padding:0 20px 20px}}
+  .shop-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:40px;margin:0}
+  .shop-count{font-size:12px;color:var(--muted);letter-spacing:1.4px;text-transform:uppercase}
+  .filter-bar{display:flex;gap:22px;overflow-x:auto;padding:0 40px 20px;margin-bottom:0}
+  @media(max-width:768px){.filter-bar{padding:0 20px 18px}}
+  .filter-bar button{background:none;border:0;padding:4px 0;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);white-space:nowrap;border-bottom:1px solid transparent}
+  .filter-bar button.active{color:var(--ink);border-bottom-color:var(--ink)}
 
-/* Produktkarten im 3er-Raster & Slideshow-Variante (ca. halb so hoch wie die Banner) */
-.p-card{background:var(--bg);display:flex;flex-direction:column;height:100%;position:relative}
-.p-img-wrap{position:relative;aspect-ratio:4/5;overflow:hidden;background:#f3efe7;cursor:pointer}
-.slider-slide .p-img-wrap{aspect-ratio:4/5;max-height:380px}
-.slider-slide .p-info{padding:18px 20px 20px;gap:10px}
-.slider-slide .p-title{font-size:19px}
-.slider-slide .p-meta{font-size:10px;letter-spacing:1.8px}
-.slider-slide .p-price{font-size:14px}
-.slider-slide .p-add-link{font-size:11px;letter-spacing:1.8px}
-.p-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .45s ease;display:block;pointer-events:none}
-.p-img-wrap img.img-hover{position:absolute;inset:0;opacity:0;z-index:1}
-.p-card:hover .p-img-wrap img.img-hover,.p-card.is-touched .p-img-wrap img.img-hover{opacity:1;transform:scale(1.03)}
-.p-card:hover .p-img-wrap img.img-main,.p-card.is-touched .p-img-wrap img.img-main{transform:scale(1.03)}
-.p-badge{position:absolute;top:16px;left:16px;background:var(--bg);color:var(--ink);font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 10px;z-index:2;border:1px solid var(--border-subtle)}
-.p-badge.sale{background:var(--sale);color:#fff;border-color:var(--sale)}
+  /* Footer mit doppelt so großem Logo & IG/FB rechts */
+  footer{border-top:1px solid var(--line);background:var(--bg-alt);padding:72px 40px 48px}
+  @media(max-width:768px){footer{padding:52px 20px 36px}}
+  .footer-grid{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:48px}
+  @media(max-width:960px){.footer-grid{grid-template-columns:1fr 1fr;gap:36px}}
+  @media(max-width:560px){.footer-grid{grid-template-columns:1fr}}
+  .footer-logo{width:280px;max-width:100%;height:auto;margin-bottom:18px;display:block}
+  footer p{font-size:13px;line-height:1.75;color:var(--muted);margin:0 0 18px;max-width:340px}
+  footer h4{font-size:11px;letter-spacing:2.4px;text-transform:uppercase;font-weight:400;margin:0 0 18px}
+  footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;font-size:13px;color:var(--muted)}
+  footer ul a:hover{color:var(--ink)}
 
-.p-info{padding:20px 24px 24px;display:flex;flex-direction:column;justify-content:space-between;flex:1;gap:12px}
-.p-meta{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#777;margin-bottom:4px}
-.p-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:21px;font-weight:400;margin:0;line-height:1.25;cursor:pointer}
-.p-price-row{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--border-subtle)}
-.p-price{font-size:14px;font-weight:400;letter-spacing:0.5px}
-.p-price s{color:#888;margin-right:8px;font-weight:300}
-.p-price .sale-val{color:var(--sale);font-weight:500}
-.p-add-link{background:none;border:0;border-bottom:1px solid var(--ink);padding:2px 0;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);transition:opacity .2s ease}
-.p-add-link:hover{opacity:0.6}
+  .social-row{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+  .social-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border:1px solid var(--ink);background:var(--bg);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);transition:background .2s,color .2s}
+  .social-btn:hover{background:var(--ink);color:#fff}
+  .social-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.7}
 
-/* Shop-Ansicht */
-.shop-header{padding:48px 40px 28px;border-bottom:1px solid var(--border-subtle)}
-@media(max-width:640px){
-  .shop-header{padding:32px 20px 20px}
-}
-.shop-header h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(32px,4vw,48px);font-weight:400;margin:0 0 10px}
-.filter-bar{display:flex;gap:10px;flex-wrap:wrap;padding:20px 40px;border-bottom:1px solid var(--border-subtle);background:var(--bg)}
-@media(max-width:640px){
-  .filter-bar{padding:16px 20px}
-}
-.filter-pill{background:transparent;border:1px solid var(--border-subtle);padding:8px 18px;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink);transition:all .2s ease}
-.filter-pill.active,.filter-pill:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .newsletter{display:flex;border-bottom:1px solid var(--ink);padding-bottom:6px;margin-top:8px}
+  .newsletter input{flex:1;background:none;border:0;outline:none;font-family:inherit;font-size:13px;color:var(--ink)}
+  .newsletter button{background:none;border:0;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+  .footer-bottom{max-width:1360px;margin:52px auto 0;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:11px;letter-spacing:1.6px;color:var(--muted);text-transform:uppercase}
+  .footer-legal-links{display:flex;gap:20px;flex-wrap:wrap}
+  .footer-legal-links a{border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
+  .footer-legal-links a:hover{color:var(--ink);border-bottom-color:var(--ink)}
 
-/* Story-Ansicht */
-.story-wrap{max-width:860px;margin:0 auto;padding:64px 24px 80px}
-.story-wrap h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(34px,4vw,52px);font-weight:400;line-height:1.12;margin:0 0 24px}
-.story-wrap p{font-size:15px;line-height:1.85;color:#2b2b2b;margin:0 0 22px}
+  /* Drawer, Modals & Warenkorb */
+  .backdrop{position:fixed;inset:0;background:rgba(17,17,17,0.42);z-index:60;opacity:0;pointer-events:none;transition:opacity .3s}
+  .backdrop.open{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;bottom:0;width:420px;max-width:100vw;background:var(--bg);z-index:70;display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.22,.61,.36,1)}
+  .drawer.right{right:0;transform:translateX(100%);border-left:1px solid var(--line)}
+  .drawer.left{left:0;transform:translateX(-100%);border-right:1px solid var(--line)}
+  .drawer.open{transform:translateX(0)}
+  .drawer-head{padding:24px 28px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+  .drawer-head h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:26px;margin:0}
+  .close-btn{background:none;border:0;font-size:22px;line-height:1;padding:4px;color:var(--ink)}
+  .drawer-body{flex:1;overflow-y:auto;padding:24px 28px}
+  .drawer-foot{padding:22px 28px;border-top:1px solid var(--line);background:var(--bg-alt)}
 
-/* Produkt-Modal */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.48);z-index:400;display:flex;align-items:center;justify-content:center;padding:20px}
-.modal-box{background:var(--bg);max-width:860px;width:100%;display:grid;grid-template-columns:1fr;border:1px solid var(--border-subtle);position:relative;max-height:92vh;overflow-y:auto}
-@media(min-width:768px){
-  .modal-box{grid-template-columns:1fr 1fr}
-}
-.modal-close{position:absolute;top:14px;right:14px;background:var(--bg);border:1px solid var(--border-subtle);width:36px;height:36px;font-size:20px;line-height:1;z-index:10}
-.modal-img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#f3efe7}
-.modal-body{padding:36px 32px;display:flex;flex-direction:column;justify-content:center}
+  .mobile-links{display:flex;flex-direction:column;gap:20px;padding-top:12px}
+  .mobile-links a{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:400;border-bottom:1px solid var(--line);padding-bottom:14px}
 
-/* Buttons & Warenkorb */
-.btn-dark{background:var(--ink);color:#fff;border:1px solid var(--ink);padding:15px 24px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;width:100%;transition:opacity .2s ease}
-.btn-dark:hover{opacity:0.86}
-.cart-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border-subtle);align-items:center}
-.cart-item img{width:64px;height:80px;object-fit:cover;background:#f3efe7}
-.qty-box{display:inline-flex;align-items:center;border:1px solid var(--border-subtle);margin-top:8px}
-.qty-box button{background:none;border:0;padding:4px 10px;font-size:14px}
-.qty-box span{padding:0 8px;font-size:12px}
+  .cart-item{display:grid;grid-template-columns:76px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .cart-item img{width:76px;height:95px;object-fit:cover;background:var(--bg-alt)}
+  .cart-item-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;margin:0 0 4px}
+  .cart-item-meta{font-size:12px;color:var(--muted);margin-bottom:10px}
+  .qty-row{display:flex;justify-content:space-between;align-items:center}
+  .qty-box{display:inline-flex;border:1px solid var(--line)}
+  .qty-box button{background:none;border:0;width:28px;height:28px;font-size:14px}
+  .qty-box span{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+  .remove-btn{background:none;border:0;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
 
-.pay-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
-.pay-tab{border:1px solid var(--border-subtle);background:transparent;padding:10px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
-.pay-tab.active{border-color:var(--ink);background:var(--ink);color:#fff}
+  .btn-primary{width:100%;padding:16px;background:var(--ink);color:#fff;border:1px solid var(--ink);font-size:11px;letter-spacing:2.4px;text-transform:uppercase;transition:background .25s,color .25s}
+  .btn-primary:hover{background:transparent;color:var(--ink)}
+  .btn-secondary{width:100%;padding:14px;background:transparent;color:var(--ink);border:1px solid var(--ink);font-size:11px;letter-spacing:2.4px;text-transform:uppercase;margin-top:10px}
 
-/* Footer */
-footer{border-top:1px solid var(--border-subtle);padding:72px 40px 40px;background:var(--bg);margin-top:0}
-@media(max-width:640px){
-  footer{padding:52px 20px 32px}
-}
-.footer-grid{display:grid;grid-template-columns:1fr;gap:44px;max-width:1360px;margin:0 auto 52px}
-@media(min-width:768px){
-  .footer-grid{grid-template-columns:1.4fr 1fr 1fr 1.2fr}
-}
-.footer-logo{width:280px;max-width:100%;height:auto;display:block;margin-bottom:20px}
-.footer-social{display:flex;gap:14px;margin-top:20px;align-items:center}
-.social-link{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border-subtle);padding:9px 15px;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink);transition:all .2s ease}
-.social-link:hover{border-color:var(--ink);background:var(--ink);color:#fff}
-.social-link svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.6}
-.footer-h{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;margin:0 0 18px;font-weight:500}
-.footer-links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;font-size:13px}
-.footer-links button{background:none;border:0;padding:0;text-align:left;color:#333}
-.footer-links button:hover{color:#000;text-decoration:underline}
-.newsletter-form{display:flex;border-bottom:1px solid var(--ink);padding-bottom:6px;margin-top:12px}
-.newsletter-form input{border:0;background:transparent;flex:1;font:inherit;font-size:13px;outline:none}
-.newsletter-form button{background:none;border:0;font-size:11px;letter-spacing:2px;text-transform:uppercase}
-.footer-bottom{max-width:1360px;margin:0 auto;padding-top:24px;border-top:1px solid var(--border-subtle);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:11px;color:#666;letter-spacing:1px}
+  .modal{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:24px}
+  .modal.open{display:flex}
+  .modal-card{background:var(--bg);border:1px solid var(--line);max-width:920px;width:100%;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;position:relative}
+  @media(max-width:768px){.modal-card{grid-template-columns:1fr}}
+  .modal-media{background:var(--bg-alt);aspect-ratio:4/5}
+  .modal-media img{width:100%;height:100%;object-fit:cover}
+  .modal-info{padding:44px 40px;display:flex;flex-direction:column;justify-content:center}
+  @media(max-width:768px){.modal-info{padding:28px 24px}}
+  .modal-close{position:absolute;top:16px;right:18px;background:var(--bg);border:1px solid var(--line);width:36px;height:36px;font-size:18px;z-index:2}
 
-/* Toast */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#111;color:#fff;padding:12px 24px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;opacity:0;pointer-events:none;transition:all .3s ease;z-index:500}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .legal-modal-card{background:var(--bg);border:1px solid var(--line);max-width:680px;width:100%;max-height:86vh;overflow-y:auto;padding:44px 40px;position:relative}
+  @media(max-width:768px){.legal-modal-card{padding:32px 24px}}
+  .legal-modal-card h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:34px;margin:0 0 18px}
+  .legal-modal-card h3{font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:22px 0 8px;color:var(--ink)}
+  .legal-modal-card p{font-size:13.5px;line-height:1.75;color:var(--muted);margin:0 0 12px}
+
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;color:var(--muted)}
+  .field input{width:100%;padding:12px 14px;border:1px solid var(--line);background:#fff;font-family:inherit;font-size:13px;outline:none}
+  .field input:focus{border-color:var(--ink)}
+  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+  .hidden{display:none !important}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:90}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
 
-<!-- Ankündigungsleiste -->
-<div class="trust">Handgemacht · 100 % Naturprodukt · Kostenloser Versand ab 90 €</div>
+<div class="ann">Kostenfreier Versand ab 90 € · Handgefertigte Naturstein-Unikate</div>
 
-<!-- Header mit stärkerem ECHTSTEIN Logo + Tropfen-Icon rechts -->
 <header>
   <div class="header-left">
-    <button class="burger" onclick="openMenu()" aria-label="Menü öffnen"><i></i><i></i><i></i></button>
-    <a href="#start" class="logo" onclick="event.preventDefault();navigate('start')">
-      <span>ECHTSTEIN</span>
-      <img src="echtstein-stein-icon.svg" alt="ECHTSTEIN Tropfen-Symbol" class="logo-icon" onerror="this.style.display='none'">
+    <a href="#" class="logo" onclick="showHome();return false">
+      <span class="logo-text-wrap">
+        <span class="logo-main">ECHTSTEIN</span>
+        <span class="logo-sub">Natursteinschmuck</span>
+      </span>
+      <img class="logo-icon" src="echtstein-stein-icon.svg" alt="ECHTSTEIN Icon" onerror="this.style.display='none'">
     </a>
     <nav class="top-nav" aria-label="Hauptnavigation">
-      <button class="link" data-nav="ringe" onclick="navigate('ringe')">Ringe</button>
-      <button class="link" data-nav="ohrringe" onclick="navigate('ohrringe')">Ohrringe</button>
-      <button class="link" data-nav="halsketten" onclick="navigate('halsketten')">Halsketten</button>
-      <button class="link" data-nav="armbaender" onclick="navigate('armbaender')">Armbänder</button>
-      <button class="link" data-nav="diy" onclick="navigate('diy')">Do it yourself</button>
-      <button class="link sale-link" data-nav="sale" onclick="navigate('sale')">Sale</button>
-      <button class="link" data-nav="story" onclick="navigate('story')">Über uns</button>
+      <a href="#ringe" data-cat="Ringe" onclick="openCategory('Ringe');return false">Ringe</a>
+      <a href="#ohrringe" data-cat="Ohrringe" onclick="openCategory('Ohrringe');return false">Ohrringe</a>
+      <a href="#halsketten" data-cat="Halsketten" onclick="openCategory('Halsketten');return false">Halsketten</a>
+      <a href="#armbaender" data-cat="Armbänder" onclick="openCategory('Armbänder');return false">Armbänder</a>
+      <a href="#diy" data-cat="Do it yourself" onclick="openCategory('Do it yourself');return false">Do it yourself</a>
+      <a href="#sale" class="sale-link" data-cat="Sale" onclick="openCategory('Sale');return false">Sale</a>
     </nav>
   </div>
-  <div class="header-right">
-    <button class="link-cart" onclick="openCart()">Einkaufstasche (<span id="cartCount">0</span>)</button>
+  <div class="header-actions">
+    <button class="icon-btn" onclick="openCart()" aria-label="Einkaufstasche öffnen">
+      Einkaufstasche (<span id="cartCount">0</span>)
+    </button>
+    <button class="icon-btn menu-btn" onclick="openMenu()" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
-<!-- Overlay Backdrop -->
-<div class="bd" id="backdrop" onclick="closeAllDrawers()"></div>
-
-<!-- Mobiles Navigations-Menü -->
-<aside class="drawer left" id="menuDrawer" aria-label="Mobiles Menü">
-  <div class="dh">
-    <span>Menü</span>
-    <button class="x" onclick="closeAllDrawers()" aria-label="Schließen">&times;</button>
-  </div>
-  <div class="db">
-    <ul class="nav-list">
-      <li><button onclick="navigate('start')">Startseite</button></li>
-      <li><button onclick="navigate('ringe')">Ringe</button></li>
-      <li><button onclick="navigate('ohrringe')">Ohrringe</button></li>
-      <li><button onclick="navigate('halsketten')">Halsketten</button></li>
-      <li><button onclick="navigate('armbaender')">Armbänder</button></li>
-      <li><button onclick="navigate('diy')">Do it yourself</button></li>
-      <li><button class="sale-btn" onclick="navigate('sale')">Sale · -20 %</button></li>
-      <li><button onclick="navigate('story')">Unsere Geschichte</button></li>
-    </ul>
-  </div>
-</aside>
-
-<!-- Warenkorb-Drawer -->
-<aside class="drawer" id="cartDrawer" aria-label="Einkaufstasche">
-  <div class="dh">
-    <span>Einkaufstasche</span>
-    <button class="x" onclick="closeAllDrawers()" aria-label="Schließen">&times;</button>
-  </div>
-  <div class="db" id="cartItems"></div>
-  <div style="padding:20px 24px;border-top:1px solid var(--border-subtle);background:var(--bg)" id="cartFooter" hidden>
-    <div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:16px">
-      <span>Zwischensumme</span>
-      <strong id="cartTotal">0,00 €</strong>
+<main id="homeView">
+  <!-- 1. BANNER (HERO) -->
+  <section class="hero">
+    <img src="Gemini_Generated_Image (7).jpeg" alt="ECHTSTEIN Schmuckkollektion" onerror="this.src='https://placehold.co/1600x900/2e2924/fbf9f4?text=ECHTSTEIN'">
+    <div class="hero-content">
+      <span class="eyebrow">925 Sterling Silber · 14k Gold Filled · Echte Edelsteine</span>
+      <h1>Echte Steine.<br>Zeitlose Klarheit.</h1>
+      <a href="#kollektion" class="hero-cta" onclick="openCategory('Alle');return false">Kollektion entdecken</a>
     </div>
-    <div class="pay-tabs">
-      <button class="pay-tab active" id="tabPaypal" onclick="setPayMethod('paypal')">PayPal</button>
-      <button class="pay-tab" id="tabBank" onclick="setPayMethod('bank')">Überweisung</button>
+  </section>
+
+  <!-- 2. PRODUKTKATEGORIEN (Kompaktes 2x3 Raster bis an den Bildschirmrand) -->
+  <section class="full-bleed-section">
+    <div class="section-bar">
+      <h2 class="section-title">Kategorien</h2>
+      <span class="section-sub">Alle sechs Bereiche im Überblick</span>
     </div>
-    <div id="paypal-button-container"></div>
-    <div id="bankCheckoutBox" hidden>
-      <p style="font-size:12px;line-height:1.6;color:#444;margin:0 0 12px">Sie erhalten unsere Bankverbindung direkt nach Bestellabschluss per Bestätigung.</p>
-      <button class="btn-dark" onclick="completeBankOrder()">Kostenpflichtig bestellen</button>
+    <div class="aurate-grid-3">
+      <a href="#ringe" class="cat-card" onclick="openCategory('Ringe');return false">
+        <img src="Gemini_Generated_Image (1).jpeg" alt="Ringe" onerror="this.src='https://placehold.co/800x800/d8cfc2/111111?text=Ringe'">
+        <div class="cat-card-info"><span>Kollektion</span><strong>Ringe</strong></div>
+      </a>
+      <a href="#halsketten" class="cat-card" onclick="openCategory('Halsketten');return false">
+        <img src="Gemini_Generated_Image (2).jpeg" alt="Halsketten" onerror="this.src='https://placehold.co/800x800/cfc5b6/111111?text=Halsketten'">
+        <div class="cat-card-info"><span>Kollektion</span><strong>Halsketten</strong></div>
+      </a>
+      <a href="#armbaender" class="cat-card" onclick="openCategory('Armbänder');return false">
+        <img src="Gemini_Generated_Image (3).jpeg" alt="Armbänder" onerror="this.src='https://placehold.co/800x800/c5baaa/111111?text=Armb%C3%A4nder'">
+        <div class="cat-card-info"><span>Kollektion</span><strong>Armbänder</strong></div>
+      </a>
+      <a href="#ohrringe" class="cat-card" onclick="openCategory('Ohrringe');return false">
+        <img src="Gemini_Generated_Image (4).jpeg" alt="Ohrringe" onerror="this.src='https://placehold.co/800x800/d3c9ba/111111?text=Ohrringe'">
+        <div class="cat-card-info"><span>Kollektion</span><strong>Ohrringe</strong></div>
+      </a>
+      <a href="#diy" class="cat-card" onclick="openCategory('Do it yourself');return false">
+        <img src="Gemini_Generated_Image (5).jpeg" alt="Do it yourself" onerror="this.src='https://placehold.co/800x800/cabfa9/111111?text=Do+it+yourself'">
+        <div class="cat-card-info"><span>Kreativ-Sets</span><strong>Do it yourself</strong></div>
+      </a>
+      <a href="#sale" class="cat-card" onclick="openCategory('Sale');return false">
+        <img src="Gemini_Generated_Image (6).jpeg" alt="Sale" onerror="this.src='https://placehold.co/800x800/bfa89e/111111?text=Sale'">
+        <div class="cat-card-info"><span>Ausgewählte Stücke</span><strong>Sale</strong></div>
+      </a>
     </div>
-  </div>
-</aside>
+  </section>
 
-<!-- HAUPTINHALT -->
-<main>
-
-  <!-- STARTSEITE -->
-  <div id="view-start">
-
-    <!-- BANNER 1: Großes Hero-Banner -->
-    <section class="edge-banner">
-      <img src="Gemini_Generated_Image (7).jpeg" alt="ECHTSTEIN Natursteinschmuck" onerror="this.src='https://placehold.co/1600x900/2a2622/fbf9f4?text=ECHTSTEIN'">
-      <div class="edge-banner-content">
-        <div class="edge-banner-kicker">925 Sterling Silber · 14k Gold Filled</div>
-        <h1>Echte Steine. Zeitlose Klarheit.</h1>
-        <p>Handgefertigte Unikate mit handverlesenen Natursteinen – schlicht, organisch und voller Ruhe.</p>
-        <button class="btn-outline-light" onclick="navigate('alle')">Kollektion entdecken</button>
+  <!-- 3. ERSTE SLIDESHOW: BELIEBTE UNIKATE (Halbe Bannerhöhe, flüssiges Wischen & Mausziehen) -->
+  <section class="full-bleed-section">
+    <div class="section-bar">
+      <div>
+        <span class="section-sub" style="display:block;margin-bottom:6px">Auswahl</span>
+        <h2 class="section-title">Beliebte Unikate</h2>
       </div>
-    </section>
-
-    <!-- KATEGORIEN: 2 Reihen à 3 Kacheln bis zum Bildschirmrand -->
-    <section class="full-bleed-section">
-      <div class="section-header-bar">
-        <div>
-          <span class="sub-kicker">Kollektionen</span>
-          <h2>Produktkategorien</h2>
-        </div>
-        <button class="p-add-link" onclick="navigate('alle')">Alle Stücke ansehen</button>
-      </div>
-
-      <div class="aurate-grid-3">
-        <!-- Reihe 1 (3 Kategorien) -->
-        <button class="cat-tile" onclick="navigate('ringe')">
-          <img src="Gemini_Generated_Image (3).jpeg" alt="Ringe aus Natursteinen" onerror="this.src='https://placehold.co/800x1000/e9e3d8/111?text=Ringe'">
-          <div class="cat-tile-label">
-            <span class="cat-tile-title">Ringe</span>
-            <span class="cat-tile-cta">Entdecken</span>
-          </div>
-        </button>
-
-        <button class="cat-tile" onclick="navigate('halsketten')">
-          <img src="Gemini_Generated_Image (4).jpeg" alt="Halsketten aus Natursteinen" onerror="this.src='https://placehold.co/800x1000/e9e3d8/111?text=Halsketten'">
-          <div class="cat-tile-label">
-            <span class="cat-tile-title">Halsketten</span>
-            <span class="cat-tile-cta">Entdecken</span>
-          </div>
-        </button>
-
-        <button class="cat-tile" onclick="navigate('armbaender')">
-          <img src="Gemini_Generated_Image (2).jpeg" alt="Armbänder aus Natursteinen" onerror="this.src='https://placehold.co/800x1000/e9e3d8/111?text=Armbaender'">
-          <div class="cat-tile-label">
-            <span class="cat-tile-title">Armbänder</span>
-            <span class="cat-tile-cta">Entdecken</span>
-          </div>
-        </button>
-
-        <!-- Reihe 2 (die restlichen 3 Kategorien: Ohrringe, Do it yourself, Sale) -->
-        <button class="cat-tile" onclick="navigate('ohrringe')">
-          <img src="Gemini_Generated_Image (1).jpeg" alt="Ohrringe aus Natursteinen" onerror="this.src='https://placehold.co/800x1000/e9e3d8/111?text=Ohrringe'">
-          <div class="cat-tile-label">
-            <span class="cat-tile-title">Ohrringe</span>
-            <span class="cat-tile-cta">Entdecken</span>
-          </div>
-        </button>
-
-        <button class="cat-tile" onclick="navigate('diy')">
-          <img src="Gemini_Generated_Image (5).jpeg" alt="Do it yourself Schmucksets" onerror="this.src='https://placehold.co/800x1000/e9e3d8/111?text=Do+it+yourself'">
-          <div class="cat-tile-label">
-            <span class="cat-tile-title">Do it yourself</span>
-            <span class="cat-tile-cta">Selbst gestalten</span>
-          </div>
-        </button>
-
-        <button class="cat-tile" onclick="navigate('sale')">
-          <img src="Gemini_Generated_Image (6).jpeg" alt="Sale Unikate" onerror="this.src='https://placehold.co/800x1000/e9e3d8/111?text=Sale'">
-          <div class="cat-tile-label">
-            <span class="cat-tile-title">Sale · -20 %</span>
-            <span class="cat-tile-cta">Unikate sichern</span>
-          </div>
-        </button>
-      </div>
-    </section>
-
-    <!-- SLIDESHOW 1: Ausgewählte Unikate -->
-    <section class="full-bleed-section">
-      <div class="section-header-bar">
-        <div>
-          <span class="sub-kicker">Handgemachte Unikate</span>
-          <h2>Ausgewählte Stücke</h2>
-        </div>
-        <div class="slider-controls">
-          <button class="slider-btn" onclick="slideTrack('sliderFeatured', -1)" aria-label="Zurück">&larr;</button>
-          <button class="slider-btn" onclick="slideTrack('sliderFeatured', 1)" aria-label="Weiter">&rarr;</button>
-        </div>
-      </div>
-      <div class="slider-track" id="sliderFeatured"></div>
-    </section>
-
-    <!-- BANNER 2: Editorial Kampagnen-Banner (Holiday & Festtags-Designs) -->
-    <section class="edge-banner" style="margin-top:64px">
-      <img src="Gemini_Generated_Image (6).jpeg" alt="ECHTSTEIN Holiday & Festtags-Edition" onerror="this.src='https://placehold.co/1600x900/2a2622/fbf9f4?text=Holiday+Designs'">
-      <div class="edge-banner-content">
-        <div class="edge-banner-kicker">Limitierte Edition · 100 % Natursteine</div>
-        <h2>Holiday &amp; Festtags-Designs</h2>
-        <p>Schimmernde Opal-Tropfen, tiefblauer Kyanit und warme Gold-Filled-Fassungen – besondere Begleiter für unvergessliche Momente.</p>
-        <button class="btn-outline-light" onclick="navigate('ohrringe')">Jetzt entdecken</button>
-      </div>
-    </section>
-
-    <!-- SLIDESHOW 2: Sale 20 % Winter-Styles -->
-    <section class="full-bleed-section">
-      <div class="section-header-bar">
-        <div>
-          <span class="sub-kicker" style="color:var(--sale)">Limitiertes Angebot · 20 % Rabatt</span>
-          <h2>Sale · 20 % Winter-Styles</h2>
-        </div>
-        <div style="display:flex;align-items:center;gap:20px">
-          <button class="p-add-link" onclick="navigate('sale')">Alle Sale-Artikel</button>
-          <div class="slider-controls">
-            <button class="slider-btn" onclick="slideTrack('sliderSale', -1)" aria-label="Zurück">&larr;</button>
-            <button class="slider-btn" onclick="slideTrack('sliderSale', 1)" aria-label="Weiter">&rarr;</button>
-          </div>
-        </div>
-      </div>
-      <div class="slider-track" id="sliderSale"></div>
-    </section>
-
-    <!-- BANNER 3: Abschluss-Banner vor dem Footer -->
-    <section class="edge-banner" style="margin-top:64px">
-      <img src="Gemini_Generated_Image.jpeg" alt="ECHTSTEIN Natursteinschmuck" onerror="this.src='https://placehold.co/1600x900/2a2622/fbf9f4?text=ECHTSTEIN'">
-      <div class="edge-banner-content">
-        <div class="edge-banner-kicker">Handgemacht · 100 % Naturprodukt</div>
-        <h2>Gefertigt in Stille &amp; Achtsamkeit</h2>
-        <p>Jeder Stein wird auf Reisen durch Indien und Nepal handverlesen und in reiner Handarbeit zu einem zeitlosen Unikat verarbeitet.</p>
-        <button class="btn-outline-light" onclick="navigate('story')">Unsere Geschichte</button>
-      </div>
-    </section>
-
-  </div>
-
-  <!-- SHOP-ANSICHT (Kategorie- & Produktliste im 3er-Raster bis zum Rand) -->
-  <div id="view-shop" hidden>
-    <div class="shop-header">
-      <div class="edge-banner-kicker" style="color:#777;margin-bottom:4px">ECHTSTEIN Kollektion</div>
-      <h1 id="shopTitle">Alle Schmuckstücke</h1>
-      <p id="shopSubtitle" style="font-size:14px;color:#555;max-width:620px;margin:0">Handgefertigte Unikate aus 925 Sterling Silber, 14k Gold Filled und echten Natursteinen.</p>
-    </div>
-    <div class="filter-bar" id="filterBar">
-      <button class="filter-pill" data-cat="alle" onclick="navigate('alle')">Alle</button>
-      <button class="filter-pill" data-cat="ringe" onclick="navigate('ringe')">Ringe</button>
-      <button class="filter-pill" data-cat="ohrringe" onclick="navigate('ohrringe')">Ohrringe</button>
-      <button class="filter-pill" data-cat="halsketten" onclick="navigate('halsketten')">Halsketten</button>
-      <button class="filter-pill" data-cat="armbaender" onclick="navigate('armbaender')">Armbänder</button>
-      <button class="filter-pill" data-cat="diy" onclick="navigate('diy')">Do it yourself</button>
-      <button class="filter-pill" data-cat="sale" onclick="navigate('sale')" style="color:var(--sale)">Sale (-20 %)</button>
-    </div>
-    <div class="aurate-grid-3" id="shopGrid"></div>
-  </div>
-
-  <!-- STORY-ANSICHT -->
-  <div id="view-story" hidden>
-    <div class="story-wrap">
-      <div class="edge-banner-kicker" style="color:#777">Handgemacht · 100 % Naturprodukt</div>
-      <h1>ECHTSTEIN – Schmuck mit Geschichte und Ruhe</h1>
-      <p>Die Geschichte von ECHTSTEIN begann ganz organisch: In der Nachmittagsbetreuung mit Kindern fingen wir an, hochwertigen Schmuck herzustellen. Aus dieser Begeisterung und auf Reisen durch Indien und Nepal, wo ich Steine direkt vor Ort auswählte, wuchs eine tiefe Leidenschaft.</p>
-      <p>Heute fertige ich schlichten, zeitlosen Schmuck in reiner Handarbeit aus 925 Sterling Silber und 14k Gold Filled. Im Mittelpunkt steht die Vielfalt echter Natursteine – bevorzugt in harmonischen, runden und organischen Formen. Ob schimmernde Opale, Rubin, Kyanit und Aquamarin oder sanfter Rosenquarz, Sonnenstein, Aventurin, Achat und stabilisierter Türkis: Jedes Stück ist ein Unikat.</p>
-      <p>Gefertigt wird der Schmuck auf einem abgelegenen Landhaus – einem Kraftplatz in der Natur, ganz ohne Nachbarn. Getragen von Meditation, Ruhe und klarer Energie entsteht hier ECHTSTEIN für Menschen, die das Echte schätzen und ein Stück dieser Gelassenheit bei sich tragen möchten.</p>
-      <div style="margin-top:36px">
-        <button class="btn-dark" style="max-width:260px" onclick="navigate('alle')">Kollektion entdecken</button>
+      <div class="slider-controls">
+        <button class="slider-btn" onclick="slideTrack('featuredTrack', -1)" aria-label="Zurück">←</button>
+        <button class="slider-btn" onclick="slideTrack('featuredTrack', 1)" aria-label="Weiter">→</button>
       </div>
     </div>
-  </div>
+    <div class="slider-wrap">
+      <div class="slider-track" id="featuredTrack"></div>
+    </div>
+  </section>
 
+  <!-- 4. ZWEITES BANNER -->
+  <section class="hero campaign-banner">
+    <img src="Gemini_Generated_Image (6).jpeg" alt="ECHTSTEIN Edle Details" onerror="this.src='https://placehold.co/1600x850/38312a/fbf9f4?text=ECHTSTEIN+Edition'">
+    <div class="hero-content">
+      <span class="eyebrow">Feine Fassungen · Handverlesene Steine</span>
+      <h2 class="banner-title">Natürliche Leuchtkraft,<br>einzeln gefertigt.</h2>
+      <a href="#ohrringe" class="hero-cta" onclick="openCategory('Ohrringe');return false">Ohrringe ansehen</a>
+    </div>
+  </section>
+
+  <!-- 5. ZWEITE SLIDESHOW: SALE -20% WINTER-STYLES (Halbe Bannerhöhe) -->
+  <section class="full-bleed-section">
+    <div class="section-bar">
+      <div>
+        <span class="section-sub" style="display:block;margin-bottom:6px;color:var(--sale)">Sale · 20 % Rabatt</span>
+        <h2 class="section-title">Winter-Styles · -20 %</h2>
+      </div>
+      <div class="slider-controls">
+        <button class="slider-btn" onclick="slideTrack('winterSaleTrack', -1)" aria-label="Zurück">←</button>
+        <button class="slider-btn" onclick="slideTrack('winterSaleTrack', 1)" aria-label="Weiter">→</button>
+      </div>
+    </div>
+    <div class="slider-wrap">
+      <div class="slider-track" id="winterSaleTrack"></div>
+    </div>
+  </section>
+
+  <!-- 6. DRITTES BANNER VOR DEM FOOTER -->
+  <section class="hero campaign-banner">
+    <img src="Gemini_Generated_Image.jpeg" alt="ECHTSTEIN Natur & Handwerk" onerror="this.src='https://placehold.co/1600x850/242723/fbf9f4?text=ECHTSTEIN+Unikate'">
+    <div class="hero-content">
+      <span class="eyebrow">Jeder Stein ein Original</span>
+      <h2 class="banner-title">Verbunden mit<br>der Natur.</h2>
+      <a href="#alle" class="hero-cta" onclick="openCategory('Alle');return false">Gesamte Kollektion</a>
+    </div>
+  </section>
 </main>
 
-<!-- Produkt-Detail-Modal -->
-<div class="modal-overlay" id="productModal" hidden onclick="if(event.target===this)closeProductModal()">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeProductModal()" aria-label="Schließen">&times;</button>
-    <img id="modalImg" class="modal-img" src="" alt="">
-    <div class="modal-body">
-      <div id="modalMeta" class="p-meta"></div>
-      <h2 id="modalTitle" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:32px;font-weight:400;margin:0 0 12px"></h2>
-      <div id="modalPrice" style="font-size:18px;margin-bottom:20px"></div>
-      <p id="modalDesc" style="font-size:14px;line-height:1.75;color:#444;margin:0 0 28px"></p>
-      <button class="btn-dark" id="modalAddBtn">In die Einkaufstasche</button>
+<!-- KATEGORIE-ANSICHT (Ebenfalls randloses 3er-Raster am PC) -->
+<section id="shopView" class="shop-section hidden">
+  <div class="shop-head">
+    <div>
+      <span class="eyebrow" style="color:var(--muted);margin-bottom:8px">Kollektion</span>
+      <h2 id="shopTitle">Alle Schmuckstücke</h2>
     </div>
+    <span class="shop-count" id="shopCount">0 Stücke</span>
   </div>
-</div>
+  <div class="filter-bar" id="filterBar"></div>
+  <div class="aurate-grid-3" id="productGrid"></div>
+</section>
 
-<!-- Footer -->
+<!-- FOOTER MIT DOPPELT SO GROSSEM LOGO, IG & FB RECHTS & IMPRESSUM -->
 <footer>
   <div class="footer-grid">
     <div>
-      <img src="echtstein-logo-dunkel.svg" alt="ECHTSTEIN Logo" class="footer-logo" onerror="this.style.display='none'">
-      <p style="font-size:13px;line-height:1.7;color:#444;margin:0;max-width:340px">Handgefertigter Natursteinschmuck aus Österreich. 925 Sterling Silber, 14k Gold Filled und echte Edelsteine.</p>
+      <img class="footer-logo" src="echtstein-logo-dunkel.svg" alt="ECHTSTEIN" onerror="this.outerHTML='<div style=&quot;font-family:\'Cormorant Garamond\',serif;font-size:38px;font-weight:700;letter-spacing:8px;margin-bottom:18px&quot;>ECHTSTEIN</div>'">
+      <p>Handgefertigter Schmuck aus echten Edelsteinen, 925 Sterling Silber und 14k Gold Filled. Jedes Stück trägt die natürliche Struktur seines Steins.</p>
     </div>
     <div>
-      <h3 class="footer-h">Kollektionen</h3>
-      <ul class="footer-links">
-        <li><button onclick="navigate('ringe')">Ringe</button></li>
-        <li><button onclick="navigate('ohrringe')">Ohrringe</button></li>
-        <li><button onclick="navigate('halsketten')">Halsketten</button></li>
-        <li><button onclick="navigate('armbaender')">Armbänder</button></li>
-        <li><button onclick="navigate('diy')">Do it yourself</button></li>
-        <li><button onclick="navigate('sale')" style="color:var(--sale)">Sale (-20 %)</button></li>
+      <h4>Kollektionen</h4>
+      <ul>
+        <li><a href="#ringe" onclick="openCategory('Ringe');return false">Ringe</a></li>
+        <li><a href="#ohrringe" onclick="openCategory('Ohrringe');return false">Ohrringe</a></li>
+        <li><a href="#halsketten" onclick="openCategory('Halsketten');return false">Halsketten</a></li>
+        <li><a href="#armbaender" onclick="openCategory('Armbänder');return false">Armbänder</a></li>
+        <li><a href="#diy" onclick="openCategory('Do it yourself');return false">Do it yourself</a></li>
+        <li><a href="#sale" onclick="openCategory('Sale');return false">Sale</a></li>
       </ul>
     </div>
     <div>
-      <h3 class="footer-h">Rechtliches &amp; Service</h3>
-      <ul class="footer-links">
-        <li><button onclick="navigate('story')">Unsere Geschichte</button></li>
-        <li><button onclick="openLegalModal('impressum')">Impressum</button></li>
-        <li><button onclick="openLegalModal('versand')">Versand &amp; Rückgabe</button></li>
-        <li><button onclick="openLegalModal('datenschutz')">Datenschutz</button></li>
+      <h4>Service &amp; Rechtliches</h4>
+      <ul>
+        <li><a href="#impressum" onclick="openLegalModal('impressum');return false">Impressum</a></li>
+        <li><a href="#datenschutz" onclick="openLegalModal('datenschutz');return false">Datenschutz</a></li>
+        <li><a href="#agb" onclick="openLegalModal('agb');return false">AGB &amp; Widerruf</a></li>
+        <li><a href="#versand" onclick="openLegalModal('versand');return false">Versand &amp; Pflege</a></li>
       </ul>
     </div>
     <div>
-      <h3 class="footer-h">Newsletter</h3>
-      <p style="font-size:13px;line-height:1.6;color:#444;margin:0">Neue Unikate und Einblicke – ab und zu, nie Spam.</p>
-      <form class="newsletter-form" onsubmit="event.preventDefault();showInfoToast('Vielen Dank für Ihre Anmeldung!');this.reset();">
-        <input type="email" required placeholder="Ihre E-Mail-Adresse" aria-label="E-Mail-Adresse">
+      <h4>Newsletter &amp; Social Media</h4>
+      <p>Einladungen zu neuen Unikaten und limitierten Steinfunden.</p>
+      <form class="newsletter" onsubmit="subscribeNewsletter(event)">
+        <input type="email" id="nlEmail" placeholder="E-Mail-Adresse" required>
         <button type="submit">Anmelden</button>
       </form>
-      <div class="footer-social">
-        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="ECHTSTEIN auf Instagram">
-          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      <div class="social-row">
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="social-btn" aria-label="ECHTSTEIN auf Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1"/></svg>
           <span>Instagram</span>
         </a>
-        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="ECHTSTEIN auf Facebook">
-          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="social-btn" aria-label="ECHTSTEIN auf Facebook">
+          <svg viewBox="0 0 24 24"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           <span>Facebook</span>
         </a>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; 2026 ECHTSTEIN · Alle Rechte vorbehalten.</span>
-    <span>
-      <button onclick="openLegalModal('impressum')" style="background:none;border:0;padding:0;color:inherit;text-decoration:underline">Impressum</button> ·
-      <button onclick="openLegalModal('datenschutz')" style="background:none;border:0;padding:0;color:inherit;text-decoration:underline">Datenschutz</button> ·
-      Handgemacht in Österreich
-    </span>
+    <span>© ECHTSTEIN · Alle Rechte vorbehalten</span>
+    <div class="footer-legal-links">
+      <a href="#impressum" onclick="openLegalModal('impressum');return false">Impressum</a>
+      <a href="#datenschutz" onclick="openLegalModal('datenschutz');return false">Datenschutz</a>
+      <a href="#agb" onclick="openLegalModal('agb');return false">AGB</a>
+      <span>Sichere Zahlung über PayPal</span>
+    </div>
   </div>
 </footer>
 
-<!-- Impressum / Rechtliches Modal -->
-<div class="modal-overlay" id="legalModal" hidden onclick="if(event.target===this)closeLegalModal()">
-  <div class="modal-box" style="grid-template-columns:1fr;max-width:640px">
-    <button class="modal-close" onclick="closeLegalModal()" aria-label="Schließen">&times;</button>
-    <div class="modal-body" style="padding:44px 36px">
-      <div class="p-meta" style="margin-bottom:8px">ECHTSTEIN · Österreich</div>
-      <h2 id="legalModalTitle" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:32px;font-weight:400;margin:0 0 18px">Impressum</h2>
-      <div id="legalModalBody" style="font-size:14px;line-height:1.8;color:#333"></div>
+<!-- BACKDROP & DRAWERS -->
+<div class="backdrop" id="backdrop" onclick="closeAllDrawers()"></div>
+
+<aside class="drawer left" id="menuDrawer" aria-label="Mobiles Menü">
+  <div class="drawer-head">
+    <h3>Kollektionen</h3>
+    <button class="close-btn" onclick="closeAllDrawers()" aria-label="Schließen">×</button>
+  </div>
+  <div class="drawer-body">
+    <nav class="mobile-links">
+      <a href="#alle" onclick="openCategory('Alle');closeAllDrawers();return false">Alle Schmuckstücke</a>
+      <a href="#ringe" onclick="openCategory('Ringe');closeAllDrawers();return false">Ringe</a>
+      <a href="#ohrringe" onclick="openCategory('Ohrringe');closeAllDrawers();return false">Ohrringe</a>
+      <a href="#halsketten" onclick="openCategory('Halsketten');closeAllDrawers();return false">Halsketten</a>
+      <a href="#armbaender" onclick="openCategory('Armbänder');closeAllDrawers();return false">Armbänder</a>
+      <a href="#diy" onclick="openCategory('Do it yourself');closeAllDrawers();return false">Do it yourself</a>
+      <a href="#sale" style="color:var(--sale)" onclick="openCategory('Sale');closeAllDrawers();return false">Sale</a>
+    </nav>
+  </div>
+</aside>
+
+<aside class="drawer right" id="cartDrawer" aria-label="Einkaufstasche">
+  <div class="drawer-head">
+    <h3>Einkaufstasche</h3>
+    <button class="close-btn" onclick="closeAllDrawers()" aria-label="Schließen">×</button>
+  </div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot" id="cartFoot"></div>
+</aside>
+
+<!-- PRODUKT-DETAIL MODAL -->
+<div class="modal" id="productModal" onclick="if(event.target===this)closeProductModal()">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeProductModal()" aria-label="Schließen">×</button>
+    <div class="modal-media"><img id="modalImg" src="" alt=""></div>
+    <div class="modal-info">
+      <span class="prod-cat" id="modalCat"></span>
+      <h2 id="modalTitle" style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:34px;margin:8px 0 12px"></h2>
+      <div class="prod-price" id="modalPrice" style="font-size:16px;margin-bottom:20px"></div>
+      <p id="modalDesc" style="font-size:14px;line-height:1.75;color:var(--muted);margin:0 0 28px"></p>
+      <button class="btn-primary" id="modalAddBtn">In die Einkaufstasche</button>
     </div>
+  </div>
+</div>
+
+<!-- RECHTLICHES / IMPRESSUM MODAL -->
+<div class="modal" id="legalModal" onclick="if(event.target===this)closeLegalModal()">
+  <div class="legal-modal-card">
+    <button class="modal-close" onclick="closeLegalModal()" aria-label="Schließen">×</button>
+    <div id="legalModalContent"></div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-// Vollständiger Produktkatalog (55+ handgefertigte Unikate & DIY-Sets)
-// Tipp: Bei "hoverImg" kannst du jeweils dein Tragefoto (Hand, Ohr, Hals) eintragen!
-const PRODUCTS = [
-  // RINGE (10 Artikel)
-  {id:'r1',cat:'ringe',title:'Ring Opal Tropfen Gold Filled',material:'14k Gold Filled · Äthiopischer Opal',price:68,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',featured:true,desc:'Zarter, handgeschmiedeter Ring aus 14k Gold Filled mit einem irisierenden äthiopischen Opal-Cabochon.'},
-  {id:'r2',cat:'ringe',title:'Ring Rosenquarz Kugel Silber',material:'925 Sterling Silber · Rosenquarz',price:54,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Sanft schimmernder natürlicher Rosenquarz auf einer feinen 925 Sterling Silber Ringschiene.'},
-  {id:'r3',cat:'ringe',title:'Ring Kyanit Tiefblau Gold',material:'14k Gold Filled · Kyanit',price:72,oldPrice:90,sale:true,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Ausdrucksstarker blauer Kyanit aus Nepal, von Hand in warmes Gold Filled gefasst.'},
-  {id:'r4',cat:'ringe',title:'Ring Aquamarin Klarheit',material:'925 Sterling Silber · Aquamarin',price:64,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Meeresblauer Aquamarin in schlichter, zeitloser Silberfassung.'},
-  {id:'r5',cat:'ringe',title:'Ring Sonnenstein Schimmer',material:'14k Gold Filled · Sonnenstein',price:62,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Warmer indischer Sonnenstein mit feinen goldenen Einschlüssen.'},
-  {id:'r6',cat:'ringe',title:'Ring Mondstein Regenbogen',material:'925 Sterling Silber · Mondstein',price:59,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Klassischer Regenbogen-Mondstein mit bläulichem Lichtspiel.'},
-  {id:'r7',cat:'ringe',title:'Ring Grüner Aventurin Ruhe',material:'14k Gold Filled · Aventurin',price:49,oldPrice:62,sale:true,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Beruhigender grüner Aventurin in minimalistischer Goldfassung.'},
-  {id:'r8',cat:'ringe',title:'Ring Rubin Facettiert',material:'14k Gold Filled · Rubin',price:79,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Edler natürlicher Rubin, handverlesen in Jaipur und fein gefasst.'},
-  {id:'r9',cat:'ringe',title:'Ring Türkis Naturstein',material:'925 Sterling Silber · Stabilisierter Türkis',price:56,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Lebendiger Türkis mit feiner natürlicher Matrix.'},
-  {id:'r10',cat:'ringe',title:'Stapelring-Set Drei Steine',material:'14k Gold Filled · Opal, Mondstein, Quarz',price:118,oldPrice:148,sale:true,img:'Gemini_Generated_Image (3).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Drei aufeinander abgestimmte zarte Ringe zum Kombinieren.'},
-
-  // OHRRINGE (10 Artikel)
-  {id:'o1',cat:'ohrringe',title:'Ohrhänger Pfauenfeder & Opal',material:'14k Gold Filled · Äthiopischer Opal',price:78,img:'Gemini_Generated_Image (6).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',featured:true,desc:'Einzigartige Ohrhänger mit echter Pfauenfeder und leuchtendem Opal-Tropfen.'},
-  {id:'o2',cat:'ohrringe',title:'Ohrstecker Stern & Naturstein',material:'14k Gold Filled · Mondstein',price:52,img:'Gemini_Generated_Image (1).jpeg',hoverImg:'Gemini_Generated_Image (6).jpeg',featured:true,desc:'Feine Stern-Stecker kombiniert mit schimmerndem Mondstein.'},
-  {id:'o3',cat:'ohrringe',title:'Creolen mit Aquamarin-Tropfen',material:'925 Sterling Silber · Aquamarin',price:68,img:'Gemini_Generated_Image.jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Leichte Creolen mit abnehmbaren Aquamarin-Anhängern.'},
-  {id:'o4',cat:'ohrringe',title:'Ohrhänger Rubin & Gold',material:'14k Gold Filled · Rubin',price:76,oldPrice:95,sale:true,img:'Gemini_Generated_Image.jpeg',hoverImg:'Gemini_Generated_Image (6).jpeg',desc:'Tiefrote Rubine an feinen Gold-Filled-Ohrhaken.'},
-  {id:'o5',cat:'ohrringe',title:'Ohrstecker Rosenquarz Minimal',material:'925 Sterling Silber · Rosenquarz',price:44,img:'Gemini_Generated_Image (1).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Schlichte, runde Rosenquarz-Ohrstecker für jeden Tag.'},
-  {id:'o6',cat:'ohrringe',title:'Ohrhänger Kyanit & Silber',material:'925 Sterling Silber · Kyanit',price:64,img:'Gemini_Generated_Image.jpeg',hoverImg:'Gemini_Generated_Image (6).jpeg',desc:'Längliche Kyanit-Tropfen in feiner Silberarbeit.'},
-  {id:'o7',cat:'ohrringe',title:'Ohrhänger Sonnenstein Tropfen',material:'14k Gold Filled · Sonnenstein',price:58,oldPrice:72,sale:true,img:'Gemini_Generated_Image (6).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Warmer Goldglanz für festliche Abende und den Alltag.'},
-  {id:'o8',cat:'ohrringe',title:'Ohrstecker Opal Mini',material:'14k Gold Filled · Opal',price:59,img:'Gemini_Generated_Image (1).jpeg',hoverImg:'Gemini_Generated_Image (6).jpeg',desc:'Zarte 4mm Opal-Stecker mit intensivem Farbspiel.'},
-  {id:'o9',cat:'ohrringe',title:'Ohrhänger Achat Erdton',material:'14k Gold Filled · Naturachat',price:54,img:'Gemini_Generated_Image.jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Harmonische Erdtöne aus handgeschliffenem Achat.'},
-  {id:'o10',cat:'ohrringe',title:'Creolen Gold mit Türkis',material:'14k Gold Filled · Türkis',price:66,img:'Gemini_Generated_Image (1).jpeg',hoverImg:'Gemini_Generated_Image (6).jpeg',desc:'Frischer Türkis an klassischen Gold-Filled-Creolen.'},
-
-  // HALSKETTEN (10 Artikel)
-  {id:'h1',cat:'halsketten',title:'Halskette Opal Solitär',material:'14k Gold Filled · Äthiopischer Opal',price:84,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',featured:true,desc:'Ein einzelner leuchtender Opal an einer hauchzarten Gold-Filled-Kette.'},
-  {id:'h2',cat:'halsketten',title:'Halskette Kyanit & Gold',material:'14k Gold Filled · Kyanit',price:79,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Tiefblauer Kyanit-Anhänger an einer 42–45 cm verstellbaren Kette.'},
-  {id:'h3',cat:'halsketten',title:'Halskette Rosenquarz Harmonie',material:'925 Sterling Silber · Rosenquarz',price:68,oldPrice:85,sale:true,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Sanfter Rosenquarz-Tropfen an einer feinen Ankerkette aus 925 Silber.'},
-  {id:'h4',cat:'halsketten',title:'Halskette Aquamarin Meer',material:'925 Sterling Silber · Aquamarin',price:74,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Klarer blauer Aquamarin, von Hand gefasst.'},
-  {id:'h5',cat:'halsketten',title:'Halskette Mondstein Licht',material:'14k Gold Filled · Regenbogen-Mondstein',price:82,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Schimmernder Mondstein im Cabochon-Schliff.'},
-  {id:'h6',cat:'halsketten',title:'Collier Sieben Edelsteine',material:'14k Gold Filled · Gemischte Natursteine',price:112,oldPrice:140,sale:true,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Sieben harmonisch abgestimmte Edelsteine entlang des Dekolletés.'},
-  {id:'h7',cat:'halsketten',title:'Halskette Rubin Tropfen',material:'14k Gold Filled · Rubin',price:89,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Kostbarer Rubin-Anhänger aus unserer Jaipur-Auswahl.'},
-  {id:'h8',cat:'halsketten',title:'Halskette Aventurin Natur',material:'925 Sterling Silber · Grüner Aventurin',price:62,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Natürlicher grüner Aventurin für Ruhe und Ausgleich.'},
-  {id:'h9',cat:'halsketten',title:'Halskette Sonnenstein Wärme',material:'14k Gold Filled · Sonnenstein',price:72,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Funkelnder Sonnenstein an einer zarten Goldkette.'},
-  {id:'h10',cat:'halsketten',title:'Y-Kette Opal & Goldperlen',material:'14k Gold Filled · Opal',price:96,img:'Gemini_Generated_Image (4).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Elegante Y-Kette für tiefere Ausschnitte.'},
-
-  // ARMBÄNDER (10 Artikel)
-  {id:'a1',cat:'armbaender',title:'Armband Opal & Goldkugeln',material:'14k Gold Filled · Äthiopischer Opal',price:69,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',featured:true,desc:'Zartes Armband mit facettierten Opal-Perlen und 14k Gold Filled Elementen.'},
-  {id:'a2',cat:'armbaender',title:'Armband Rosenquarz Zart',material:'925 Sterling Silber · Rosenquarz',price:52,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Feine Rosenquarz-Kugeln auf reißfestem Juwelierdraht mit Silberverschluss.'},
-  {id:'a3',cat:'armbaender',title:'Armband Kyanit & Silber',material:'925 Sterling Silber · Kyanit',price:58,oldPrice:72,sale:true,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Tiefblauer Kyanit kombiniert mit handgefertigten Silberdetails.'},
-  {id:'a4',cat:'armbaender',title:'Armband Aquamarin Brise',material:'925 Sterling Silber · Aquamarin',price:62,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Helle Aquamarin-Perlen mit Verlängerungskettchen.'},
-  {id:'a5',cat:'armbaender',title:'Armband Sonnenstein Gold',material:'14k Gold Filled · Sonnenstein',price:59,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Warmer Sonnenstein mit feinen Gold-Filled-Zwischenteilen.'},
-  {id:'a6',cat:'armbaender',title:'Armband Mondstein Schimmer',material:'925 Sterling Silber · Mondstein',price:64,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Irisierender Mondstein für ein elegantes Handgelenk.'},
-  {id:'a7',cat:'armbaender',title:'Armband Türkis & Gold',material:'14k Gold Filled · Stabilisierter Türkis',price:54,oldPrice:68,sale:true,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Lebendiger Türkis in Kombination mit warmem Gold.'},
-  {id:'a8',cat:'armbaender',title:'Armband Rubin Facettiert',material:'14k Gold Filled · Rubin',price:78,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Fein facettierte Rubin-Rondelle mit Goldverschluss.'},
-  {id:'a9',cat:'armbaender',title:'Armband Achat Natur',material:'925 Sterling Silber · Achat',price:48,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Erdige Achattöne in ruhiger, harmonischer Abfolge.'},
-  {id:'a10',cat:'armbaender',title:'Armband-Duo Opal & Mondstein',material:'14k Gold Filled · Opal & Mondstein',price:108,oldPrice:135,sale:true,img:'Gemini_Generated_Image (2).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Zwei feine Armbänder im abgestimmten Set.'},
-
-  // DO IT YOURSELF (8 Artikel)
-  {id:'d1',cat:'diy',title:'DIY-Set Halskette Opal selbst knüpfen',material:'14k Gold Filled · Opal-Perlen · Seidenfaden',price:49,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (4).jpeg',featured:true,desc:'Komplett-Set mit handverlesenen Opal-Perlen, 14k Gold Filled Verschluss, Nadel und Schritt-für-Schritt-Anleitung.'},
-  {id:'d2',cat:'diy',title:'DIY-Set Armband Rosenquarz & Silber',material:'925 Sterling Silber · Rosenquarz',price:36,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (2).jpeg',desc:'Alles für zwei eigene Rosenquarz-Armbänder inklusive Verschlüssen und Juwelierdraht.'},
-  {id:'d3',cat:'diy',title:'DIY-Set Ohrringe Kyanit & Gold',material:'14k Gold Filled · Kyanit-Tropfen',price:42,oldPrice:52,sale:true,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (6).jpeg',desc:'Gestalten Sie Ihre eigenen Kyanit-Ohrhänger mit hochwertigen Gold-Filled-Ohrhaken.'},
-  {id:'d4',cat:'diy',title:'Edelstein-Mix Box (40 Steine)',material:'100 % Natursteine · Sortiert',price:58,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Eine kuratierte Auswahl aus Opal, Aquamarin, Mondstein, Rubin und Sonnenstein für eigene Kreationen.'},
-  {id:'d5',cat:'diy',title:'DIY-Set Familien-Nachmittag (3 Armbänder)',material:'925 Silber · Aventurin, Achat, Quarz',price:64,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (2).jpeg',desc:'Inspiriert von unseren Anfängen – ideal zum gemeinsamen Schmuckgestalten.'},
-  {id:'d6',cat:'diy',title:'Verschluss- & Draht-Set 14k Gold Filled',material:'14k Gold Filled · Karabiner & Biegeringe',price:28,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Hochwertige Gold-Filled-Komponenten für langlebige eigene Schmuckstücke.'},
-  {id:'d7',cat:'diy',title:'DIY-Set Mondstein-Choker',material:'925 Sterling Silber · Mondstein',price:44,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (4).jpeg',desc:'Feine Mondstein-Rondelle und Silberverschluss für eine zeitlose Halskette.'},
-  {id:'d8',cat:'diy',title:'Juwelier-Zangen-Set Basis',material:'Edelstahl · Ergonomisch',price:32,img:'Gemini_Generated_Image (5).jpeg',hoverImg:'Gemini_Generated_Image (7).jpeg',desc:'Rundzange, Flachzange und Seitenschneider für präzises Arbeiten zu Hause.'}
+// Bilder-Pool
+const IMG = [
+  'Gemini_Generated_Image.jpeg',
+  'Gemini_Generated_Image (1).jpeg',
+  'Gemini_Generated_Image (2).jpeg',
+  'Gemini_Generated_Image (3).jpeg',
+  'Gemini_Generated_Image (4).jpeg',
+  'Gemini_Generated_Image (5).jpeg',
+  'Gemini_Generated_Image (6).jpeg',
+  'Gemini_Generated_Image (7).jpeg'
 ];
 
-const CAT_META = {
-  alle: { title: 'Alle Schmuckstücke', sub: 'Handgefertigte Unikate aus 925 Sterling Silber, 14k Gold Filled und echten Natursteinen.' },
-  ringe: { title: 'Ringe', sub: 'Feine Ringe mit echten Natursteinen – handgeschmiedet in Silber und Gold Filled.' },
-  ohrringe: { title: 'Ohrringe', sub: 'Leichte Ohrstecker, Creolen und Ohrhänger mit natürlichen Edelsteinen.' },
-  halsketten: { title: 'Halsketten', sub: 'Zarte Ketten und Colliers mit handverlesenen Steinen.' },
-  armbaender: { title: 'Armbänder', sub: 'Harmonische Edelstein-Armbänder für jeden Tag.' },
-  diy: { title: 'Do it yourself', sub: 'Komplett-Sets und echte Edelsteine zum Selbstgestalten.' },
-  sale: { title: 'Sale · -20 %', sub: 'Ausgewählte Unikate und Winter-Styles zum Vorteilspreis.' }
+// Produktkatalog (Jedes Produkt mit Standardbild 'img' + Zweitbild 'hoverImg' für den AURATE-Wechsel)
+const PRODUCTS = [
+  // RINGE (10)
+  {id:'rg-01',cat:'Ringe',name:'Solitär Ring · Mondstein',price:68,img:IMG[1],hoverImg:IMG[7],desc:'Handgefasster Regenbogen-Mondstein auf feiner 925 Sterling Silber Ringschiene. Schimmert sanft bei jeder Bewegung.'},
+  {id:'rg-02',cat:'Ringe',name:'Bandring · Labradorit',price:74,img:IMG[2],hoverImg:IMG[6],desc:'Mystisch blaugrau schillernder Labradorit in glatter Zargenfassung aus recyceltem Silber.'},
+  {id:'rg-03',cat:'Ringe',name:'Signet Ring · Grüner Turmalin',price:89,img:IMG[3],hoverImg:IMG[7],desc:'Tiefgrüner Turmalin-Cabochon auf einer sanft verjüngten Ringschiene in 14k Gold Filled.'},
+  {id:'rg-04',cat:'Ringe',name:'Filigranring · Rosenquarz',price:59,img:IMG[4],hoverImg:IMG[0],desc:'Zarter Rosenquarz im Tropfenschliff, einzeln von Hand gefasst und hochglanzpoliert.'},
+  {id:'rg-05',cat:'Ringe',name:'Stapelring · Granat',price:54,img:IMG[5],hoverImg:IMG[6],desc:'Tiefroter Almandin-Granat auf einer 1,4 mm schmalen Ringschiene – ideal zum Kombinieren.'},
+  {id:'rg-06',cat:'Ringe',name:'Cabochon Ring · Aquamarin',price:82,img:IMG[6],hoverImg:IMG[7],desc:'Klarer, hellblauer Aquamarin in handgearbeiteter Fassung aus 925 Sterling Silber.'},
+  {id:'rg-07',cat:'Ringe',name:'Doppelstein Ring · Citrin & Peridot',price:94,img:IMG[7],hoverImg:IMG[1],desc:'Zwei natürlich gewachsene Edelsteine in harmonischem Zusammenspiel auf 14k Gold Filled.'},
+  {id:'rg-08',cat:'Ringe',name:'Organischer Ring · Rauchquarz',price:78,img:IMG[0],hoverImg:IMG[7],desc:'Warmer Rauchquarz mit sanft gehämmerter Oberfläche, jedes Stück ein Einzelstück.'},
+  {id:'rg-09',cat:'Ringe',name:'Tropfenring · Amethyst',price:64,img:IMG[1],hoverImg:IMG[6],desc:'Violetter Amethyst im Tropfenschliff auf feiner Silber-Schiene.'},
+  {id:'rg-10',cat:'Ringe',name:'Zargenring · Schwarzer Onyx',price:69,img:IMG[2],hoverImg:IMG[0],desc:'Tiefschwarzer Onyx mit ruhigem Glanz in minimalistischer Fassung.'},
+
+  // OHRRINGE (10)
+  {id:'oh-01',cat:'Ohrringe',name:'Ohrhänger · Labradorit & Feder',price:72,img:IMG[6],hoverImg:IMG[7],desc:'Schillernder Labradorit-Tropfen kombiniert mit einer zarten Pfauenfeder in 925 Sterling Silber.'},
+  {id:'oh-02',cat:'Ohrringe',name:'Creolen · Süßwasserperle',price:66,img:IMG[4],hoverImg:IMG[6],desc:'Feine Creolen aus 14k Gold Filled mit abnehmbaren, handverlesenen Süßwasserperlen.'},
+  {id:'oh-03',cat:'Ohrringe',name:'Ohrstecker · Roh-Smargd',price:79,img:IMG[3],hoverImg:IMG[7],desc:'Naturbelassene Smaragd-Kristalle in sicherer Krappenfassung.'},
+  {id:'oh-04',cat:'Ohrringe',name:'Tropfen-Ohrhänger · Mondstein',price:76,img:IMG[1],hoverImg:IMG[6],desc:'Leicht schwingende Mondstein-Tropfen an feinen Ohrhaken aus Sterling Silber.'},
+  {id:'oh-05',cat:'Ohrringe',name:'Mini-Stecker · Turmalin Rosa',price:48,img:IMG[5],hoverImg:IMG[0],desc:'Dezente 4 mm Turmalin-Stecker für den täglichen Einsatz.'},
+  {id:'oh-06',cat:'Ohrringe',name:'Langhänger · Bergkristall',price:84,img:IMG[0],hoverImg:IMG[6],desc:'Facettierte Bergkristall-Spitzen an zarten Ketten aus 925 Sterling Silber.'},
+  {id:'oh-07',cat:'Ohrringe',name:'Creolen · Grüner Aventurin',price:62,img:IMG[2],hoverImg:IMG[7],desc:'Sanft grüne Aventurin-Kugeln auf schmalen Gold-Filled-Creolen.'},
+  {id:'oh-08',cat:'Ohrringe',name:'Ohrstecker · Lapislazuli',price:56,img:IMG[7],hoverImg:IMG[6],desc:'Tiefblauer Lapislazuli mit feinen goldenen Pyrit-Einschlüssen.'},
+  {id:'oh-09',cat:'Ohrringe',name:'Schwingende Stecker · Citrin',price:68,img:IMG[3],hoverImg:IMG[0],desc:'Sonnengelber Citrin an beweglichen Silber-Ösen.'},
+  {id:'oh-10',cat:'Ohrringe',name:'Statement Hänger · Achat & Silber',price:88,img:IMG[6],hoverImg:IMG[7],desc:'Handgeschliffene Achat-Scheiben mit individueller Bänderung.'},
+
+  // HALSKETTEN (10)
+  {id:'hk-01',cat:'Halsketten',name:'Anhänger-Kette · Mondstein Tropfen',price:86,img:IMG[2],hoverImg:IMG[7],desc:'45 cm Ankerkette aus 925 Sterling Silber mit handgefasstem Mondstein-Tropfen.'},
+  {id:'hk-02',cat:'Halsketten',name:'Collier · Feine Turmalin-Splitter',price:98,img:IMG[7],hoverImg:IMG[6],desc:'Handgeknotetes Collier aus mehrfarbigen Turmalin-Steinen mit 14k Gold Filled Verschluss.'},
+  {id:'hk-03',cat:'Halsketten',name:'Solitärkette · Aquamarin',price:92,img:IMG[1],hoverImg:IMG[7],desc:'Einzelner Aquamarin im Kissenschliff an einer zarten 42–45 cm Kette.'},
+  {id:'hk-04',cat:'Halsketten',name:'Medaillon · Baumachat',price:96,img:IMG[0],hoverImg:IMG[6],desc:'Weißer Baumachat mit natürlichen moosgrünen Einschlüssen in runder Zargenfassung.'},
+  {id:'hk-05',cat:'Halsketten',name:'Layering-Kette · Rosenquarz',price:74,img:IMG[4],hoverImg:IMG[7],desc:'Zarte Kette mit kleinem Rosenquarz-Anhänger, perfekt für den Layering-Look.'},
+  {id:'hk-06',cat:'Halsketten',name:'Choker · Labradorit Facettiert',price:89,img:IMG[5],hoverImg:IMG[6],desc:'38–43 cm verstellbare Kette aus 3 mm facettierten Labradorit-Perlen.'},
+  {id:'hk-07',cat:'Halsketten',name:'Bar-Kette · Amethyst',price:82,img:IMG[3],hoverImg:IMG[7],desc:'Horizontal gefasster Amethyst an einer minimalistischen Silberkette.'},
+  {id:'hk-08',cat:'Halsketten',name:'Anhänger · Roh-Bergkristall',price:79,img:IMG[6],hoverImg:IMG[0],desc:'Naturbelassene Bergkristallspitze in handgewickelter Silberfassung.'},
+  {id:'hk-09',cat:'Halsketten',name:'Perlenkette · Barockperle & Gold',price:112,img:IMG[2],hoverImg:IMG[7],desc:'Einzigartige Barockperle an einer 14k Gold Filled Schlangenkette.'},
+  {id:'hk-10',cat:'Halsketten',name:'Talisman · Schwarzer Turmalin',price:85,img:IMG[1],hoverImg:IMG[6],desc:'Kräftiger schwarzer Schörl-Turmalin in schlichter Silberfassung.'},
+
+  // ARMBÄNDER (10)
+  {id:'ab-01',cat:'Armbänder',name:'Zartes Armband · Mondstein',price:58,img:IMG[3],hoverImg:IMG[7],desc:'Feine Silberkette mit drei gefassten Mondsteinen, verstellbar von 16 bis 19 cm.'},
+  {id:'ab-02',cat:'Armbänder',name:'Edelsteinband · Rosenquarz & Gold',price:64,img:IMG[4],hoverImg:IMG[6],desc:'Facettierte Rosenquarz-Perlen auf elastischem Juwelierfaden mit 14k Gold Filled Zwischenteil.'},
+  {id:'ab-03',cat:'Armbänder',name:'Armreif · Offener Labradorit',price:88,img:IMG[5],hoverImg:IMG[7],desc:'Handgeschmiedeter, leicht biegsamer Armreif aus 925 Sterling Silber mit zwei Labradorit-Enden.'},
+  {id:'ab-04',cat:'Armbänder',name:'Perlenarmband · Süßwasserperle',price:69,img:IMG[2],hoverImg:IMG[6],desc:'Kleine, unregelmäßige Süßwasserperlen mit Karabiner aus Sterling Silber.'},
+  {id:'ab-05',cat:'Armbänder',name:'Kettenarmband · Grüner Peridot',price:62,img:IMG[1],hoverImg:IMG[7],desc:'Leuchtend grüner Peridot in feiner Zargenfassung an einer zarten Kette.'},
+  {id:'ab-06',cat:'Armbänder',name:'Steinarmband · Amazonit',price:54,img:IMG[0],hoverImg:IMG[6],desc:'Sanft türkisfarbener Amazonit aus handverlesenen 4 mm Kugeln.'},
+  {id:'ab-07',cat:'Armbänder',name:'Doppelband · Granat & Silber',price:67,img:IMG[6],hoverImg:IMG[7],desc:'Zweireihiges Armband mit tiefroten Granat-Akzenten.'},
+  {id:'ab-08',cat:'Armbänder',name:'Minimal-Band · Citrin',price:59,img:IMG[7],hoverImg:IMG[0],desc:'Einzelner facettierter Citrin auf einer hauchfeinen 14k Gold Filled Kette.'},
+  {id:'ab-09',cat:'Armbänder',name:'Armband · Sodalith Matt',price:52,img:IMG[3],hoverImg:IMG[6],desc:'Seidenmatt polierte Sodalith-Perlen mit kleinem Silber-Tag.'},
+  {id:'ab-10',cat:'Armbänder',name:'Gliederarmband · Rauchquarz',price:76,img:IMG[5],hoverImg:IMG[7],desc:'Kräftigere Silberglieder kombiniert mit einem zentralen Rauchquarz.'},
+
+  // DO IT YOURSELF (8)
+  {id:'diy-01',cat:'Do it yourself',name:'DIY-Set · Armband Mondstein & Silber',price:39,img:IMG[5],hoverImg:IMG[3],desc:'Komplettset mit 25 facettierten Mondstein-Perlen, 925 Silber-Verschluss, Juwelierdraht & Anleitung.'},
+  {id:'diy-02',cat:'Do it yourself',name:'DIY-Set · Halskette Bunter Turmalin',price:49,img:IMG[7],hoverImg:IMG[2],desc:'Alles für dein eigenes Turmalin-Collier: handverlesene Steine, 14k Gold Filled Verschluss & Quetschperlen.'},
+  {id:'diy-03',cat:'Do it yourself',name:'DIY-Set · Ohrringe Süßwasserperle',price:34,img:IMG[4],hoverImg:IMG[6],desc:'Zwei Paar Silber-Ohrhaken, 6 Barockperlen, Nietstifte und Schritt-für-Schritt-Anleitung.'},
+  {id:'diy-04',cat:'Do it yourself',name:'Steinset · 12 Cabochons Mix',price:42,img:IMG[1],hoverImg:IMG[0],desc:'Zwölf handgeschliffene Cabochons (Labradorit, Mondstein, Rosenquarz, Amethyst) zum eigenen Fassen.'},
+  {id:'diy-05',cat:'Do it yourself',name:'DIY-Set · Knüpfarmband Amazonit',price:32,img:IMG[0],hoverImg:IMG[5],desc:'Seidenfaden in Naturweiß, 30 Amazonit-Perlen und Verschlusskugeln aus Sterling Silber.'},
+  {id:'diy-06',cat:'Do it yourself',name:'Werkzeug-Etui · Basis Zangenset',price:46,img:IMG[2],hoverImg:IMG[5],desc:'Rundzange, Flachzange und Seitenschneider mit ergonomischen Griffen für feine Schmuckarbeiten.'},
+  {id:'diy-07',cat:'Do it yourself',name:'DIY-Set · Layering-Kette Rosenquarz',price:38,img:IMG[3],hoverImg:IMG[4],desc:'Fertige 45 cm Kette aus 14k Gold Filled plus Rosenquarz-Tropfen und Biegeringen.'},
+  {id:'diy-08',cat:'Do it yourself',name:'Perlenstrang · Labradorit 3 mm',price:29,img:IMG[6],hoverImg:IMG[7],desc:'38 cm Strang aus fein facettierten Labradorit-Perlen mit starkem blauen Schimmer.'},
+
+  // SALE -20% WINTER-STYLES (8)
+  {id:'sl-01',cat:'Sale',name:'Winter-Style · Ring Prehnit',price:49,oldPrice:62,img:IMG[1],hoverImg:IMG[7],desc:'Apfelgrüner Prehnit mit feinen Rutil-Nadeln in 925 Sterling Silber. Winter-Special (-20 %).'},
+  {id:'sl-02',cat:'Sale',name:'Winter-Style · Ohrhänger Fluorit',price:44,oldPrice:56,img:IMG[6],hoverImg:IMG[7],desc:'Sanft grün-violett gebänderter Fluorit an Silber-Ohrhaken. Winter-Special (-20 %).'},
+  {id:'sl-03',cat:'Sale',name:'Winter-Style · Kette Apatit Blau',price:59,oldPrice:74,img:IMG[2],hoverImg:IMG[6],desc:'Ozeanblauer Apatit-Tropfen an einer 45 cm Ankerkette aus Sterling Silber (-20 %).'},
+  {id:'sl-04',cat:'Sale',name:'Winter-Style · Armband Karneol',price:39,oldPrice:49,img:IMG[4],hoverImg:IMG[7],desc:'Warmer Karneol-Strang mit Silber-Karabiner. Winter-Special (-20 %).'},
+  {id:'sl-05',cat:'Sale',name:'Winter-Style · Stecker Chalcedon',price:36,oldPrice:45,img:IMG[3],hoverImg:IMG[0],desc:'Milchig-blauer Chalcedon im runden Cabochon-Schliff (-20 %).'},
+  {id:'sl-06',cat:'Sale',name:'Winter-Style · DIY-Box Edelstein-Mix',price:29,oldPrice:38,img:IMG[5],hoverImg:IMG[1],desc:'Überraschungsbox mit ausgewählten Edelsteinsträngen & Silberteilen für 2 Armbänder (-20 %).'},
+  {id:'sl-07',cat:'Sale',name:'Winter-Style · Ring Sonnenstein',price:52,oldPrice:66,img:IMG[7],hoverImg:IMG[6],desc:'Warm glitzernder Sonnenstein in 14k Gold Filled Fassung (-20 %).'},
+  {id:'sl-08',cat:'Sale',name:'Winter-Style · Anhänger Chrysokoll',price:54,oldPrice:68,img:IMG[0],hoverImg:IMG[7],desc:'Türkis-grün marmorierter Chrysokoll mit Silberöse (-20 %).'}
+];
+
+// Rechtliche Inhalte (Impressum, Datenschutz, AGB, Versand)
+const LEGAL_TEXTS = {
+  impressum: `
+    <span class="eyebrow" style="color:var(--muted);margin-bottom:6px">Rechtliche Angaben</span>
+    <h2>Impressum</h2>
+    <h3>Angaben gemäß § 5 ECG / § 25 MedienG</h3>
+    <p><strong>ECHTSTEIN Natursteinschmuck</strong><br>Inhaberin: [Dein Vor- und Nachname]<br>Atelier &amp; Versand: [Straße &amp; Hausnummer]<br>8010 Graz, Österreich</p>
+    <h3>Kontakt</h3>
+    <p>E-Mail: hallo@echtstein-schmuck.at<br>Telefon: +43 (0) 664 / 000 00 00<br>Web: www.echtstein-schmuck.at</p>
+    <h3>Unternehmensgegenstand</h3>
+    <p>Anfertigung und Handel mit handgefertigtem Naturstein- und Edelsteinschmuck sowie DIY-Schmucksets.</p>
+    <h3>Online-Streitbeilegung</h3>
+    <p>Verbraucher haben die Möglichkeit, Beschwerden an die Online-Streitbeilegungsplattform der EU zu richten: http://ec.europa.eu/odr. Sie können allfällige Beschwerden auch an die oben angegebene E-Mail-Adresse richten.</p>
+  `,
+  datenschutz: `
+    <span class="eyebrow" style="color:var(--muted);margin-bottom:6px">Privatsphäre</span>
+    <h2>Datenschutzerklärung</h2>
+    <p>Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir verarbeiten Ihre Daten daher ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TKG).</p>
+    <h3>Bestellabwicklung</h3>
+    <p>Wenn Sie über unseren Onlineshop bestellen, werden Ihre angegebenen Kontakt- und Lieferdaten ausschließlich zur Abwicklung der Bestellung und für den Versand gespeichert und nicht an unbefugte Dritte weitergegeben.</p>
+    <h3>Ihre Rechte</h3>
+    <p>Ihnen stehen grundsätzlich die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerruf und Widerspruch zu.</p>
+  `,
+  agb: `
+    <span class="eyebrow" style="color:var(--muted);margin-bottom:6px">Bedingungen</span>
+    <h2>AGB &amp; Widerrufsrecht</h2>
+    <h3>1. Geltungsbereich &amp; Unikate</h3>
+    <p>Jedes Schmuckstück von ECHTSTEIN wird aus echten Natursteinen gefertigt. Leichte Abweichungen in Farbe, Maserung und Einschlüssen sind Zeichen der Echtheit und stellen keinen Mangel dar.</p>
+    <h3>2. Widerrufsrecht</h3>
+    <p>Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag, an dem Sie die Ware in Besitz genommen haben.</p>
+  `,
+  versand: `
+    <span class="eyebrow" style="color:var(--muted);margin-bottom:6px">Service</span>
+    <h2>Versand &amp; Pflegehinweise</h2>
+    <h3>Versandkosten &amp; Lieferzeit</h3>
+    <p>Ab einem Bestellwert von 90 € versenden wir innerhalb Österreichs und Deutschlands kostenfrei. Darunter beträgt die Versandpauschale 4,90 €. Die Lieferzeit beträgt 2–4 Werktage.</p>
+    <h3>Pflege deiner Edelsteine</h3>
+    <p>Bewahre deinen Schmuck trocken und getrennt auf. Lege ihn vor dem Duschen, Schwimmen oder Auftragen von Parfüm ab, damit Silber, Gold Filled und Natursteine ihren Glanz behalten.</p>
+  `
 };
 
+// Zustand
+let currentCategory = 'Alle';
 let cart = [];
-let currentPayMethod = 'paypal';
+let didDragScroll = false;
 
-function formatPrice(num) {
-  return num.toFixed(2).replace('.', ',') + ' €';
+function formatEUR(n){
+  return n.toFixed(2).replace('.', ',') + ' €';
 }
 
-function createProductCardHTML(p, isSlide) {
-  const priceHTML = p.sale && p.oldPrice
-    ? `<span class="p-price"><s>${formatPrice(p.oldPrice)}</s><span class="sale-val">${formatPrice(p.price)}</span></span>`
-    : `<span class="p-price">${formatPrice(p.price)}</span>`;
-  const badgeHTML = p.sale ? `<span class="p-badge sale">-20 %</span>` : '';
-  const hoverImgHTML = p.hoverImg
-    ? `<img class="img-hover" src="${p.hoverImg}" alt="${p.title} getragen" loading="lazy" onerror="this.style.display='none'">`
-    : '';
-  const inner = `
-    <article class="p-card" ontouchstart="handleCardTouch(this)">
-      <div class="p-img-wrap" onclick="openProductModal('${p.id}')">
-        ${badgeHTML}
-        <img class="img-main" src="${p.img}" alt="${p.title}" loading="lazy" onerror="this.src='https://placehold.co/800x1000/f3efe7/111?text=ECHTSTEIN'">
-        ${hoverImgHTML}
+// Produktkarte mit AURATE Hover- & Touch-Bildwechsel
+function productCardHTML(p, extraClass=''){
+  const fallback = `https://placehold.co/800x1000/f4f0e8/111111?text=${encodeURIComponent(p.name)}`;
+  const tag = p.oldPrice
+    ? `<span class="prod-tag sale">-20 % Winter</span>`
+    : (p.cat === 'Do it yourself' ? `<span class="prod-tag">DIY-Set</span>` : '');
+  const priceHTML = p.oldPrice
+    ? `<span class="old">${formatEUR(p.oldPrice)}</span><span class="sale-val">${formatEUR(p.price)}</span>`
+    : `<span>${formatEUR(p.price)}</span>`;
+  return `
+    <article class="prod-card ${extraClass}" ontouchstart="handleCardTouch(this)">
+      <div class="prod-media" onclick="if(!didDragScroll)openProductModal('${p.id}')">
+        ${tag}
+        <img class="img-main" src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='${fallback}'">
+        <img class="img-hover" src="${p.hoverImg || p.img}" alt="${p.name} – getragen" loading="lazy" onerror="this.src='${p.img}'">
+        <button class="prod-quick" onclick="event.stopPropagation();if(!didDragScroll)addToCart('${p.id}')">In die Einkaufstasche</button>
       </div>
-      <div class="p-info">
-        <div>
-          <div class="p-meta">${p.material}</div>
-          <h3 class="p-title" onclick="openProductModal('${p.id}')">${p.title}</h3>
-        </div>
-        <div class="p-price-row">
-          ${priceHTML}
-          <button class="p-add-link" onclick="addToCart('${p.id}')">+ Tasche</button>
-        </div>
+      <div class="prod-info">
+        <span class="prod-cat">${p.cat}</span>
+        <div class="prod-name" onclick="if(!didDragScroll)openProductModal('${p.id}')">${p.name}</div>
+        <div class="prod-price">${priceHTML}</div>
       </div>
-    </article>
-  `;
-  return isSlide ? `<div class="slider-slide">${inner}</div>` : inner;
+    </article>`;
 }
 
-function handleCardTouch(cardEl) {
-  document.querySelectorAll('.p-card.is-touched').forEach(el => {
-    if (el !== cardEl) el.classList.remove('is-touched');
+// Touch-Vorschau für Smartphones/Tablets
+function handleCardTouch(cardEl){
+  document.querySelectorAll('.prod-card.touch-preview').forEach(el => {
+    if(el !== cardEl) el.classList.remove('touch-preview');
   });
-  cardEl.classList.add('is-touched');
+  cardEl.classList.add('touch-preview');
 }
 
-function renderHomeSliders() {
-  const featured = PRODUCTS.filter(p => p.featured);
-  const saleItems = PRODUCTS.filter(p => p.sale);
-  const elFeat = document.getElementById('sliderFeatured');
-  const elSale = document.getElementById('sliderSale');
-  if (elFeat) elFeat.innerHTML = featured.map(p => createProductCardHTML(p, true)).join('');
-  if (elSale) elSale.innerHTML = saleItems.map(p => createProductCardHTML(p, true)).join('');
+// Startseite: Slideshow 1 (Auswahl) + Slideshow 2 (Sale -20% Winter-Styles) befüllen
+function renderHomeSliders(){
+  const featuredIds = ['rg-01','oh-01','hk-01','ab-01','rg-03','oh-02','hk-02','diy-01'];
+  const featured = featuredIds.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
+  document.getElementById('featuredTrack').innerHTML = featured.map(p => productCardHTML(p, 'slider-item')).join('');
+
+  const winterSale = PRODUCTS.filter(p => p.cat === 'Sale');
+  document.getElementById('winterSaleTrack').innerHTML = winterSale.map(p => productCardHTML(p, 'slider-item')).join('');
+
+  initDragScroll('featuredTrack');
+  initDragScroll('winterSaleTrack');
 }
 
-function slideTrack(id, dir) {
-  const track = document.getElementById(id);
-  if (!track) return;
-  const step = track.clientWidth * 0.67;
-  track.scrollBy({ left: dir * step, behavior: 'smooth' });
-}
-
-function enableSmoothDragScroll(id) {
-  const track = document.getElementById(id);
-  if (!track) return;
+// Sanftes Finger- & Maus-Ziehen (Slider bewegt sich exakt unter dem Finger / Cursor mit)
+function initDragScroll(trackId){
+  const el = document.getElementById(trackId);
+  if(!el) return;
   let isDown = false;
   let startX = 0;
   let scrollLeft = 0;
-  let moved = false;
 
-  track.addEventListener('mousedown', (e) => {
+  el.addEventListener('mousedown', (e) => {
     isDown = true;
-    moved = false;
-    track.classList.add('dragging');
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
+    didDragScroll = false;
+    el.classList.add('dragging');
+    startX = e.pageX - el.offsetLeft;
+    scrollLeft = el.scrollLeft;
   });
 
-  const stopDrag = () => {
-    if (!isDown) return;
+  el.addEventListener('mouseleave', () => {
     isDown = false;
-    track.classList.remove('dragging');
-  };
-
-  track.addEventListener('mouseup', stopDrag);
-  track.addEventListener('mouseleave', stopDrag);
-
-  track.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - track.offsetLeft;
-    const walk = x - startX;
-    if (Math.abs(walk) > 5) moved = true;
-    track.scrollLeft = scrollLeft - walk;
+    el.classList.remove('dragging');
   });
 
-  track.addEventListener('click', (e) => {
-    if (moved) {
-      e.stopPropagation();
-      e.preventDefault();
-      moved = false;
-    }
-  }, true);
+  el.addEventListener('mouseup', () => {
+    isDown = false;
+    el.classList.remove('dragging');
+    setTimeout(() => { didDragScroll = false; }, 60);
+  });
+
+  el.addEventListener('mousemove', (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = x - startX;
+    if(Math.abs(walk) > 6) didDragScroll = true;
+    el.scrollLeft = scrollLeft - walk;
+  });
+
+  el.addEventListener('touchstart', () => {
+    didDragScroll = false;
+  }, {passive:true});
+
+  el.addEventListener('touchmove', () => {
+    didDragScroll = true;
+  }, {passive:true});
+
+  el.addEventListener('touchend', () => {
+    setTimeout(() => { didDragScroll = false; }, 80);
+  });
 }
 
-function navigate(route) {
-  closeAllDrawers();
-  const vStart = document.getElementById('view-start');
-  const vShop = document.getElementById('view-shop');
-  const vStory = document.getElementById('view-story');
+function slideTrack(trackId, dir){
+  const el = document.getElementById(trackId);
+  if(!el) return;
+  const step = Math.max(300, el.clientWidth * 0.65);
+  el.scrollBy({left: dir * step, behavior: 'smooth'});
+}
 
-  document.querySelectorAll('.top-nav .link').forEach(btn => {
-    btn.setAttribute('aria-current', btn.dataset.nav === route ? 'page' : 'false');
+function showHome(){
+  document.getElementById('homeView').classList.remove('hidden');
+  document.getElementById('shopView').classList.add('hidden');
+  document.querySelectorAll('.top-nav a').forEach(a => a.classList.remove('active'));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function openCategory(cat){
+  currentCategory = cat;
+  document.getElementById('homeView').classList.add('hidden');
+  document.getElementById('shopView').classList.remove('hidden');
+  document.querySelectorAll('.top-nav a').forEach(a => {
+    a.classList.toggle('active', a.dataset.cat === cat);
   });
+  renderFilterBar();
+  renderGrid();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 
-  if (route === 'start') {
-    vStart.hidden = false;
-    vShop.hidden = true;
-    vStory.hidden = true;
-  } else if (route === 'story') {
-    vStart.hidden = true;
-    vShop.hidden = true;
-    vStory.hidden = false;
-  } else {
-    vStart.hidden = true;
-    vShop.hidden = false;
-    vStory.hidden = true;
+function renderFilterBar(){
+  const cats = ['Alle','Ringe','Ohrringe','Halsketten','Armbänder','Do it yourself','Sale'];
+  document.getElementById('filterBar').innerHTML = cats.map(c =>
+    `<button class="${c===currentCategory?'active':''}" onclick="openCategory('${c}')">${c}</button>`
+  ).join('');
+}
 
-    const meta = CAT_META[route] || CAT_META.alle;
-    document.getElementById('shopTitle').textContent = meta.title;
-    document.getElementById('shopSubtitle').textContent = meta.sub;
-
-    document.querySelectorAll('.filter-pill').forEach(pill => {
-      pill.classList.toggle('active', pill.dataset.cat === route);
-    });
-
-    let list = PRODUCTS;
-    if (route === 'sale') {
-      list = PRODUCTS.filter(p => p.sale);
-    } else if (route !== 'alle') {
-      list = PRODUCTS.filter(p => p.cat === route);
-    }
-    document.getElementById('shopGrid').innerHTML = list.map(p => createProductCardHTML(p, false)).join('');
-  }
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+function renderGrid(){
+  const list = currentCategory === 'Alle'
+    ? PRODUCTS
+    : PRODUCTS.filter(p => p.cat === currentCategory);
+  document.getElementById('shopTitle').textContent = currentCategory === 'Alle' ? 'Alle Schmuckstücke' : currentCategory;
+  document.getElementById('shopCount').textContent = `${list.length} ${list.length===1?'Stück':'Stücke'}`;
+  document.getElementById('productGrid').innerHTML = list.map(p => productCardHTML(p)).join('');
 }
 
 // Produkt-Modal
-function openProductModal(id) {
+function openProductModal(id){
   const p = PRODUCTS.find(x => x.id === id);
-  if (!p) return;
-  document.getElementById('modalImg').src = p.img;
-  document.getElementById('modalImg').alt = p.title;
-  document.getElementById('modalMeta').textContent = p.material;
-  document.getElementById('modalTitle').textContent = p.title;
-  document.getElementById('modalPrice').innerHTML = p.sale && p.oldPrice
-    ? `<s style="color:#888;margin-right:10px">${formatPrice(p.oldPrice)}</s><span style="color:var(--sale);font-weight:500">${formatPrice(p.price)}</span>`
-    : formatPrice(p.price);
+  if(!p) return;
+  const fallback = `https://placehold.co/800x1000/f4f0e8/111111?text=${encodeURIComponent(p.name)}`;
+  const imgEl = document.getElementById('modalImg');
+  imgEl.src = p.img;
+  imgEl.onerror = () => { imgEl.src = fallback; };
+  document.getElementById('modalCat').textContent = p.cat;
+  document.getElementById('modalTitle').textContent = p.name;
+  document.getElementById('modalPrice').innerHTML = p.oldPrice
+    ? `<span class="old">${formatEUR(p.oldPrice)}</span><span class="sale-val">${formatEUR(p.price)}</span>`
+    : `<span>${formatEUR(p.price)}</span>`;
   document.getElementById('modalDesc').textContent = p.desc;
-  document.getElementById('modalAddBtn').onclick = () => {
-    addToCart(p.id);
-    closeProductModal();
-  };
-  document.getElementById('productModal').hidden = false;
+  document.getElementById('modalAddBtn').onclick = () => { addToCart(p.id); closeProductModal(); };
+  document.getElementById('productModal').classList.add('open');
+}
+function closeProductModal(){
+  document.getElementById('productModal').classList.remove('open');
 }
 
-function closeProductModal() {
-  document.getElementById('productModal').hidden = true;
+// Rechtliches / Impressum Modal
+function openLegalModal(type){
+  const html = LEGAL_TEXTS[type] || LEGAL_TEXTS.impressum;
+  document.getElementById('legalModalContent').innerHTML = html;
+  document.getElementById('legalModal').classList.add('open');
+}
+function closeLegalModal(){
+  document.getElementById('legalModal').classList.remove('open');
 }
 
-const LEGAL_CONTENT = {
-  impressum: {
-    title: 'Impressum',
-    html: `
-      <p style="margin:0 0 12px"><strong>ECHTSTEIN – Handgefertigter Natursteinschmuck</strong><br>
-      Inhaberin: ECHTSTEIN Atelier<br>
-      Österreich</p>
-      <p style="margin:0 0 12px"><strong>Kontakt:</strong><br>
-      E-Mail: kontakt@echtstein.com<br>
-      Instagram &amp; Facebook: @echtstein</p>
-      <p style="margin:0;color:#666;font-size:13px">Unternehmensgegenstand: Herstellung und Vertrieb von handgefertigtem Schmuck aus 925 Sterling Silber, 14k Gold Filled und Natursteinen.<br>
-      Plattform der EU-Kommission zur Online-Streitbeilegung: https://ec.europa.eu/consumers/odr</p>
-    `
-  },
-  versand: {
-    title: 'Versand & Rückgabe',
-    html: `
-      <p style="margin:0 0 12px"><strong>Versandkosten:</strong><br>
-      Kostenloser Versand innerhalb Österreichs und Deutschlands ab einem Bestellwert von 90,00 € (darunter 4,90 € versicherter Versand).</p>
-      <p style="margin:0"><strong>Rückgaberecht:</strong><br>
-      Sie können ungetragene Schmuckstücke innerhalb von 14 Tagen nach Erhalt problemlos an uns zurücksenden.</p>
-    `
-  },
-  datenschutz: {
-    title: 'Datenschutz',
-    html: `
-      <p style="margin:0 0 12px">Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir verarbeiten Ihre Daten ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TKG).</p>
-      <p style="margin:0">Ihre Bestell- und Kontaktdaten werden ausschließlich zur Abwicklung Ihrer Bestellung und für eventuelle Rückfragen verwendet und nicht an unbefugte Dritte weitergegeben.</p>
-    `
-  }
-};
-
-function openLegalModal(type) {
-  const entry = LEGAL_CONTENT[type] || LEGAL_CONTENT.impressum;
-  document.getElementById('legalModalTitle').textContent = entry.title;
-  document.getElementById('legalModalBody').innerHTML = entry.html;
-  document.getElementById('legalModal').hidden = false;
+// Warenkorb & Checkout
+function saveCart(){
+  updateCartBadge();
 }
-
-function closeLegalModal() {
-  document.getElementById('legalModal').hidden = true;
+function updateCartBadge(){
+  const count = cart.reduce((s,i) => s + i.qty, 0);
+  document.getElementById('cartCount').textContent = count;
 }
-
-// Warenkorb-Logik
-function saveCart() {
-  updateCartUI();
-}
-
-function addToCart(id) {
-  const existing = cart.find(i => i.id === id);
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({ id, qty: 1 });
-  }
+function addToCart(id){
+  const p = PRODUCTS.find(x => x.id === id);
+  if(!p) return;
+  const found = cart.find(i => i.id === id);
+  if(found) found.qty += 1;
+  else cart.push({id:p.id,qty:1});
   saveCart();
-  showInfoToast('Zur Einkaufstasche hinzugefügt');
+  showToast('Zur Einkaufstasche hinzugefügt');
+  openCart();
 }
-
-function changeQty(id, delta) {
+function changeQty(id, delta){
   const idx = cart.findIndex(i => i.id === id);
-  if (idx === -1) return;
+  if(idx === -1) return;
   cart[idx].qty += delta;
-  if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  if(cart[idx].qty <= 0) cart.splice(idx, 1);
   saveCart();
+  renderCart();
 }
 
-function updateCartUI() {
-  const totalCount = cart.reduce((s, i) => s + i.qty, 0);
-  document.getElementById('cartCount').textContent = totalCount;
-
-  const container = document.getElementById('cartItems');
-  const footer = document.getElementById('cartFooter');
-
-  if (cart.length === 0) {
-    container.innerHTML = `<p style="font-size:14px;color:#666;margin-top:24px">Ihre Einkaufstasche ist derzeit leer.</p>`;
-    footer.hidden = true;
-    return;
-  }
-
-  let sum = 0;
-  container.innerHTML = cart.map(item => {
-    const p = PRODUCTS.find(x => x.id === item.id);
-    if (!p) return '';
-    sum += p.price * item.qty;
-    return `
-      <div class="cart-item">
-        <img src="${p.img}" alt="${p.title}" onerror="this.src='https://placehold.co/120x150/f3efe7/111?text=E'">
-        <div style="flex:1">
-          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:18px">${p.title}</div>
-          <div style="font-size:12px;color:#666;margin-top:2px">${formatPrice(p.price)}</div>
-          <div class="qty-box">
-            <button onclick="changeQty('${p.id}',-1)" aria-label="Weniger">&minus;</button>
-            <span>${item.qty}</span>
-            <button onclick="changeQty('${p.id}',1)" aria-label="Mehr">+</button>
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  document.getElementById('cartTotal').textContent = formatPrice(sum);
-  footer.hidden = false;
-  renderPayPalButton(sum);
-}
-
-function setPayMethod(method) {
-  currentPayMethod = method;
-  document.getElementById('tabPaypal').classList.toggle('active', method === 'paypal');
-  document.getElementById('tabBank').classList.toggle('active', method === 'bank');
-  document.getElementById('paypal-button-container').hidden = method !== 'paypal';
-  document.getElementById('bankCheckoutBox').hidden = method !== 'bank';
-}
-
-function renderPayPalButton(totalAmount) {
-  const box = document.getElementById('paypal-button-container');
-  if (!box || typeof window.paypalSDK === 'undefined') return;
-  box.innerHTML = '';
-  try {
-    window.paypalSDK.Buttons({
-      style: { layout: 'horizontal', color: 'black', shape: 'rect', label: 'pay', tagline: false },
-      createOrder: (data, actions) => actions.order.create({
-        purchase_units: [{ amount: { value: totalAmount.toFixed(2) } }]
-      }),
-      onApprove: (data, actions) => actions.order.capture().then(() => {
-        cart = [];
-        saveCart();
-        closeAllDrawers();
-        showInfoToast('Vielen Dank für Ihre PayPal-Bestellung!');
-      })
-    }).render('#paypal-button-container');
-  } catch(e) {}
-}
-
-function completeBankOrder() {
-  cart = [];
-  saveCart();
-  closeAllDrawers();
-  showInfoToast('Bestellung eingegangen! Die Zahlungsdaten wurden angezeigt.');
-}
-
-// Drawer-Steuerung
-function openMenu() {
-  closeAllDrawers();
+function openMenu(){
   document.getElementById('backdrop').classList.add('open');
   document.getElementById('menuDrawer').classList.add('open');
 }
-
-function openCart() {
-  closeAllDrawers();
-  updateCartUI();
+function openCart(){
+  renderCart();
   document.getElementById('backdrop').classList.add('open');
   document.getElementById('cartDrawer').classList.add('open');
 }
-
-function closeAllDrawers() {
+function closeAllDrawers(){
   document.getElementById('backdrop').classList.remove('open');
   document.getElementById('menuDrawer').classList.remove('open');
   document.getElementById('cartDrawer').classList.remove('open');
 }
 
-function showInfoToast(msg) {
+function cartTotals(){
+  let sub = 0;
+  cart.forEach(item => {
+    const p = PRODUCTS.find(x => x.id === item.id);
+    if(p) sub += p.price * item.qty;
+  });
+  const shipping = sub === 0 || sub >= 90 ? 0 : 4.9;
+  return {sub, shipping, total: sub + shipping};
+}
+
+function renderCart(){
+  const body = document.getElementById('cartBody');
+  const foot = document.getElementById('cartFoot');
+  if(cart.length === 0){
+    body.innerHTML = `<p style="color:var(--muted);font-size:14px;padding-top:24px">Ihre Einkaufstasche ist derzeit leer.</p>`;
+    foot.innerHTML = `<button class="btn-secondary" onclick="closeAllDrawers();openCategory('Alle')">Kollektion ansehen</button>`;
+    return;
+  }
+  body.innerHTML = cart.map(item => {
+    const p = PRODUCTS.find(x => x.id === item.id);
+    if(!p) return '';
+    return `
+      <div class="cart-item">
+        <img src="${p.img}" alt="${p.name}" onerror="this.src='https://placehold.co/200x250/f4f0e8/111111?text=ECHTSTEIN'">
+        <div>
+          <div class="cart-item-title">${p.name}</div>
+          <div class="cart-item-meta">${p.cat} · ${formatEUR(p.price)}</div>
+          <div class="qty-row">
+            <div class="qty-box">
+              <button onclick="changeQty('${p.id}',-1)">−</button>
+              <span>${item.qty}</span>
+              <button onclick="changeQty('${p.id}',1)">+</button>
+            </div>
+            <button class="remove-btn" onclick="changeQty('${p.id}',-999)">Entfernen</button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  const {sub, shipping, total} = cartTotals();
+  foot.innerHTML = `
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:8px">
+      <span>Zwischensumme</span><span>${formatEUR(sub)}</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:14px">
+      <span>Versand ${sub>=90?'(Kostenfrei)':''}</span><span>${shipping===0?'0,00 €':formatEUR(shipping)}</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:15px;padding-top:12px;border-top:1px solid var(--line);margin-bottom:18px">
+      <span>Gesamtsumme</span><span>${formatEUR(total)}</span>
+    </div>
+    <button class="btn-primary" onclick="openCheckout()">Zur Kasse gehen</button>`;
+}
+
+function openCheckout(){
+  const {total} = cartTotals();
+  const body = document.getElementById('cartBody');
+  const foot = document.getElementById('cartFoot');
+  body.innerHTML = `
+    <div style="margin-bottom:20px">
+      <button class="remove-btn" onclick="renderCart()" style="margin-bottom:14px">← Zurück zur Tasche</button>
+      <h4 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:400;margin:0 0 6px">Lieferadresse</h4>
+      <p style="font-size:12px;color:var(--muted);margin:0">Bitte geben Sie Ihre Versanddaten ein.</p>
+    </div>
+    <form id="checkoutForm" onsubmit="return false">
+      <div class="row-2">
+        <div class="field"><label>Vorname</label><input id="cFirst" required></div>
+        <div class="field"><label>Nachname</label><input id="cLast" required></div>
+      </div>
+      <div class="field"><label>E-Mail</label><input id="cEmail" type="email" required></div>
+      <div class="field"><label>Straße &amp; Hausnummer</label><input id="cStreet" required></div>
+      <div class="row-2">
+        <div class="field"><label>PLZ</label><input id="cZip" required></div>
+        <div class="field"><label>Ort</label><input id="cCity" required></div>
+      </div>
+    </form>
+    <div style="margin-top:18px;padding-top:18px;border-top:1px solid var(--line)">
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Zahlung · ${formatEUR(total)}</div>
+      <div id="paypal-button-container"></div>
+    </div>`;
+  foot.innerHTML = ``;
+  mountPayPal();
+}
+
+function mountPayPal(){
+  const {total} = cartTotals();
+  const container = document.getElementById('paypal-button-container');
+  let paypalSDK = null;
+  try {
+    if(typeof paypal !== 'undefined' && paypal.Buttons) paypalSDK = paypal;
+  } catch(e) {
+    paypalSDK = null;
+  }
+
+  if(paypalSDK){
+    paypalSDK.Buttons({
+      style:{layout:'vertical',color:'black',shape:'rect',label:'paypal'},
+      createOrder:(data, actions) => {
+        const form = document.getElementById('checkoutForm');
+        if(!form.reportValidity()) return;
+        return actions.order.create({
+          purchase_units:[{
+            description:'ECHTSTEIN Natursteinschmuck',
+            amount:{currency_code:'EUR',value:total.toFixed(2)}
+          }]
+        });
+      },
+      onApprove:(data, actions) => actions.order.capture().then(details => {
+        completeOrder(details.payer?.name?.given_name || '');
+      })
+    }).render('#paypal-button-container');
+  } else {
+    container.innerHTML = `
+      <button class="btn-primary" onclick="simulatePayPal()">Mit PayPal bezahlen (${formatEUR(total)})</button>
+      <p style="font-size:11px;color:var(--muted);line-height:1.6;margin-top:10px">
+        Hinweis: Hinterlegen Sie im Quelltext Ihre persönliche PayPal-Client-ID, um Live-Zahlungen direkt über PayPal abzuwickeln.
+      </p>`;
+  }
+}
+
+function simulatePayPal(){
+  const form = document.getElementById('checkoutForm');
+  if(!form.reportValidity()) return;
+  completeOrder(document.getElementById('cFirst').value);
+}
+
+function completeOrder(name){
+  cart = [];
+  saveCart();
+  document.getElementById('cartBody').innerHTML = `
+    <div style="padding:36px 0">
+      <span class="eyebrow" style="color:var(--muted)">Bestellung eingegangen</span>
+      <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:32px;margin:0 0 14px">Vielen Dank${name?', '+name:''}.</h3>
+      <p style="font-size:14px;line-height:1.75;color:var(--muted)">Ihre ECHTSTEIN-Bestellung wird nun von Hand für Sie vorbereitet. Eine Bestätigung wurde an Ihre E-Mail-Adresse gesendet.</p>
+    </div>`;
+  document.getElementById('cartFoot').innerHTML = `<button class="btn-primary" onclick="closeAllDrawers()">Weiter entdecken</button>`;
+}
+
+function subscribeNewsletter(e){
+  e.preventDefault();
+  document.getElementById('nlEmail').value = '';
+  showToast('Vielen Dank für Ihre Anmeldung');
+}
+
+function showToast(msg){
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  clearTimeout(window._toastTimer);
-  window._toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+  clearTimeout(window._toastT);
+  window._toastT = setTimeout(() => t.classList.remove('show'), 2400);
 }
 
-// Initialisierung
-window.addEventListener('DOMContentLoaded', () => {
-  renderHomeSliders();
-  enableSmoothDragScroll('sliderFeatured');
-  enableSmoothDragScroll('sliderSale');
-  updateCartUI();
-});
+// Initialisierung beim Laden
+renderHomeSliders();
+updateCartBadge();
 </script>
 </body>
 </html>
