@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ECHTSTEIN — Natursteinschmuck</title>
-<!-- Markantes, dickes Tropfen-Favicon für die Browser-Adresszeile / Tab -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23fbf9f4'/%3E%3Cpath d='M32 6C32 6 12 29 12 42.5C12 53 20.8 59 32 59C43.2 59 52 53 52 42.5C52 29 32 6 32 6Z' fill='%23111111' stroke='%23111111' stroke-width='3' stroke-linejoin='round'/%3E%3Cpath d='M23 42C23 46.8 26.8 50.5 32 50.5' fill='none' stroke='%23fbf9f4' stroke-width='3.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<!-- Extra-dickes, markantes Tropfen-Favicon für die Browser-Kopfzeile (www.) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111111'/%3E%3Cpath d='M32 7C32 7 12 29.5 12 42.5C12 52.8 20.8 58 32 58C43.2 58 52 52.8 52 42.5C52 29.5 32 7 32 7Z' fill='%23fbf9f4' stroke='%23fbf9f4' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M22.5 42C22.5 47 26.5 50.5 32 50.5' fill='none' stroke='%23111111' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="alternate icon" type="image/svg+xml" href="echtstein-stein-icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,24 +27,22 @@
 
   .ann{background:var(--bg-alt);border-bottom:1px solid var(--line);text-align:center;font-size:11px;letter-spacing:2.4px;text-transform:uppercase;padding:10px 16px;color:var(--ink)}
 
-  /* Header mit Variante 3: Schrift exakt gleich hoch wie das Tropfen-Logo */
-  header{position:sticky;top:0;z-index:40;background:rgba(251,249,244,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:18px 40px}
+  /* Header: Kräftige Linien & markantes Logo auf gleicher Höhe */
+  header{position:sticky;top:0;z-index:40;background:rgba(251,249,244,0.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:18px 40px}
   @media(max-width:768px){header{padding:14px 20px}}
   .header-left{display:flex;align-items:center;gap:42px}
   .logo{color:var(--ink);display:inline-flex;align-items:center;gap:14px;line-height:1}
   .logo-text-wrap{display:flex;flex-direction:column;justify-content:center;gap:3px}
-  .logo-main{font-family:'Cormorant Garamond',Georgia,serif;font-size:38px;font-weight:700;letter-spacing:6px;text-transform:uppercase;line-height:0.88}
-  .logo-sub{font-size:8.5px;letter-spacing:3.4px;text-transform:uppercase;color:#6b5d47;font-weight:500;padding-left:2px}
+  .logo-main{font-family:'Cormorant Garamond',Georgia,serif;font-size:38px;font-weight:700;letter-spacing:5.5px;text-transform:uppercase;line-height:0.88;-webkit-text-stroke:0.45px var(--ink)}
+  .logo-sub{font-size:8.5px;letter-spacing:3.4px;text-transform:uppercase;color:#4f4434;font-weight:500;padding-left:2px}
+  .logo-drop-svg{width:38px;height:38px;flex-shrink:0;display:block;transition:transform .3s ease}
   @media(max-width:640px){
     .logo{gap:9px}
-    .logo-main{font-size:27px;letter-spacing:4px}
-    .logo-sub{font-size:7.5px;letter-spacing:2.4px}
+    .logo-main{font-size:27px;letter-spacing:3.8px}
+    .logo-sub{font-size:7.5px;letter-spacing:2.3px}
+    .logo-drop-svg{width:28px;height:28px}
   }
-  .logo-icon{width:36px;height:36px;object-fit:contain;display:block;transition:transform .3s ease;filter:drop-shadow(0 0 0.5px #111)}
-  @media(max-width:640px){
-    .logo-icon{width:26px;height:26px}
-  }
-  .logo:hover .logo-icon{transform:scale(1.05)}
+  .logo:hover .logo-drop-svg{transform:scale(1.06)}
 
   .top-nav{display:none;gap:24px;align-items:center}
   @media(min-width:1024px){.top-nav{display:flex}}
@@ -57,7 +55,7 @@
   .icon-btn{background:none;border:0;padding:4px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);display:inline-flex;align-items:center;gap:6px}
   .menu-btn{display:inline-flex;flex-direction:column;gap:5px;padding:6px}
   @media(min-width:1024px){.menu-btn{display:none}}
-  .menu-btn span{width:22px;height:1px;background:var(--ink);display:block}
+  .menu-btn span{width:22px;height:1.5px;background:var(--ink);display:block}
 
   /* Kampagnen-Banner (Volle Breite) */
   .hero{position:relative;width:100%;height:78vh;min-height:480px;max-height:840px;overflow:hidden;background:#26221e;color:#fff;display:flex;align-items:flex-end}
@@ -73,7 +71,7 @@
   .hero-cta{display:inline-block;padding:14px 30px;border:1px solid #fff;font-size:11px;letter-spacing:2.4px;text-transform:uppercase;background:transparent;color:#fff;transition:background .25s,color .25s}
   .hero-cta:hover{background:#fff;color:var(--ink)}
 
-  /* Kompaktere Produktkategorien (2x3 Raster bis zum Rand) */
+  /* Produktkategorien: Nahtloses 3 oben & 3 unten Raster bis an den Bildschirmrand */
   .full-bleed-section{width:100%;padding:0;margin:0}
   .section-bar{display:flex;justify-content:space-between;align-items:flex-end;padding:52px 40px 24px;gap:20px;flex-wrap:wrap}
   @media(max-width:768px){.section-bar{padding:36px 20px 18px}}
@@ -81,7 +79,6 @@
   .section-sub{font-size:12px;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase}
 
   .aurate-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line);width:100%}
-  .aurate-grid-3.cat-spaced{gap:6px;background:var(--bg);border-top:0;border-bottom:0;padding:0 6px}
   @media(max-width:900px){.aurate-grid-3{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.aurate-grid-3{grid-template-columns:1fr}}
 
@@ -144,7 +141,7 @@
   .filter-bar button{background:none;border:0;padding:4px 0;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);white-space:nowrap;border-bottom:1px solid transparent}
   .filter-bar button.active{color:var(--ink);border-bottom-color:var(--ink)}
 
-  /* Footer mit doppelt so großem Logo & IG/FB rechts */
+  /* Footer mit doppelt so großem Logo, IG & FB rechts */
   footer{border-top:1px solid var(--line);background:var(--bg-alt);padding:72px 40px 48px}
   @media(max-width:768px){footer{padding:52px 20px 36px}}
   .footer-grid{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:48px}
@@ -237,7 +234,11 @@
         <span class="logo-main">ECHTSTEIN</span>
         <span class="logo-sub">Natursteinschmuck</span>
       </span>
-      <img class="logo-icon" src="echtstein-stein-icon.svg" alt="ECHTSTEIN Icon" onerror="this.style.display='none'">
+      <!-- Extra-starkes Tropfen-Logo mit dicken Konturen im Header -->
+      <svg class="logo-drop-svg" viewBox="0 0 48 48" fill="none" stroke="#111111" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-label="ECHTSTEIN Tropfen">
+        <path d="M24 4.5C24 4.5 9.5 21 9.5 31.5C9.5 39.5 16 44 24 44C32 44 38.5 39.5 38.5 31.5C38.5 21 24 4.5 24 4.5Z"/>
+        <path d="M17.5 31.5C17.5 35.3 20.3 38 24 38" stroke-width="3"/>
+      </svg>
     </a>
     <nav class="top-nav" aria-label="Hauptnavigation">
       <a href="#ringe" data-cat="Ringe" onclick="openCategory('Ringe');return false">Ringe</a>
@@ -269,13 +270,13 @@
     </div>
   </section>
 
-  <!-- 2. PRODUKTKATEGORIEN (3 oben & 3 unten mit feinem weißen Abstand dazwischen) -->
+  <!-- 2. PRODUKTKATEGORIEN (3 oben & 3 unten direkt nebeneinander ohne Pause) -->
   <section class="full-bleed-section">
     <div class="section-bar">
       <h2 class="section-title">Kategorien</h2>
       <span class="section-sub">Alle sechs Bereiche im Überblick</span>
     </div>
-    <div class="aurate-grid-3 cat-spaced">
+    <div class="aurate-grid-3">
       <a href="#ringe" class="cat-card" onclick="openCategory('Ringe');return false">
         <img src="Gemini_Generated_Image (1).jpeg" alt="Ringe" onerror="this.src='https://placehold.co/800x800/d8cfc2/111111?text=Ringe'">
         <div class="cat-card-info"><span>Kollektion</span><strong>Ringe</strong></div>
@@ -303,7 +304,7 @@
     </div>
   </section>
 
-  <!-- 3. ERSTE SLIDESHOW: BELIEBTE UNIKATE (Halbe Bannerhöhe, flüssiges Wischen & Mausziehen) -->
+  <!-- 3. ERSTE SLIDESHOW: BELIEBTE UNIKATE -->
   <section class="full-bleed-section">
     <div class="section-bar">
       <div>
@@ -330,7 +331,7 @@
     </div>
   </section>
 
-  <!-- 5. ZWEITE SLIDESHOW: SALE -20% WINTER-STYLES (Halbe Bannerhöhe) -->
+  <!-- 5. ZWEITE SLIDESHOW: SALE -20% WINTER-STYLES -->
   <section class="full-bleed-section">
     <div class="section-bar">
       <div>
@@ -358,7 +359,7 @@
   </section>
 </main>
 
-<!-- KATEGORIE-ANSICHT (Ebenfalls randloses 3er-Raster am PC) -->
+<!-- KATEGORIE-ANSICHT (Randloses 3er-Raster am PC) -->
 <section id="shopView" class="shop-section hidden">
   <div class="shop-head">
     <div>
