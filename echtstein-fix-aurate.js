@@ -14,8 +14,6 @@ if (_cb) _cb.innerHTML = '<span class="cart-word">Einkaufstasche</span><span cla
 
 /* ---------- Stil ---------- */
 document.head.insertAdjacentHTML('beforeend', '<style>' +
-  /* Nur das Symbol in der Kopfzeile bekommt dickere Linien */
-  '.header-left .logo-icon{filter:drop-shadow(.8px 0 0 #111) drop-shadow(-.8px 0 0 #111) drop-shadow(0 .8px 0 #111) drop-shadow(0 -.8px 0 #111)}' +
   /* Menü: Links erst ab 1280 px, sonst Burger (sonst läuft die Kopfzeile über) */
   '@media(min-width:1024px) and (max-width:1279px){.top-nav{display:none}.menu-btn{display:inline-flex}}' +
   '.cart-short{display:none}' +
