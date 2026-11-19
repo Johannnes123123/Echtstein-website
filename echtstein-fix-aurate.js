@@ -3,7 +3,7 @@
    <script src="echtstein-fix-aurate.js"></script> */
 
 const FIXA = {
-  FORMSPREE_URL: '',  // Bestell- und Newsletter-Mails: auf formspree.io Formular anlegen, Link eintragen
+  FORMSPREE_URL: 'https://formspree.io/f/mnpdzavw',  // Bestell- und Newsletter-Mails: auf formspree.io Formular anlegen, Link eintragen
   PAYPAL_CLIENT_ID: 'Af5cgcWw50_BjmgYOKZSbOBlxe4cT2u53uTWSfxP9TVs5KT9ASoVFkjYSj-9jafwuANTQQTqICgmyzsg' // Sandbox-ID; für echte Zahlungen die Live-ID eintragen
 };
 
