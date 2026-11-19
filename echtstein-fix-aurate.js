@@ -55,7 +55,10 @@ const cartLines = () => cart.map(i => { const p = PRODUCTS.find(x => x.id === i.
 async function postFormA(data) {
   if (!FIXA.FORMSPREE_URL) throw new Error('FORMSPREE_URL fehlt');
   const r = await fetch(FIXA.FORMSPREE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
-  if (!r.ok) throw new Error('Senden fehlgeschlagen');
+  if (!r.ok) {
+    const j = await r.json().catch(() => ({}));
+    throw new Error(r.status + ' ' + ((j.errors && j.errors[0] && j.errors[0].message) || j.error || 'Senden fehlgeschlagen'));
+  }
 }
 
 /* ---------- PayPal wirklich einbinden (fehlte komplett), keine Schein-Zahlung mehr ---------- */
@@ -105,5 +108,5 @@ subscribeNewsletter = async function (e) {
     await postFormA({ _subject: 'Newsletter-Anmeldung', email: document.getElementById('nlEmail').value });
     document.getElementById('nlEmail').value = ''; document.getElementById('nlOk').checked = false;
     showToast('Danke für Ihre Anmeldung');
-  } catch (x) { showToast('Anmeldung gerade nicht möglich'); }
+  } catch (x) { alert('Anmeldung nicht möglich. Fehler: ' + x.message); }
 };
